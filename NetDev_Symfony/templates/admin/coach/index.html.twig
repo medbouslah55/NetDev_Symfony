@@ -1,0 +1,64 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Nos Regime pour Vous{% endblock %}
+{% block body %}
+
+<main class="content">
+    <div class="container-fluid p-0">
+
+        <h1 class="h3 mb-3">Column Search</h1>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">DataTables with Column Search by Text Inputs</h5>
+                            <h6 class="card-subtitle text-muted">The searching functionality provided by DataTables is useful for quickly search through the information in the table. See official documentation <a href="https://datatables.net/examples/api/multi_filter.html"
+                                                                                                                                                                                                                     target="_blank" rel="noopener noreferrer">here</a>.</h6>
+                        </div>
+                        <div class="card-body">
+                            <table id="datatables-column-search-text-inputs" class="table table-striped" style="width:100%">
+                                <thead>
+                                <tr>
+                                    <th>Cin</th>
+                                    <th>Nom</th>
+                                    <th>Prenom</th>
+                                    <th>Date de naissance</th>
+                                    <th>Sexe</th>
+                                    <th>Supprimer</th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    {% for Coach in Coachs %}
+                                        <tr>
+                                            <td>{{ Coach.cin }}</td>
+                                            <td>{{ Coach.nom }}</td>
+                                            <td>{{ Coach.prenom }}</td>
+                                            <td>{{ Coach.datee|date("m/d/Y") }}</td>
+                                            <td>{{ Coach.sexe }}</td>
+                                            <td class="">
+
+                                                <a href="#"><i class="align-middle" data-feather="trash"></i></a>
+                                            </td>
+
+                                        </tr>
+                                    {% endfor %}
+
+
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>Cin</th>
+                                    <th>Nom</th>
+                                    <th>Prenom</th>
+                                    <th>Date de naissance</th>
+                                    <th>Sexe</th>
+                                    <th>Supprimer</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+</main>
+{% endblock %}

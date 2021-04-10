@@ -1,0 +1,42 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Nos Regime pour Vous{% endblock %}
+{% block body %}
+
+    <main class="content">
+        <div class="container-fluid p-0">
+
+            <h1 class="h3 mb-3">Column Search</h1>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">DataTables with Column Search by Text Inputs</h5>
+                            <h6 class="card-subtitle text-muted">The searching functionality provided by DataTables is useful for quickly search through the information in the table. See official documentation <a href="https://datatables.net/examples/api/multi_filter.html"
+                                                                                                                                                                                                                     target="_blank" rel="noopener noreferrer">here</a>.</h6>
+                        </div>
+                        <div class="card-body">
+                            <main class="content">
+                                <main class="container-fluid p-0">
+
+                                    <h1 class="h3 mb-3">Form Layouts</h1>
+
+                                    <div class="row">
+                                        <div class="col-12 col-xl-6">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h5 class="card-title">Basic form</h5>
+                                                    <h6 class="card-subtitle text-muted">Default Bootstrap form layout.</h6>
+                                                </div>
+                                                <div class="card-body">
+                                                    {{ form(form) }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </main>
+                        </div>
+                    </div>
+                </div>
+    </main>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Membre{% endblock %}
+
+{% block body %}
+    <h1>Membre</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Cin</th>
+                <td>{{ membre.cin }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ membre.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ membre.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Sexe</th>
+                <td>{{ membre.sexe }}</td>
+            </tr>
+            <tr>
+                <th>Datee</th>
+                <td>{{ membre.datee ? membre.datee|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Taille</th>
+                <td>{{ membre.taille }}</td>
+            </tr>
+            <tr>
+                <th>Poids</th>
+                <td>{{ membre.poids }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ membre.email }}</td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td>{{ membre.password }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ membre.telephone }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('membre_index') }}">back to list</a>
+
+    <a href="{{ path('membre_edit', {'cin': membre.cin}) }}">edit</a>
+
+    {{ include('membre/_delete_form.html.twig') }}
+{% endblock %}
