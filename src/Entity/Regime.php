@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * Regime
@@ -63,6 +64,26 @@ class Regime
     public function __construct()
     {
         $this->cinMembre = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    public function getid(): ?int
+    {
+        return $this->idRegime;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
     }
 
 }

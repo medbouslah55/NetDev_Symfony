@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Regime;
+use Doctrine\ORM\Repository\RepositoryFactory;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,8 +15,12 @@ class RegimeController extends AbstractController
      */
     public function index(): Response
     {
+        $repo = $this->getDoctrine()->getRepository(Regime::class);
+
+        $regimes = $repo->findAll();
+
         return $this->render('admin/regime/index.html.twig', [
-            'controller_name' => 'RegimeController',
+            'regimes' => $regimes,
         ]);
     }
 }

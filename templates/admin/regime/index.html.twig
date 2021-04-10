@@ -5,19 +5,19 @@
 <div class="container mt-5">
     <h1>Voici Nos Regimes:</h1>
     <div class="row">
-        {% for i in 0..20 %}
+        {% for regime in regimes %}
             <div class="col-md-4 mt-2">
                 <div class="card bg light mb-3">
                     <div class="card header text-center">
-                        <strong>Regime, </strong> <br>
+                        <strong>{{ regime.type }}</strong> <br>
                         <small>Pas encore noté</small>
                         <a href="">
-                            <img src="" alt="Image du Regime" style = "height: 200px; width: 100%; display: block">
+                            <img src="/admin/img/regime/{{regime.image}}" alt="Image du Regime" style = "height: 300px; width: 100%; display: block">
                         </a>
                         <div class="card-body">
                             <h4 class="card-title">
                                 <a href="">
-                                    
+                                    {{ regime.description }}
                                 </a>
                             </h4>
                             <p class="card-text">
