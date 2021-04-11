@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="coach")
  * @ORM\Entity
+ *
  */
 class Coach
 {
@@ -52,7 +53,7 @@ class Coach
     /**
      * @return int
      */
-    public function getCin(): int
+    public function getCin(): ?int
     {
         return $this->cin;
     }
@@ -68,7 +69,7 @@ class Coach
     /**
      * @return string
      */
-    public function getNom(): string
+    public function getNom(): ?string
     {
         return $this->nom;
     }
@@ -86,7 +87,7 @@ class Coach
     /**
      * @return string
      */
-    public function getPrenom(): string
+    public function getPrenom(): ?string
     {
         return $this->prenom;
     }
@@ -104,7 +105,7 @@ class Coach
     /**
      * @return string
      */
-    public function getSexe(): string
+    public function getSexe(): ?string
     {
         return $this->sexe;
     }
@@ -122,7 +123,7 @@ class Coach
     /**
      * @return \DateTime
      */
-    public function getDatee(): \DateTime
+    public function getDatee(): ?\DateTime
     {
         return $this->datee;
     }

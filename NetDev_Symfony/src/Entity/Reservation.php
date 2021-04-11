@@ -79,5 +79,94 @@ class Reservation
      */
     private $idPanier;
 
+    public function getIdReservation(): ?int
+    {
+        return $this->idReservation;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getPrenom(): ?string
+    {
+        return $this->prenom;
+    }
+
+    public function setPrenom(string $prenom): self
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    public function getDateAct(): ?\DateTimeInterface
+    {
+        return $this->dateAct;
+    }
+
+    public function setDateAct(\DateTimeInterface $dateAct): self
+    {
+        $this->dateAct = $dateAct;
+
+        return $this;
+    }
+
+    public function getNbPlace(): ?int
+    {
+        return $this->nbPlace;
+    }
+
+    public function setNbPlace(int $nbPlace): self
+    {
+        $this->nbPlace = $nbPlace;
+
+        return $this;
+    }
+
+    public function getIdAct(): ?Activite
+    {
+        return $this->idAct;
+    }
+
+    public function setIdAct(?Activite $idAct): self
+    {
+        $this->idAct = $idAct;
+
+        return $this;
+    }
+
+    public function getCinMembre(): ?Membre
+    {
+        return $this->cinMembre;
+    }
+
+    public function setCinMembre(?Membre $cinMembre): self
+    {
+        $this->cinMembre = $cinMembre;
+
+        return $this;
+    }
+
+    public function getIdPanier(): ?Panier
+    {
+        return $this->idPanier;
+    }
+
+    public function setIdPanier(?Panier $idPanier): self
+    {
+        $this->idPanier = $idPanier;
+
+        return $this;
+    }
+
 
 }

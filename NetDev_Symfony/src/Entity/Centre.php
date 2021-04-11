@@ -56,5 +56,70 @@ class Centre
      */
     private $typeCentre;
 
+    public function getIdCentre(): ?int
+    {
+        return $this->idCentre;
+    }
+
+    public function getNomCentre(): ?string
+    {
+        return $this->nomCentre;
+    }
+
+    public function setNomCentre(string $nomCentre): self
+    {
+        $this->nomCentre = $nomCentre;
+
+        return $this;
+    }
+
+    public function getTelCentre(): ?string
+    {
+        return $this->telCentre;
+    }
+
+    public function setTelCentre(string $telCentre): self
+    {
+        $this->telCentre = $telCentre;
+
+        return $this;
+    }
+
+    public function getMailCentre(): ?string
+    {
+        return $this->mailCentre;
+    }
+
+    public function setMailCentre(string $mailCentre): self
+    {
+        $this->mailCentre = $mailCentre;
+
+        return $this;
+    }
+
+    public function getAdrCentre(): ?string
+    {
+        return $this->adrCentre;
+    }
+
+    public function setAdrCentre(string $adrCentre): self
+    {
+        $this->adrCentre = $adrCentre;
+
+        return $this;
+    }
+
+    public function getTypeCentre(): ?string
+    {
+        return $this->typeCentre;
+    }
+
+    public function setTypeCentre(string $typeCentre): self
+    {
+        $this->typeCentre = $typeCentre;
+
+        return $this;
+    }
+
 
 }

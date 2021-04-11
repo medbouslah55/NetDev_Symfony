@@ -59,5 +59,70 @@ class Evenement
      */
     private $idCentre;
 
+    public function getIdPub(): ?int
+    {
+        return $this->idPub;
+    }
+
+    public function getDatePub(): ?string
+    {
+        return $this->datePub;
+    }
+
+    public function setDatePub(string $datePub): self
+    {
+        $this->datePub = $datePub;
+
+        return $this;
+    }
+
+    public function getDateEven(): ?string
+    {
+        return $this->dateEven;
+    }
+
+    public function setDateEven(string $dateEven): self
+    {
+        $this->dateEven = $dateEven;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function getSujet(): ?string
+    {
+        return $this->sujet;
+    }
+
+    public function setSujet(string $sujet): self
+    {
+        $this->sujet = $sujet;
+
+        return $this;
+    }
+
+    public function getIdCentre(): ?Centre
+    {
+        return $this->idCentre;
+    }
+
+    public function setIdCentre(?Centre $idCentre): self
+    {
+        $this->idCentre = $idCentre;
+
+        return $this;
+    }
+
 
 }

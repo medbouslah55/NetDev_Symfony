@@ -3,7 +3,11 @@
 namespace App\Form;
 
 use App\Entity\Coach;
+use PhpParser\Node\Stmt\Label;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -12,11 +16,19 @@ class CoachType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('cin')
-            ->add('nom')
-            ->add('prenom')
+            ->add('cin',TextType::class,[
+                'label'=>'Cin :'
+            ])
+            ->add('nom',TextType::class,[
+                'label'=>'Nom :'
+            ])
+            ->add('prenom',TextType::class,[
+                'label'=>'Prenom :'
+            ])
             ->add('sexe')
             ->add('datee')
+            ->add('Submit',SubmitType::class)
+
         ;
     }
 

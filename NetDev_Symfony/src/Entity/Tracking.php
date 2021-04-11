@@ -45,5 +45,46 @@ class Tracking
      */
     private $cinMembre;
 
+    public function getIdTrack(): ?int
+    {
+        return $this->idTrack;
+    }
+
+    public function getOldPoids(): ?string
+    {
+        return $this->oldPoids;
+    }
+
+    public function setOldPoids(?string $oldPoids): self
+    {
+        $this->oldPoids = $oldPoids;
+
+        return $this;
+    }
+
+    public function getImc(): ?float
+    {
+        return $this->imc;
+    }
+
+    public function setImc(?float $imc): self
+    {
+        $this->imc = $imc;
+
+        return $this;
+    }
+
+    public function getCinMembre(): ?Membre
+    {
+        return $this->cinMembre;
+    }
+
+    public function setCinMembre(?Membre $cinMembre): self
+    {
+        $this->cinMembre = $cinMembre;
+
+        return $this;
+    }
+
 
 }

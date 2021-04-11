@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
 
@@ -84,6 +85,56 @@ class Regime
     public function getImage(): ?string
     {
         return $this->image;
+    }
+
+    public function getIdRegime(): ?int
+    {
+        return $this->idRegime;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Membre[]
+     */
+    public function getCinMembre(): Collection
+    {
+        return $this->cinMembre;
+    }
+
+    public function addCinMembre(Membre $cinMembre): self
+    {
+        if (!$this->cinMembre->contains($cinMembre)) {
+            $this->cinMembre[] = $cinMembre;
+        }
+
+        return $this;
+    }
+
+    public function removeCinMembre(Membre $cinMembre): self
+    {
+        $this->cinMembre->removeElement($cinMembre);
+
+        return $this;
     }
 
 }

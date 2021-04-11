@@ -45,5 +45,46 @@ class Status
      */
     private $idCentre;
 
+    public function getIdPub(): ?int
+    {
+        return $this->idPub;
+    }
+
+    public function getDatePub(): ?string
+    {
+        return $this->datePub;
+    }
+
+    public function setDatePub(string $datePub): self
+    {
+        $this->datePub = $datePub;
+
+        return $this;
+    }
+
+    public function getText(): ?string
+    {
+        return $this->text;
+    }
+
+    public function setText(string $text): self
+    {
+        $this->text = $text;
+
+        return $this;
+    }
+
+    public function getIdCentre(): ?Centre
+    {
+        return $this->idCentre;
+    }
+
+    public function setIdCentre(?Centre $idCentre): self
+    {
+        $this->idCentre = $idCentre;
+
+        return $this;
+    }
+
 
 }

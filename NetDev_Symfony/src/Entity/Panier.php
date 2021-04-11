@@ -42,5 +42,46 @@ class Panier
      */
     private $capacite;
 
+    public function getIdPanier(): ?int
+    {
+        return $this->idPanier;
+    }
+
+    public function getNomAct(): ?string
+    {
+        return $this->nomAct;
+    }
+
+    public function setNomAct(string $nomAct): self
+    {
+        $this->nomAct = $nomAct;
+
+        return $this;
+    }
+
+    public function getPrix(): ?float
+    {
+        return $this->prix;
+    }
+
+    public function setPrix(float $prix): self
+    {
+        $this->prix = $prix;
+
+        return $this;
+    }
+
+    public function getCapacite(): ?int
+    {
+        return $this->capacite;
+    }
+
+    public function setCapacite(int $capacite): self
+    {
+        $this->capacite = $capacite;
+
+        return $this;
+    }
+
 
 }

@@ -1,6 +1,6 @@
 {% extends 'baseAdmin.html.twig' %}
 
-{% block title %}Nos Regime pour Vous{% endblock %}
+{% block title %}Coach{% endblock %}
 {% block body %}
 
 <main class="content">
@@ -25,21 +25,29 @@
                                     <th>Date de naissance</th>
                                     <th>Sexe</th>
                                     <th>Supprimer</th>
+                                    <th>Modifier</th>
 
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    {% for Coach in Coachs %}
+                                    {% for coaches in coaches %}
                                         <tr>
-                                            <td>{{ Coach.cin }}</td>
-                                            <td>{{ Coach.nom }}</td>
-                                            <td>{{ Coach.prenom }}</td>
-                                            <td>{{ Coach.datee|date("m/d/Y") }}</td>
-                                            <td>{{ Coach.sexe }}</td>
+                                            <td>{{ coaches.cin }}</td>
+                                            <td>{{ coaches.nom }}</td>
+                                            <td>{{ coaches.prenom }}</td>
+                                            <td>{{ coaches.datee|date("m/d/Y") }}</td>
+                                            <td>{{ coaches.sexe }}</td>
                                             <td class="">
 
-                                                <a href="#"><i class="align-middle" data-feather="trash"></i></a>
+                                                <a href="{{ path('coach_del', {'cin': coaches.cin}) }}"><i class="align-middle" data-feather="trash"></i></a>
+
                                             </td>
+                                            <td class="">
+
+                                                <a href="{{ path('edit', {'cin': coaches.cin}) }}"><i class="align-middle" data-feather="edit"></i></a>
+
+                                            </td>
+
 
                                         </tr>
                                     {% endfor %}
@@ -54,6 +62,7 @@
                                     <th>Date de naissance</th>
                                     <th>Sexe</th>
                                     <th>Supprimer</th>
+                                    <th>Modifier</th>
                                 </tr>
                                 </tfoot>
                             </table>

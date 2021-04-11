@@ -37,7 +37,7 @@ class MembreController extends AbstractController
         $form = $this->createForm(MembreType::class, $membre);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() ) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($membre);
             $entityManager->flush();

@@ -2,13 +2,17 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Integer;
+
 
 /**
  * Membre
  *
  * @ORM\Table(name="membre")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\MembreRepository")
  */
 class Membre
 {
@@ -102,7 +106,7 @@ class Membre
     /**
      * @return int
      */
-    public function getCin(): int
+    public function getCin(): ?int
     {
         return $this->cin;
     }
@@ -111,7 +115,7 @@ class Membre
      * @param int $cin
      * @return Membre
      */
-    public function setCin(int $cin): Membre
+    public function setCin(?int $cin): Membre
     {
         $this->cin = $cin;
         return $this;
@@ -120,7 +124,7 @@ class Membre
     /**
      * @return string
      */
-    public function getNom(): string
+    public function getNom(): ?string
     {
         return $this->nom;
     }
@@ -138,7 +142,7 @@ class Membre
     /**
      * @return string
      */
-    public function getPrenom(): string
+    public function getPrenom(): ?string
     {
         return $this->prenom;
     }
@@ -156,7 +160,7 @@ class Membre
     /**
      * @return string
      */
-    public function getSexe(): string
+    public function getSexe(): ?string
     {
         return $this->sexe;
     }
@@ -174,7 +178,7 @@ class Membre
     /**
      * @return \DateTime
      */
-    public function getDatee(): \DateTime
+    public function getDatee(): ?\DateTime
     {
         return $this->datee;
     }
@@ -192,7 +196,7 @@ class Membre
     /**
      * @return float
      */
-    public function getTaille(): float
+    public function getTaille(): ?float
     {
         return $this->taille;
     }
@@ -210,7 +214,7 @@ class Membre
     /**
      * @return float
      */
-    public function getPoids(): float
+    public function getPoids(): ?float
     {
         return $this->poids;
     }
@@ -228,7 +232,7 @@ class Membre
     /**
      * @return string
      */
-    public function getEmail(): string
+    public function getEmail(): ?string
     {
         return $this->email;
     }
@@ -246,7 +250,7 @@ class Membre
     /**
      * @return string
      */
-    public function getPassword(): string
+    public function getPassword(): ?string
     {
         return $this->password;
     }
@@ -264,7 +268,7 @@ class Membre
     /**
      * @return int
      */
-    public function getTelephone(): int
+    public function getTelephone(): ?int
     {
         return $this->telephone;
     }
@@ -297,6 +301,29 @@ class Membre
         return $this;
     }
 
+    public function addIdRegime(Regime $idRegime): self
+    {
+        if (!$this->idRegime->contains($idRegime)) {
+            $this->idRegime[] = $idRegime;
+            $idRegime->addCinMembre($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIdRegime(Regime $idRegime): self
+    {
+        if ($this->idRegime->removeElement($idRegime)) {
+            $idRegime->removeCinMembre($this);
+        }
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return (string)$this->cin;
+    }
 
 
 }

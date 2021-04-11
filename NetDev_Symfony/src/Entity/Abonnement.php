@@ -59,5 +59,70 @@ class Abonnement
      */
     private $idAct;
 
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getTitre(): ?string
+    {
+        return $this->titre;
+    }
+
+    public function setTitre(string $titre): self
+    {
+        $this->titre = $titre;
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function getPrix(): ?float
+    {
+        return $this->prix;
+    }
+
+    public function setPrix(float $prix): self
+    {
+        $this->prix = $prix;
+
+        return $this;
+    }
+
+    public function getDescrAb(): ?string
+    {
+        return $this->descrAb;
+    }
+
+    public function setDescrAb(?string $descrAb): self
+    {
+        $this->descrAb = $descrAb;
+
+        return $this;
+    }
+
+    public function getIdAct(): ?Activite
+    {
+        return $this->idAct;
+    }
+
+    public function setIdAct(?Activite $idAct): self
+    {
+        $this->idAct = $idAct;
+
+        return $this;
+    }
+
 
 }

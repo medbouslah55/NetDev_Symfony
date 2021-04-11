@@ -83,5 +83,106 @@ class Activite
      */
     private $cinCoach;
 
+    public function getIdAct(): ?int
+    {
+        return $this->idAct;
+    }
+
+    public function getCategorieAct(): ?string
+    {
+        return $this->categorieAct;
+    }
+
+    public function setCategorieAct(?string $categorieAct): self
+    {
+        $this->categorieAct = $categorieAct;
+
+        return $this;
+    }
+
+    public function getNomAct(): ?string
+    {
+        return $this->nomAct;
+    }
+
+    public function setNomAct(?string $nomAct): self
+    {
+        $this->nomAct = $nomAct;
+
+        return $this;
+    }
+
+    public function getPrixReservation(): ?float
+    {
+        return $this->prixReservation;
+    }
+
+    public function setPrixReservation(?float $prixReservation): self
+    {
+        $this->prixReservation = $prixReservation;
+
+        return $this;
+    }
+
+    public function getDateAct(): ?string
+    {
+        return $this->dateAct;
+    }
+
+    public function setDateAct(?string $dateAct): self
+    {
+        $this->dateAct = $dateAct;
+
+        return $this;
+    }
+
+    public function getCapacite(): ?int
+    {
+        return $this->capacite;
+    }
+
+    public function setCapacite(?int $capacite): self
+    {
+        $this->capacite = $capacite;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getIdCentre(): ?Centre
+    {
+        return $this->idCentre;
+    }
+
+    public function setIdCentre(?Centre $idCentre): self
+    {
+        $this->idCentre = $idCentre;
+
+        return $this;
+    }
+
+    public function getCinCoach(): ?Coach
+    {
+        return $this->cinCoach;
+    }
+
+    public function setCinCoach(?Coach $cinCoach): self
+    {
+        $this->cinCoach = $cinCoach;
+
+        return $this;
+    }
+
 
 }

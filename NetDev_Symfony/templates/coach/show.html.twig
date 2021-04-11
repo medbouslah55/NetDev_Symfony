@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Coach{% endblock %}
+
+{% block body %}
+    <h1>Coach</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Cin</th>
+                <td>{{ coach.cin }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ coach.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ coach.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Sexe</th>
+                <td>{{ coach.sexe }}</td>
+            </tr>
+            <tr>
+                <th>Datee</th>
+                <td>{{ coach.datee ? coach.datee|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('coach_index') }}">back to list</a>
+
+    <a href="{{ path('coach_edit', {'cin': coach.cin}) }}">edit</a>
+
+    {{ include('coach/_delete_form.html.twig') }}
+{% endblock %}
