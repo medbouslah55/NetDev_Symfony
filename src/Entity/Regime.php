@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Traits\Timestampable;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -12,10 +13,12 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  *
  * @ORM\Table(name="regime")
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks()
  * @Vich\Uploadable
  */
 class Regime
 {
+    use Timestampable;
     /**
      * @var int
      *
@@ -139,7 +142,7 @@ class Regime
         if (null !== $imageFile) {
             // It is required that at least one field changes if you are using doctrine
             // otherwise the event listeners won't be called and the file is lost
-            // $this->updatedAt = new \DateTimeImmutable();
+            $this->updatedAt = new \DateTimeImmutable();
         }
     }
 

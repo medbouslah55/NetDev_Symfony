@@ -69,8 +69,20 @@ class RegimeController extends AbstractController
         
         $form->handleRequest($request);
 
+        if($form->isSubmitted() && $form->isValid()){
+            $manager = $this->getDoctrine()->getManager();
+
+            $manager->persist($regime);
+            $manager->flush();
+
+            $this->addFlash('success', "Regime <strong>{$regime->getType()}<strong> a été bien modifiée!");
+
+            return $this->redirectToRoute('regimes_index');
+        }
+
         return $this->render('admin/regime/edit.html.twig', [
             'form' => $form->createView(),
+            'regime' => $regime,
         ]);
     }
 }
