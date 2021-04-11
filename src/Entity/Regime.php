@@ -3,8 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\Collection;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
@@ -29,6 +29,7 @@ class Regime
      * @var string
      *
      * @ORM\Column(name="type", type="string", length=255, nullable=false)
+     * @Assert\Length(min=3, minMessage="le type ne peut pas faire moins de 3 caractères")
      */
     private $type;
 
@@ -36,6 +37,7 @@ class Regime
      * @var string
      *
      * @ORM\Column(name="description", type="string", length=255, nullable=false)
+     * @Assert\Length(min=10, minMessage="Votre description ne peut pas faire moins de 10 caractères")
      */
     private $description;
 
@@ -43,6 +45,7 @@ class Regime
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      * 
      * @Vich\UploadableField(mapping="regime_image", fileNameProperty="image")
+     * @Assert\NotNull
      * @Assert\Image(maxSize="2M")
      * 
      * @var File|null

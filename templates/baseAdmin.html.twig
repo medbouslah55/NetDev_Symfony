@@ -24,8 +24,10 @@
         <div class="wrapper">
             {% include 'admin/partials/sidenav.html.twig' %}
 
-            <div v class="main">
+            <div class="main">
                 {% include 'admin/partials/topnav.html.twig' %}
+
+                {% include 'admin/partials/_flash.html.twig' %}
 
                 {% block body %}{% endblock %}
 
