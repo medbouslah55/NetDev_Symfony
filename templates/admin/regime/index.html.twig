@@ -3,7 +3,7 @@
 {% block title %}Nos Regime pour Vous{% endblock %}
 {% block body %}
 <div class="container mt-4">
-    <h1>Liste de  Nos Regimes:</h1>
+    <h1>Liste de Nos Regimes:</h1>
     <div class="row">
         {% for regime in regimes %}
             <div class="col-md-4 mt-2">
@@ -23,8 +23,10 @@
                             <p class="card-text">
                                 
                             </p>
-                            <a href="" class="btn btn-secondary">En savoir plus !</a>
-                            <a href="{{ path('regime_edit', {'id': regime.id}) }}" class="btn btn-secondary">Modifier regime</a>
+                            <a href="{{ path('regime_edit', {'id': regime.id}) }}" class="btn btn-primary">
+                                <i class="align-middle" data-feather="edit"></i><span class="align-middle"> Modifier</span></a>
+                            <a href="{{ path('regime_delete', {'id': regime.id}) }}" class="btn btn-danger">
+                            <i class="align-middle" data-feather="delete"></i><span class="align-middle"> Supprimer</span></a>
                         </div>
                     </div>
                 </div>

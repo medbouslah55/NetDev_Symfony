@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Regime;
 use App\Form\RegimeType;
 use App\Repository\RegimeRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -27,6 +28,7 @@ class RegimeController extends AbstractController
     }
 
     /**
+     * Permet d'afficher le formualire d'ajout
      * 
      * @Route("/new", name="regime_create")
      * 
@@ -84,5 +86,23 @@ class RegimeController extends AbstractController
             'form' => $form->createView(),
             'regime' => $regime,
         ]);
+    }
+
+    /**
+     * Permet de supprimer un regime
+     * 
+     * @Route("/regimes/{id}/delete", name="regime_delete")
+     * 
+     * @param Regime $regime
+     * @param EntityManagerInterface $manager
+     * @return Response
+     */
+    public function delete(Regime $regime, EntityManagerInterface $manager){
+        $manager->remove($regime);
+        $manager->flush();
+
+        $this->addFlash('success', "Regime <strong>{$regime->getType()}<strong> a été bien supprimée!");
+
+        return $this->redirectToRoute('regimes_index');
     }
 }
