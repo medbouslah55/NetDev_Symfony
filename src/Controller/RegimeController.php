@@ -48,7 +48,7 @@ class RegimeController extends AbstractController
             $manager->persist($regime);
             $manager->flush();
 
-            $this->addFlash('success', "L'ajout du regime <strong>{$regime->getType()}<strong> a été bien enregistrée!");
+            $this->addFlash('success', "L'ajout du <strong>{$regime->getType()}<strong> a été bien enregistrée!");
 
             return $this->redirectToRoute('regimes_index');
         }
@@ -77,7 +77,7 @@ class RegimeController extends AbstractController
             $manager->persist($regime);
             $manager->flush();
 
-            $this->addFlash('success', "Regime <strong>{$regime->getType()}<strong> a été bien modifiée!");
+            $this->addFlash('success', "Le <strong>{$regime->getType()}<strong> a été bien modifiée!");
 
             return $this->redirectToRoute('regimes_index');
         }
@@ -101,7 +101,7 @@ class RegimeController extends AbstractController
         $manager->remove($regime);
         $manager->flush();
 
-        $this->addFlash('success', "Regime <strong>{$regime->getType()}<strong> a été bien supprimée!");
+        $this->addFlash('success', "Le <strong>{$regime->getType()}<strong> a été bien supprimée!");
 
         return $this->redirectToRoute('regimes_index');
     }

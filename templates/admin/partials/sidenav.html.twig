@@ -14,12 +14,18 @@
                 </ul>
             </li>
             <li class="sidebar-item">
-                <a href="#layouts" data-toggle="collapse" class="sidebar-link collapsed"> <i class="align-middle" data-feather="heart"></i> <span class="align-middle">Menu et Regime</span> </a>
-                <ul id="layouts" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
+                <a href="#régime" data-toggle="collapse" class="sidebar-link collapsed"> <i class="align-middle" data-feather="heart"></i> <span class="align-middle">Gestion des Regimes</span> </a>
+                <ul id="régime" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
                     <li class="sidebar-item"><a class="sidebar-link" href="{{path('regime_create')}}">Ajouter Regime</a></li>
                     <li class="sidebar-item"><a class="sidebar-link" href="{{path('regimes_index')}}">Afficher Regimes</a></li>
-                    {# <li class="sidebar-item"><a class="sidebar-link" href="layouts-boxed.html">Ajouter Menu</a></li>
-                    <li class="sidebar-item"><a class="sidebar-link" href="layouts-boxed.html">Afficher Menu</a></li> #}
+                </ul>
+                
+            </li>
+            <li class="sidebar-item">
+                <a href="#menu" data-toggle="collapse" class="sidebar-link collapsed"> <i class="align-middle mr-2 fas fa-fw fa-apple-alt"></i><span class="align-middle">Gestion des Menus</span> </a>
+                <ul id="menu" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{path('regime_create')}}">Ajouter Menu</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{path('regimes_index')}}">Afficher Regimes</a></li>
                 </ul>
                 
             </li>
