@@ -33,12 +33,12 @@ class RegimeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('type',TextType::class, $this->getConfiguration("Type", "Tapez le type..."))
-            ->add('description',TextareaType::class, $this->getConfiguration("Description", "Tapez une description..."))
+            ->add('type',TextType::class, $this->getConfiguration("Type:", "Tapez le type..."))
+            ->add('description',TextareaType::class, $this->getConfiguration("Description:", "Tapez une description..."))
             ->add('image',FileType::class,[
                 'mapped' => false,
-                'required' => false,
-                'label' => 'Ajouter une image:'
+                'required' => true,
+                'label' => 'Ajouter une image:',
             ])
             ->add('submit', SubmitType::class)
         ;
