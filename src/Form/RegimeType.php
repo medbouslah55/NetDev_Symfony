@@ -5,11 +5,11 @@ namespace App\Form;
 use App\Entity\Regime;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class RegimeType extends AbstractType
 {
@@ -35,10 +35,11 @@ class RegimeType extends AbstractType
         $builder
             ->add('type',TextType::class, $this->getConfiguration("Type:", "Tapez le type..."))
             ->add('description',TextareaType::class, $this->getConfiguration("Description:", "Tapez une description..."))
-            ->add('image',FileType::class,[
-                'mapped' => false,
+            ->add('imageFile', VichImageType::class, [
+                'label' => 'Image (JPG ou PNG):',
                 'required' => true,
-                'label' => 'Ajouter une image:',
+                'allow_delete' => false,
+                'asset_helper' => false,
             ])
             ->add('submit', SubmitType::class)
         ;
