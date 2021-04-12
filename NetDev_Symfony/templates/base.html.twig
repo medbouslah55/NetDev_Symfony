@@ -1,19 +1,45 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {# Run `composer require symfony/webpack-encore-bundle`
-           and uncomment the following Encore helpers to start using Symfony UX #}
-        {% block stylesheets %}
-            {#{{ encore_entry_link_tags('app') }}#}
-        {% endblock %}
+        <head>
+            {% block header %}
+            <meta charset="utf-8">
+            <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-        {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
-        {% endblock %}
+            <title>Delicious Bootstrap Template - Index</title>
+            <meta content="" name="description">
+            <meta content="" name="keywords">
+
+            <!-- Favicons -->
+            <link href="/front/assets/img/favicon.png" rel="icon">
+            <link href="/front/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+            <!-- Google Fonts -->
+            <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,600,600i,700,700i|Satisfy|Comic+Neue:300,300i,400,400i,700,700i" rel="stylesheet">
+
+            <!-- Vendor CSS Files -->
+            <link href="/front/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+            <link href="/front/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+            <link href="/front/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+            <link href="/front/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+            <link href="/front/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+            <link href="/front/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+            <!-- Template Main CSS File -->
+            <link href="/front/assets/css/style.css" rel="stylesheet">
+
+            <!-- =======================================================
+            * Template Name: Delicious - v4.1.0
+            * Template URL: https://bootstrapmade.com/delicious-free-restaurant-bootstrap-theme/
+            * Author: BootstrapMade.com
+            * License: https://bootstrapmade.com/license/
+            ======================================================== -->
+            {% endblock %}
+        </head>
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% block body %}
+
+        {% endblock %}
     </body>
 </html>

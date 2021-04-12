@@ -5,7 +5,23 @@
 {% block body %}
     <h1>Create new Tracking</h1>
 
-    {{ include('tracking/_form.html.twig') }}
+    <section id="book-a-table" class="book-a-table">
+        <div class="container">
+
+            <div class="section-title">
+                <h2>Ajouter <span>Traking</span></h2>
+                <p></p>
+            </div>
+
+            <form action="forms/book-a-table.php" method="post" role="form" class="php-email-form">
+                <div class="row">
+
+                    {{ include('tracking/_form.html.twig') }}
+            </form>
+
+        </div>
+    </section><!-- End Book A Table Section -->
+
 
     <a href="{{ path('tracking_index') }}">back to list</a>
 {% endblock %}

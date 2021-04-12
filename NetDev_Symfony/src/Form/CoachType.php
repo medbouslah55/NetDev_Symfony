@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Coach;
 use PhpParser\Node\Stmt\Label;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -25,7 +26,9 @@ class CoachType extends AbstractType
             ->add('prenom',TextType::class,[
                 'label'=>'Prenom :'
             ])
-            ->add('sexe')
+            ->add('sexe',ChoiceType::class,[
+                'choices'=>['Homme'=>'Homme','Femme'=>'Femme']
+            ])
             ->add('datee')
             ->add('Submit',SubmitType::class)
 
