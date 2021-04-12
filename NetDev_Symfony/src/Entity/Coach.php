@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Coach
  *
@@ -26,6 +26,13 @@ class Coach
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=50, nullable=false)
+     *      @Assert\Length(
+     *      min = 4,
+     *      max = 16,
+     *      minMessage = "Your name must be at least {{ limit }} characters long",
+     *      maxMessage = "Your name cannot be longer than {{ limit }} characters",
+     *      allowEmptyString = false
+     * )
      */
     private $nom;
 

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Tracking{% endblock %}
+
+{% block body %}
+    <h1>Create new Tracking</h1>
+
+    {{ include('tracking/_form.html.twig') }}
+
+    <a href="{{ path('tracking_index') }}">back to list</a>
+{% endblock %}

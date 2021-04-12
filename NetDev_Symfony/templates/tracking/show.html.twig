@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tracking{% endblock %}
+
+{% block body %}
+    <h1>Tracking</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>IdTrack</th>
+                <td>{{ tracking.idTrack }}</td>
+            </tr>
+            <tr>
+                <th>OldPoids</th>
+                <td>{{ tracking.oldPoids }}</td>
+            </tr>
+            <tr>
+                <th>Imc</th>
+                <td>{{ tracking.imc }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('tracking_index') }}">back to list</a>
+
+    <a href="{{ path('tracking_edit', {'idTrack': tracking.idTrack}) }}">edit</a>
+
+    {{ include('tracking/_delete_form.html.twig') }}
+{% endblock %}
