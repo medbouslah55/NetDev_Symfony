@@ -32,6 +32,11 @@ class Menu
      * @var string|null
      *
      * @ORM\Column(name="description", type="string", length=255, nullable=true)
+     * @Assert\Length(
+     * min = 5,
+     * max = 40, 
+     * minMessage = "Description doit être {{ limit }} caractères minimum", 
+     * maxMessage = "Description doit être {{ limit }} caractères maximum")
      */
     private $description;
 
@@ -39,6 +44,7 @@ class Menu
      * @var int|null
      *
      * @ORM\Column(name="num_jour", type="integer", nullable=true)
+     * @Assert\Positive
      */
     private $numJour;
 
@@ -46,6 +52,9 @@ class Menu
      * @var string|null
      *
      * @ORM\Column(name="matin", type="string", length=255, nullable=true)
+     * @Assert\Length(min = 3, max = 30,
+     * minMessage = "Matin doit etre au moin {{ limit }} caractères",
+     * maxMessage = "Matin doit etre au maximum {{ limit }} caractères")
      */
     private $matin;
 
@@ -60,6 +69,9 @@ class Menu
      * @var string|null
      *
      * @ORM\Column(name="dejeuner", type="string", length=255, nullable=true)
+     * @Assert\Length(min = 3, max = 30,
+     * minMessage = "Dejeuner doit etre au moin {{ limit }} caractères",
+     * maxMessage = "Dejeuner doit etre au maximum {{ limit }} caractères")
      */
     private $dejeuner;
 
@@ -74,6 +86,9 @@ class Menu
      * @var string|null
      *
      * @ORM\Column(name="dinner", type="string", length=255, nullable=true)
+     * @Assert\Length(min = 3, max = 30,  
+     * minMessage = "Dinner doit etre au moin {{ limit }} caractères",
+     * maxMessage = "Dinner doit etre au maximum {{ limit }} caractères")
      */
     private $dinner;
 
@@ -88,6 +103,7 @@ class Menu
      * @var int|null
      *
      * @ORM\Column(name="total_calories", type="integer", nullable=true)
+     * @Assert\Positive
      */
     private $totalCalories;
 

@@ -25,7 +25,7 @@ class MenuType extends AbstractType
                 'required' => false,
             ])
             ->add('description', TextType::class, ['label' => 'Description:',])
-            ->add('numJour', IntegerType::class, ['label' => 'Régime jour N°:',])
+            ->add('numJour', IntegerType::class, ['label' => 'Menu jour N°:',])
             ->add('matin', TextType::class, ['label' => 'Matin:',])
             ->add('imageFile1', VichImageType::class, [
                 'label' => 'Image Matin:',

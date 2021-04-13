@@ -1,6 +1,6 @@
 {% extends 'baseAdmin.html.twig' %}
 
-{% block title %}Nos Regime pour Vous{% endblock %}
+{% block title %}Nos Regimes{% endblock %}
 {% block body %}
 <div class="container mt-4">
     <h1>Liste de Nos Regimes:</h1>
@@ -25,7 +25,7 @@
                             </p>
                             <a href="{{ path('regime_edit', {'id': regime.id}) }}" class="btn btn-primary">
                                 <i class="align-middle" data-feather="edit"></i><span class="align-middle"> Modifier</span></a>
-                            <a href="{{ path('regime_delete', {'id': regime.id}) }}" class="btn btn-danger">
+                            <a href="{{ path('regime_delete', {'id': regime.id}) }}" class="btn btn-danger", onclick="return confirm('Vous êtes sur de supprimer {{ regime.type }}?');">
                             <i class="align-middle" data-feather="delete"></i><span class="align-middle"> Supprimer</span></a>
                         </div>
                     </div>
