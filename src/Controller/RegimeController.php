@@ -14,7 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class RegimeController extends AbstractController
 {
     /**
-     * @Route("/regimes", name="regimes_index")
+     * @Route("/admin/regimes", name="regimes_index")
      * 
      * @return Response
      */
@@ -30,7 +30,7 @@ class RegimeController extends AbstractController
     /**
      * Permet d'afficher le formualire d'ajout
      * 
-     * @Route("/new", name="regime_create")
+     * @Route("/admin/regime/new", name="regime_create")
      * 
      * @return Response
      */
@@ -61,7 +61,7 @@ class RegimeController extends AbstractController
     /**
      * Permet d'afficher le formualire d'édition
      * 
-     * @Route("/regimes/{id}/edit", name="regime_edit")
+     * @Route("/admin/regimes/{id}/edit", name="regime_edit")
      * 
      * @return Response
      */
@@ -91,7 +91,7 @@ class RegimeController extends AbstractController
     /**
      * Permet de supprimer un regime
      * 
-     * @Route("/regimes/{id}/delete", name="regime_delete")
+     * @Route("/admin/regimes/{id}/delete", name="regime_delete")
      * 
      * @param Regime $regime
      * @param EntityManagerInterface $manager

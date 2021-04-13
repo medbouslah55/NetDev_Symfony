@@ -2,11 +2,13 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\Timestampable;
 use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Regime
@@ -35,6 +37,11 @@ class Regime
      * @Assert\Length(min=3, minMessage="le type ne peut pas faire moins de 3 caractères")
      */
     private $type;
+
+    public function __toString()
+    {
+        return $this->type;
+    }
 
     /**
      * @var string
@@ -149,5 +156,34 @@ class Regime
     public function getImageFile(): ?File
     {
         return $this->imageFile;
+    }
+
+    public function getIdRegime(): ?int
+    {
+        return $this->idRegime;
+    }
+
+    /**
+     * @return Collection|Membre[]
+     */
+    public function getCinMembre(): Collection
+    {
+        return $this->cinMembre;
+    }
+
+    public function addCinMembre(Membre $cinMembre): self
+    {
+        if (!$this->cinMembre->contains($cinMembre)) {
+            $this->cinMembre[] = $cinMembre;
+        }
+
+        return $this;
+    }
+
+    public function removeCinMembre(Membre $cinMembre): self
+    {
+        $this->cinMembre->removeElement($cinMembre);
+
+        return $this;
     }
 }
