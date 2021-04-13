@@ -14,11 +14,14 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="menu", indexes={@ORM\Index(name="FK_menu_regime", columns={"id_regime"})})
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks()
  * @Vich\Uploadable
  */
+
+//Vich totorial to upload multiple images : https://www.youtube.com/watch?v=u4v-fLllGf8
 class Menu
 {
-    // use Timestampable;
+    use Timestampable;
     /**
      * @var int
      *
@@ -60,7 +63,7 @@ class Menu
 
     /**
      * @var string|null
-     *
+     * 
      * @ORM\Column(name="matin_img", type="string", length=255, nullable=true)
      */
     private $matinImg;
@@ -70,8 +73,8 @@ class Menu
      *
      * @ORM\Column(name="dejeuner", type="string", length=255, nullable=true)
      * @Assert\Length(min = 3, max = 30,
-     * minMessage = "Dejeuner doit etre au moin {{ limit }} caractères",
-     * maxMessage = "Dejeuner doit etre au maximum {{ limit }} caractères")
+     * minMessage = "Dejeuner doit être au moins {{ limit }} caractères",
+     * maxMessage = "Dejeuner doit être au maximum {{ limit }} caractères")
      */
     private $dejeuner;
 
@@ -110,7 +113,7 @@ class Menu
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      * 
-     * @Vich\UploadableField(mapping="regime_image", fileNameProperty="matin_img")
+     * @Vich\UploadableField(mapping="menu_image", fileNameProperty="matin_img")
      * @Assert\NotNull
      * @Assert\Image(maxSize="2M")
      * 

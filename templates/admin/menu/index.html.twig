@@ -11,7 +11,7 @@
                     <div class="card header text-center">
                         <strong>{{ menu.description }}</strong> <br>
                         <small>Menu Jour N°{{menu.numJour}}</small>
-                        {# <a href="{{ path('menu_edit', {'id': menu.idMenu}) }}"> #}
+                        <a href="{{ path('menu_edit', {'id': menu.idMenu}) }}">
                             <div class="bd-example">
                                 <div id="carouselExampleCaptions{{menu.idMenu}}" class="carousel slide" data-ride="carousel">
                                     <ol class="carousel-indicators">
@@ -50,16 +50,16 @@
                         </a>
                         <div class="card-body">
                             <h4 class="card-title">
-                                {# <a href="{{ path('menu_edit', {'id': menu.idMenu}) }}"> #}
+                                <a href="{{ path('menu_edit', {'id': menu.idMenu}) }}">
                                     Total Calories: {{ menu.totalCalories }}
                                 </a>
                             </h4>
                             <p class="card-text">
                                 
                             </p>
-                            {# <a href="{{ path('menu_edit', {'id': menu.id}) }}" class="btn btn-primary"> #}
+                            <a href="{{ path('menu_edit', {'id': menu.idMenu}) }}" class="btn btn-primary">
                                 <i class="align-middle" data-feather="edit"></i><span class="align-middle"> Modifier</span></a>
-                            {# <a href="{{ path('menu_delete', {'id': menu.id}) }}" class="btn btn-danger"> #}
+                            <a href="{{ path('menu_delete', {'id': menu.idMenu}) }}" class="btn btn-danger">
                             <i class="align-middle" data-feather="delete"></i><span class="align-middle"> Supprimer</span></a>
                         </div>
                     </div>
