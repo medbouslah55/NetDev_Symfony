@@ -9,7 +9,9 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 class MenuController extends AbstractController
 {
@@ -44,8 +46,34 @@ class MenuController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid()){
             $manager = $this->getDoctrine()->getManager();
+            $file1 = $menu->getMatinImg();
+            $fileName1 = md5(uniqid()) . '.' . $file1->guessExtension();
+            $file2 = $menu->getDejeunerImg();
+            $fileName2 = md5(uniqid()) . '.' . $file2->guessExtension();
+            $file3 = $menu->getDinnerImg();
+            $fileName3 = md5(uniqid()) . '.' . $file3->guessExtension();
+
+            try {
+                $file1->move(
+                    $this->getParameter('images_directory'),
+                    $fileName1
+                );
+                $file2->move(
+                    $this->getParameter('images_directory'),
+                    $fileName2
+                );
+                $file3->move(
+                    $this->getParameter('images_directory'),
+                    $fileName3
+                );
+            } catch (FileException $e) {
+                // ... handle exception if something happens during file upload
+            }
 
             $manager->persist($menu);
+            $menu->setMatinImg($fileName1);
+            $menu->setDejeunerImg($fileName2);
+            $menu->setDinnerImg($fileName3);
             $manager->flush();
 
             $this->addFlash('success', "L'ajout du <strong>{$menu->getDescription()}<strong> a été bien enregistrée!");
@@ -73,9 +101,36 @@ class MenuController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid()){
             $manager = $this->getDoctrine()->getManager();
+            $file1 = $menu->getMatinImg();
+            $fileName1 = md5(uniqid()) . '.' . $file1->guessExtension();
+            $file2 = $menu->getDejeunerImg();
+            $fileName2 = md5(uniqid()) . '.' . $file2->guessExtension();
+            $file3 = $menu->getDinnerImg();
+            $fileName3 = md5(uniqid()) . '.' . $file3->guessExtension();
+
+            try {
+                $file1->move(
+                    $this->getParameter('images_directory'),
+                    $fileName1
+                );
+                $file2->move(
+                    $this->getParameter('images_directory'),
+                    $fileName2
+                );
+                $file3->move(
+                    $this->getParameter('images_directory'),
+                    $fileName3
+                );
+            } catch (FileException $e) {
+                // ... handle exception if something happens during file upload
+            }
 
             $manager->persist($menu);
+            $menu->setMatinImg($fileName1);
+            $menu->setDejeunerImg($fileName2);
+            $menu->setDinnerImg($fileName3);
             $manager->flush();
+
 
             $this->addFlash('success', "Le <strong>{$menu->getDescription()}<strong> a été bien modifiée!");
 

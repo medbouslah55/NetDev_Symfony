@@ -5,8 +5,8 @@ namespace App\Entity;
 use App\Entity\Regime;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\Timestampable;
-use Symfony\Component\HttpFoundation\File\File;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
+// use Symfony\Component\HttpFoundation\File\File;
+// use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -15,7 +15,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="menu", indexes={@ORM\Index(name="FK_menu_regime", columns={"id_regime"})})
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks()
- * @Vich\Uploadable
  */
 
 //Vich totorial to upload multiple images : https://www.youtube.com/watch?v=u4v-fLllGf8
@@ -62,9 +61,10 @@ class Menu
     private $matin;
 
     /**
-     * @var string|null
      * 
      * @ORM\Column(name="matin_img", type="string", length=255, nullable=true)
+     * @Assert\File(mimeTypes={ "image/jpeg" , "image/png",  "image/jpg" })
+     * @Assert\NotBlank(message="please upload image")
      */
     private $matinImg;
 
@@ -79,9 +79,10 @@ class Menu
     private $dejeuner;
 
     /**
-     * @var string|null
      *
      * @ORM\Column(name="dejeuner_img", type="string", length=255, nullable=true)
+     * @Assert\File(mimeTypes={ "image/jpeg" , "image/png",  "image/jpg" })
+     * @Assert\NotBlank(message="please upload image")
      */
     private $dejeunerImg;
 
@@ -96,9 +97,10 @@ class Menu
     private $dinner;
 
     /**
-     * @var string|null
      *
      * @ORM\Column(name="dinner_img", type="string", length=255, nullable=true)
+     * @Assert\File(mimeTypes={ "image/jpeg" , "image/png",  "image/jpg" })
+     * @Assert\NotBlank(message="please upload image")
      */
     private $dinnerImg;
 
@@ -109,40 +111,6 @@ class Menu
      * @Assert\Positive
      */
     private $totalCalories;
-
-    /**
-     * NOTE: This is not a mapped field of entity metadata, just a simple property.
-     * 
-     * @Vich\UploadableField(mapping="menu_image", fileNameProperty="matin_img")
-     * @Assert\NotNull
-     * @Assert\Image(maxSize="2M")
-     * 
-     * @var File|null
-     */
-    private $imageFile1;
-
-    /**
-     * NOTE: This is not a mapped field of entity metadata, just a simple property.
-     * 
-     * @Vich\UploadableField(mapping="menu_image", fileNameProperty="dejeuner_img")
-     * @Assert\NotNull
-     * @Assert\Image(maxSize="2M")
-     * 
-     * @var File|null
-     */
-    private $imageFile2;
-
-
-    /**
-     * NOTE: This is not a mapped field of entity metadata, just a simple property.
-     * 
-     * @Vich\UploadableField(mapping="menu_image", fileNameProperty="dinner_img")
-     * @Assert\NotNull
-     * @Assert\Image(maxSize="2M")
-     * 
-     * @var File|null
-     */
-    private $imageFile3;
 
     /**
      *
@@ -207,12 +175,12 @@ class Menu
         return $this;
     }
 
-    public function getMatinImg(): ?string
+    public function getMatinImg()
     {
         return $this->matinImg;
     }
 
-    public function setMatinImg(string $matinImg): self
+    public function setMatinImg($matinImg)
     {
         $this->matinImg = $matinImg;
 
@@ -231,12 +199,12 @@ class Menu
         return $this;
     }
 
-    public function getDejeunerImg(): ?string
+    public function getDejeunerImg()
     {
         return $this->dejeunerImg;
     }
 
-    public function setDejeunerImg(string $dejeunerImg): self
+    public function setDejeunerImg($dejeunerImg)
     {
         $this->dejeunerImg = $dejeunerImg;
 
@@ -255,12 +223,12 @@ class Menu
         return $this;
     }
 
-    public function getDinnerImg(): ?string
+    public function getDinnerImg()
     {
         return $this->dinnerImg;
     }
 
-    public function setDinnerImg(string $dinnerImg): self
+    public function setDinnerImg($dinnerImg)
     {
         $this->dinnerImg = $dinnerImg;
 
@@ -289,80 +257,5 @@ class Menu
         $this->idRegime = $idRegime;
 
         return $this;
-    }
-
-    /**
-     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
-     * of 'UploadedFile' is injected into this setter to trigger the update. If this
-     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
-     * must be able to accept an instance of 'File' as the bundle will inject one here
-     * during Doctrine hydration.
-     *
-     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageFile1
-     */
-    public function setImageFile1(?File $imageFile1 = null): void
-    {
-        $this->imageFile1 = $imageFile1;
-
-        if (null !== $imageFile1) {
-            // It is required that at least one field changes if you are using doctrine
-            // otherwise the event listeners won't be called and the file is lost
-            $this->updatedAt = new \DateTimeImmutable();
-        }
-    }
-
-    public function getImageFile1(): ?File
-    {
-        return $this->imageFile1;
-    }
-
-    /**
-     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
-     * of 'UploadedFile' is injected into this setter to trigger the update. If this
-     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
-     * must be able to accept an instance of 'File' as the bundle will inject one here
-     * during Doctrine hydration.
-     *
-     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageFile1
-     */
-    public function setImageFile2(?File $imageFile2 = null): void
-    {
-        $this->imageFile2 = $imageFile2;
-
-        if (null !== $imageFile2) {
-            // It is required that at least one field changes if you are using doctrine
-            // otherwise the event listeners won't be called and the file is lost
-            $this->updatedAt = new \DateTimeImmutable();
-        }
-    }
-
-    public function getImageFile2(): ?File
-    {
-        return $this->imageFile2;
-    }
-
-    /**
-     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
-     * of 'UploadedFile' is injected into this setter to trigger the update. If this
-     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
-     * must be able to accept an instance of 'File' as the bundle will inject one here
-     * during Doctrine hydration.
-     *
-     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageFile1
-     */
-    public function setImageFile3(?File $imageFile3 = null): void
-    {
-        $this->imageFile3 = $imageFile3;
-
-        if (null !== $imageFile3) {
-            // It is required that at least one field changes if you are using doctrine
-            // otherwise the event listeners won't be called and the file is lost
-            $this->updatedAt = new \DateTimeImmutable();
-        }
-    }
-
-    public function getImageFile3(): ?File
-    {
-        return $this->imageFile3;
     }
 }

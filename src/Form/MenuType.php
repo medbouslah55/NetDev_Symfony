@@ -6,9 +6,9 @@ use App\Entity\Menu;
 use App\Entity\Regime;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -27,26 +27,11 @@ class MenuType extends AbstractType
             ->add('description', TextType::class, ['label' => 'Description:',])
             ->add('numJour', IntegerType::class, ['label' => 'Menu jour N°:',])
             ->add('matin', TextType::class, ['label' => 'Matin:',])
-            ->add('imageFile1', VichImageType::class, [
-                'label' => 'Image Matin:',
-                'required' => true,
-                'allow_delete' => false,
-                'asset_helper' => false,
-            ])
+            ->add('matinImg', FileType::class, ['label' => 'Image Matin:','data_class' => null])
             ->add('dejeuner', TextType::class, ['label' => 'Déjeuner:',])
-            ->add('imageFile2', VichImageType::class, [
-                'label' => 'Image Déjeuner:',
-                'required' => true,
-                'allow_delete' => false,
-                'asset_helper' => false,
-            ])
+            ->add('dejeunerImg', FileType::class,['label' => 'Image Déjeuner:','data_class' => null])
             ->add('dinner', TextType::class, ['label' => 'Dinner:',])
-            ->add('imageFile3', VichImageType::class, [
-                'label' => 'Image Dinner:',
-                'required' => true,
-                'allow_delete' => false,
-                'asset_helper' => false,
-            ])
+            ->add('dinnerImg', FileType::class,['label' => 'Image Dinner:','data_class' => null])
             ->add('totalCalories', IntegerType::class, ['label' => 'Total Calorique:',])
             ->add('submit', SubmitType::class)
         ;
