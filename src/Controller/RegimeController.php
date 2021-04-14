@@ -38,7 +38,7 @@ class RegimeController extends AbstractController
     {
         $regime = new Regime();
 
-        $form = $this->createForm(RegimeType::class, $regime);
+        $form = $this->createForm(RegimeType::class, $regime, array('attr'=>array('novalidate'=>'novalidate')));
         
         $form->handleRequest($request);
 
@@ -67,7 +67,7 @@ class RegimeController extends AbstractController
      */
     public function edit(Request $request, Regime $regime): Response
     {
-        $form = $this->createForm(RegimeType::class, $regime);
+        $form = $this->createForm(RegimeType::class, $regime, array('attr'=>array('novalidate'=>'novalidate')));
         
         $form->handleRequest($request);
 

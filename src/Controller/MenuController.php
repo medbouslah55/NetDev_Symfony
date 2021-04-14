@@ -40,7 +40,7 @@ class MenuController extends AbstractController
     {
         $menu = new Menu();
 
-        $form = $this->createForm(MenuType::class, $menu);
+        $form = $this->createForm(MenuType::class, $menu, array('attr'=>array('novalidate'=>'novalidate')));
         
         $form->handleRequest($request);
 
@@ -95,7 +95,7 @@ class MenuController extends AbstractController
      */
     public function edit(Request $request, Menu $menu): Response
     {
-        $form = $this->createForm(MenuType::class, $menu);
+        $form = $this->createForm(MenuType::class, $menu, array('attr'=>array('novalidate'=>'novalidate')));
         
         $form->handleRequest($request);
 

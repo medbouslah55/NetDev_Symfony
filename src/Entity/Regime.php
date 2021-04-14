@@ -34,6 +34,7 @@ class Regime
      * @var string
      *
      * @ORM\Column(name="type", type="string", length=255, nullable=false)
+     * @Assert\NotNull
      * @Assert\Length(min=3, minMessage="le type ne peut pas faire moins de 3 caractères")
      */
     private $type;
@@ -47,6 +48,7 @@ class Regime
      * @var string
      *
      * @ORM\Column(name="description", type="string", length=255, nullable=false)
+     * @Assert\NotNull
      * @Assert\Length(min=10, minMessage="Votre description ne peut pas faire moins de 10 caractères")
      */
     private $description;
