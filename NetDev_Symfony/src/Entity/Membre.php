@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use phpDocumentor\Reflection\Types\Integer;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
@@ -29,6 +30,13 @@ class Membre
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=50, nullable=false)
+     * @Assert\Length(
+     *      min = 4,
+     *      max = 16,
+     *      minMessage = "Your nom  must be at least {{ limit }} characters long",
+     *      maxMessage = "Your prenom  cannot be longer than {{ limit }} characters",
+     *      allowEmptyString = false
+     * )
      */
     private $nom;
 
@@ -36,6 +44,13 @@ class Membre
      * @var string
      *
      * @ORM\Column(name="prenom", type="string", length=50, nullable=false)
+     * @Assert\Length(
+     *      min = 4,
+     *      max = 16,
+     *      minMessage = "Your prenom  must be at least {{ limit }} characters long",
+     *      maxMessage = "Your prenom  cannot be longer than {{ limit }} characters",
+     *      allowEmptyString = false
+     * )
      */
     private $prenom;
 
@@ -71,6 +86,7 @@ class Membre
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=50, nullable=false)
+     * *@Assert\Email(message="Cette adresse mail n'est pas valide ")
      */
     private $email;
 

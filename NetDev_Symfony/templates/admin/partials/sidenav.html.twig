@@ -14,11 +14,19 @@
                 </ul>
             </li>
             <li class="sidebar-item">
-                <a href="#user" data-toggle="collapse" class="sidebar-link collapsed"> <i class="align-middle" data-feather="users"></i> <span class="align-middle">Coach</span> </a>
-                <ul id="user" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
+                <a href="#Coach" data-toggle="collapse" class="sidebar-link collapsed"> <i class="align-middle" data-feather="users"></i> <span class="align-middle">Coach</span> </a>
+                <ul id="Coach" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
                     <li class="sidebar-item"><a class="sidebar-link" href="{{path('coach_index')}}">Afficher les Coach</a></li>
                    <li class="sidebar-item"><a class="sidebar-link" href="{{path('coach_new')}}">ajouter Coach</a></li>
                     
+                </ul>
+            </li>
+            <li class="sidebar-item">
+                <a href="#membre" data-toggle="collapse" class="sidebar-link collapsed"> <i class="align-middle" data-feather="users"></i> <span class="align-middle">Membre</span> </a>
+                <ul id="membre" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{path('membre_index')}}">Afficher les Membre</a></li>
+
+
                 </ul>
             </li>
         </ul>

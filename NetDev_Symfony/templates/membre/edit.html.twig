@@ -1,13 +1,48 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseAdmin.html.twig' %}
 
 {% block title %}Edit Membre{% endblock %}
 
 {% block body %}
-    <h1>Edit Membre</h1>
 
-    {{ include('membre/_form.html.twig', {'button_label': 'Update'}) }}
+    <main class="content">
+        <div class="container-fluid p-0">
 
-    <a href="{{ path('membre_index') }}">back to list</a>
+            <h1 class="h3 mb-3">Coach</h1>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title"></h5>
+                            <h6 class="card-subtitle text-muted"></h6>
+                        </div>
+                        <div class="card-body">
+                            <main class="content">
+                                <main class="container-fluid p-0">
 
-    {{ include('membre/_delete_form.html.twig') }}
+                                    <h1 class="h3 mb-3">Ajouter Coach</h1>
+
+                                    <div class="row">
+                                        <div class="col-12 col-xl-6">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    {{ include('membre/_form.html.twig', {'button_label': 'Update'}) }}
+                                                    <a href="{{ path('membre_index') }}">back to list</a>
+                                                </div>
+                                                <div class="card-body">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </main>
+                        </div>
+                    </div>
+                </div>
+    </main>
+
+
+
+
+
+
 {% endblock %}

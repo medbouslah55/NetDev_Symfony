@@ -18,7 +18,18 @@ class Coach
      *
      * @ORM\Column(name="cin", type="integer", nullable=false)
      * @ORM\Id
-     *
+     * @Assert\Regex(pattern="/^[0-9]*$/", message="Veuillez saisir que des numéros")
+     * @Assert\Type(
+     *     type="integer",
+     *     message="The value {{ value }} is not a valid {{ type }}."
+     * )
+     * @Assert\NotBlank(message = "Le champs numéro est vide ")
+     * @Assert\Length(
+     *      min = 8,
+     *      max = 8,
+     *      minMessage = "Your cin  must be at least {{ limit }} characters long",
+     *      maxMessage = "Your cin cannot be longer than {{ limit }} characters"
+     * )
      */
     private $cin;
 
@@ -40,6 +51,13 @@ class Coach
      * @var string
      *
      * @ORM\Column(name="prenom", type="string", length=50, nullable=false)
+     * @Assert\Length(
+     *      min = 4,
+     *      max = 16,
+     *      minMessage = "Your Prenom  must be at least {{ limit }} characters long",
+     *      maxMessage = "Your prenom  cannot be longer than {{ limit }} characters",
+     *      allowEmptyString = false
+     * )
      */
     private $prenom;
 

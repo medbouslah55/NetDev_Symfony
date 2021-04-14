@@ -1,51 +1,87 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseAdmin.html.twig' %}
 
 {% block title %}Membre index{% endblock %}
 
 {% block body %}
-    <h1>Membre index</h1>
+<main class="content">
+    <div class="container-fluid p-0">
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Cin</th>
-                <th>Nom</th>
-                <th>Prenom</th>
-                <th>Sexe</th>
-                <th>Datee</th>
-                <th>Taille</th>
-                <th>Poids</th>
-                <th>Email</th>
-                <th>Password</th>
-                <th>Telephone</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for membre in membres %}
-            <tr>
-                <td>{{ membre.cin }}</td>
-                <td>{{ membre.nom }}</td>
-                <td>{{ membre.prenom }}</td>
-                <td>{{ membre.sexe }}</td>
-                <td>{{ membre.datee ? membre.datee|date('Y-m-d') : '' }}</td>
-                <td>{{ membre.taille }}</td>
-                <td>{{ membre.poids }}</td>
-                <td>{{ membre.email }}</td>
-                <td>{{ membre.password }}</td>
-                <td>{{ membre.telephone }}</td>
-                <td>
-                    <a href="{{ path('membre_show', {'cin': membre.cin}) }}">show</a>
-                    <a href="{{ path('membre_edit', {'cin': membre.cin}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="11">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <h1 class="h3 mb-3">Tous les Membre</h1>
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title"></h5>
+                        <button><i class="align-middle" data-feather="arrow-down"></i></button>
+
+
+                    </div>
+                    <div class="card-body">
+                        <table id="datatables-column-search-text-inputs" class="table table-striped" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Cin</th>
+                                    <th>Nom</th>
+                                    <th>Prenom</th>
+                                    <th>Sexe</th>
+                                    <th>Datee</th>
+                                    <th>Taille</th>
+                                    <th>Poids</th>
+                                    <th>Email</th>
+                                    <th>Password</th>
+                                    <th>Telephone</th>
+                                    <th>Supprimer</th>
+                                    <th>Modifier</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for membre in membres %}
+                                <tr>
+                                    <td>{{ membre.cin }}</td>
+                                    <td>{{ membre.nom }}</td>
+                                    <td>{{ membre.prenom }}</td>
+                                    <td>{{ membre.sexe }}</td>
+                                    <td>{{ membre.datee ? membre.datee|date('Y-m-d') : '' }}</td>
+                                    <td>{{ membre.taille }}</td>
+                                    <td>{{ membre.poids }}</td>
+                                    <td>{{ membre.email }}</td>
+                                    <td>{{ membre.password }}</td>
+                                    <td>{{ membre.telephone }}</td>
+                                    <td>
+                                        {{ include('membre/_delete_form.html.twig') }}
+
+                                    </td>
+                                    <td class="">
+
+                                        <a href="{{ path('membre_edit', {'cin': membre.cin}) }}"><i class="align-middle" data-feather="edit"></i></a>
+
+                                    </td>
+                                </tr>
+
+                            {% endfor %}
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <th>Cin</th>
+                                <th>Nom</th>
+                                <th>Prenom</th>
+                                <th>Sexe</th>
+                                <th>Datee</th>
+                                <th>Taille</th>
+                                <th>Poids</th>
+                                <th>Email</th>
+                                <th>Password</th>
+                                <th>Telephone</th>
+                                <th>Supprimer</th>
+                                <th>Modifier</th>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+</main>
+
 
     <a href="{{ path('membre_new') }}">Create new</a>
 {% endblock %}

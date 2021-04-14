@@ -18,6 +18,11 @@ class MembreRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Membre::class);
     }
+    public function triDescNom(){
+        return $this->getEntityManager()
+            ->createQuery('SELECT m FROM App\Entity\Membre e ORDER BY m.nom DESC')
+            ->getResult();
+    }
 
     // /**
     //  * @return Membre[] Returns an array of Membre objects

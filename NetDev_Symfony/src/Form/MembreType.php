@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Membre;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,7 +16,9 @@ class MembreType extends AbstractType
             ->add('cin')
             ->add('nom')
             ->add('prenom')
-            ->add('sexe')
+            ->add('sexe',ChoiceType::class,[
+                'choices'=>['Homme'=>'Homme','Femme'=>'Femme']
+            ])
             ->add('datee')
             ->add('taille')
             ->add('poids')
