@@ -34,7 +34,7 @@ class Menu
      * @var string|null
      *
      * @ORM\Column(name="description", type="string", length=255, nullable=true)
-     * @Assert\NotNull
+     * @Assert\NotNull(message="veuillez remplir le champ obligatoire.")
      * @Assert\Length(
      * min = 5,
      * max = 40, 
@@ -47,7 +47,7 @@ class Menu
      * @var int|null
      *
      * @ORM\Column(name="num_jour", type="integer", nullable=true)
-     * @Assert\NotNull
+     * @Assert\NotNull(message="veuillez remplir le champ obligatoire.")
      * @Assert\Positive
      */
     private $numJour;
@@ -59,7 +59,7 @@ class Menu
      * @Assert\Length(min = 3, max = 30,
      * minMessage = "Matin doit etre au moin {{ limit }} caractères",
      * maxMessage = "Matin doit etre au maximum {{ limit }} caractères")
-     * @Assert\NotNull
+     * @Assert\NotNull(message="veuillez remplir le champ obligatoire.")
      */
     private $matin;
 
@@ -67,8 +67,8 @@ class Menu
      * 
      * @ORM\Column(name="matin_img", type="string", length=255, nullable=true)
      * @Assert\File(mimeTypes={ "image/jpeg" , "image/png",  "image/jpg" })
-     * @Assert\NotBlank(message="please upload image")
-     * @Assert\NotNull
+     * @Assert\NotBlank(message="veuillez uploader une image")
+     * @Assert\NotNull(message="veuillez remplir le champ obligatoire.")
      */
     private $matinImg;
 
@@ -79,7 +79,7 @@ class Menu
      * @Assert\Length(min = 3, max = 30,
      * minMessage = "Dejeuner doit être au moins {{ limit }} caractères",
      * maxMessage = "Dejeuner doit être au maximum {{ limit }} caractères")
-     * @Assert\NotNull
+     * @Assert\NotNull(message="veuillez remplir le champ obligatoire.")
      */
     private $dejeuner;
 
@@ -87,8 +87,8 @@ class Menu
      *
      * @ORM\Column(name="dejeuner_img", type="string", length=255, nullable=true)
      * @Assert\File(mimeTypes={ "image/jpeg" , "image/png",  "image/jpg" })
-     * @Assert\NotBlank(message="please upload image")
-     * @Assert\NotNull
+     * @Assert\NotBlank(message="veuillez uploader une image")
+     * @Assert\NotNull(message="veuillez remplir le champ obligatoire.")
      */
     private $dejeunerImg;
 
@@ -99,7 +99,7 @@ class Menu
      * @Assert\Length(min = 3, max = 30,  
      * minMessage = "Dinner doit etre au moin {{ limit }} caractères",
      * maxMessage = "Dinner doit etre au maximum {{ limit }} caractères")
-     * @Assert\NotNull
+     * @Assert\NotNull(message="veuillez remplir le champ obligatoire.")
      */
     private $dinner;
 
@@ -107,8 +107,8 @@ class Menu
      *
      * @ORM\Column(name="dinner_img", type="string", length=255, nullable=true)
      * @Assert\File(mimeTypes={ "image/jpeg" , "image/png",  "image/jpg" })
-     * @Assert\NotBlank(message="please upload image")
-     * @Assert\NotNull
+     * @Assert\NotBlank(message="veuillez uploader une image")
+     * @Assert\NotNull(message="veuillez remplir le champ obligatoire.")
      */
     private $dinnerImg;
 
@@ -117,7 +117,7 @@ class Menu
      *
      * @ORM\Column(name="total_calories", type="integer", nullable=true)
      * @Assert\Positive
-     * @Assert\NotNull
+     * @Assert\NotNull(message="veuillez remplir le champ obligatoire.")
      */
     private $totalCalories;
 
@@ -127,7 +127,7 @@ class Menu
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_regime", referencedColumnName="id_regime")
      * })
-     * @Assert\NotNull
+     * @Assert\NotNull(message="veuillez remplir le champ obligatoire.")
      */
     private $idRegime;
 

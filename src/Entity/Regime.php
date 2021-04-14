@@ -34,7 +34,7 @@ class Regime
      * @var string
      *
      * @ORM\Column(name="type", type="string", length=255, nullable=false)
-     * @Assert\NotNull
+     * @Assert\NotNull(message="veuillez remplir le champ obligatoire.")
      * @Assert\Length(min=3, minMessage="le type ne peut pas faire moins de 3 caractères")
      */
     private $type;
@@ -48,7 +48,7 @@ class Regime
      * @var string
      *
      * @ORM\Column(name="description", type="string", length=255, nullable=false)
-     * @Assert\NotNull
+     * @Assert\NotNull(message="veuillez remplir le champ obligatoire.")
      * @Assert\Length(min=10, minMessage="Votre description ne peut pas faire moins de 10 caractères")
      */
     private $description;
@@ -57,7 +57,7 @@ class Regime
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      * 
      * @Vich\UploadableField(mapping="regime_image", fileNameProperty="image")
-     * @Assert\NotNull
+     * @Assert\NotNull(message="veuillez remplir le champ obligatoire.")
      * @Assert\Image(maxSize="2M")
      * 
      * @var File|null
@@ -68,6 +68,7 @@ class Regime
      * @var string
      *
      * @ORM\Column(name="image", type="text", length=65535, nullable=false)
+     * @Assert\NotNull(message="veuillez remplir le champ obligatoire.")
      */
     private $image;
 
