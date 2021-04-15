@@ -55,15 +55,15 @@ class MenuController extends AbstractController
 
             try {
                 $file1->move(
-                    $this->getParameter('images_directory'),
+                    $this->getParameter('menu_images_directory'),
                     $fileName1
                 );
                 $file2->move(
-                    $this->getParameter('images_directory'),
+                    $this->getParameter('menu_images_directory'),
                     $fileName2
                 );
                 $file3->move(
-                    $this->getParameter('images_directory'),
+                    $this->getParameter('menu_images_directory'),
                     $fileName3
                 );
             } catch (FileException $e) {
@@ -110,15 +110,15 @@ class MenuController extends AbstractController
 
             try {
                 $file1->move(
-                    $this->getParameter('images_directory'),
+                    $this->getParameter('menu_images_directory'),
                     $fileName1
                 );
                 $file2->move(
-                    $this->getParameter('images_directory'),
+                    $this->getParameter('menu_images_directory'),
                     $fileName2
                 );
                 $file3->move(
-                    $this->getParameter('images_directory'),
+                    $this->getParameter('menu_images_directory'),
                     $fileName3
                 );
             } catch (FileException $e) {
