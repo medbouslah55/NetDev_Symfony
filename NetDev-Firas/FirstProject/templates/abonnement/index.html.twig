@@ -1,0 +1,46 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Listes Des Abonnements{% endblock %}
+{% block body %}
+    <h1>Listes Des Abonnements</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Type</th>
+                <th>Prix</th>
+                <th>Déscription</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for abonnement in abonnements %}
+            <tr>
+                <td>{{ abonnement.titre }}</td>
+                <td>{{ abonnement.type }}</td>
+                <td>{{ abonnement.prix }}</td>
+                <td>{{ abonnement.descrAb }}</td>
+                <td>
+                    <a href="{{ path('abonnement_show', {'id': abonnement.id}) }}"> <i class="align-middle" data-feather="monitor"></i> <span class="align-middle"></span> </a>
+                    <a href="{{ path('abonnement_edit', {'id': abonnement.id}) }}"> <i class="align-middle" data-feather="edit"></i> <span class="align-middle"></span> </a>
+
+                    <form class="align-middle" method="post" action="{{ path('abonnement_delete', {'id': abonnement.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ abonnement.id) }}">
+                        <button class="btn" >
+                            <a> <i class="align-middle" data-feather="trash"></i> <span class="align-middle"></span> </a>
+                        </button>
+                    </form>
+
+
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

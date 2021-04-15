@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+    <h1>Liste De Mes Reclamations</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Mail</th>
+                <th>Type</th>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Etat</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reclamation in reclamations %}
+            <tr>
+                <td>{{ reclamation.nom }}</td>
+                <td>{{ reclamation.prenom }}</td>
+                <td>{{ reclamation.mail }}</td>
+                <td>{{ reclamation.type }}</td>
+                <td>{{ reclamation.date ? reclamation.date|date('Y-m-d') : '' }}</td>
+                <td>{{ reclamation.description }}</td>
+                <td>{{ reclamation.etat }}</td>
+                <td>
+                    <a href="{{ path('reclamation_controller_user_show', {'id': reclamation.id}) }}">Afficher</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('reclamation_controller_user_new') }}">Passer Une Autre Réclamation</a>
+{% endblock %}

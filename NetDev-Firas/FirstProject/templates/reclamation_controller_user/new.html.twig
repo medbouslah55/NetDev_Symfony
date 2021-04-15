@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+    <!-- Start of .header-bottom-4 -->
+    <header class="header-bottom-4">
+        <img src="{{ asset('./images/banner/banner9.jpg') }}">
+        <div class="header-bottom-4__bg">
+            <div class="icon">
+                <img src="{{ asset('./images/banner/banner-shape.png') }}">
+            </div>
+        </div>
+        <div class="container">
+            <h1 class="section-title">check<span>OUT</span></h1>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="shop.html">Shop</a></li>
+                <li class="breadcrumb-item active">CheckOut</li>
+            </ol>
+        </div>
+    </header>
+    <!-- End of .header-bottom-4 -->
+
+    {{ include('reclamation_controller_user/_form.html.twig') }}
+
+{% endblock %}

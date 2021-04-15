@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Liste Des Abonnements</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Type</th>
+                <th>Prix</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for abonnement in abonnements %}
+            <tr>
+                <td>{{ abonnement.titre }}</td>
+                <td>{{ abonnement.type }}</td>
+                <td>{{ abonnement.prix }}</td>
+                <td>{{ abonnement.descrAb }}</td>
+                <td>
+                    <a href="{{ path('abonnement_controller_user_show', {'id': abonnement.id}) }}">Afficher</a>
+                    <a href="{{ path('abonnement_controller_user_edit', {'id': abonnement.id}) }}">Achéter</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

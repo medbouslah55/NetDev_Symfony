@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Abonnement</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Titre</th>
+                <td>{{ abonnement.titre }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ abonnement.type }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ abonnement.prix }}</td>
+            </tr>
+            <tr>
+                <th>DescrAb</th>
+                <td>{{ abonnement.descrAb }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="#">Acheter</a>
+
+{% endblock %}
