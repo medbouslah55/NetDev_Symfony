@@ -68,7 +68,7 @@ class Regime
      * @var string
      *
      * @ORM\Column(name="image", type="text", length=65535, nullable=false)
-     * @Assert\NotNull(message="veuillez remplir le champ obligatoire.")
+     * 
      */
     private $image;
 

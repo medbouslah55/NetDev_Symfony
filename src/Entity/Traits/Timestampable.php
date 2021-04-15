@@ -1,7 +1,7 @@
 <?php 
     namespace App\Entity\Traits;
 
-trait Timestampable
+trait Timestampable //Un trait est semblable à une classe, mais il ne sert qu'à grouper des fonctionnalités d'une manière intéressante.
 {
     /**
      * @ORM\Column(type="datetime", options={"default": "CURRENT_TIMESTAMP"})

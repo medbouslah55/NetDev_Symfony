@@ -59,7 +59,7 @@
                             </p>
                             <a href="{{ path('menu_edit', {'id': menu.idMenu}) }}" class="btn btn-primary">
                                 <i class="align-middle" data-feather="edit"></i><span class="align-middle"> Modifier</span></a>
-                            <a href="{{ path('menu_delete', {'id': menu.idMenu}) }}" class="btn btn-danger">
+                            <a href="{{ path('menu_delete', {'id': menu.idMenu}) }}" class="btn btn-danger", onclick="return confirm('Vous êtes sur de supprimer {{ menu.description }}?');">
                             <i class="align-middle" data-feather="delete"></i><span class="align-middle"> Supprimer</span></a>
                         </div>
                     </div>
