@@ -6,6 +6,7 @@ use App\Entity\Menu;
 use App\Form\MenuType;
 use App\Repository\MenuRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,12 +21,19 @@ class MenuController extends AbstractController
      * 
      * @return Response
      */
-    public function index(MenuRepository $repo): Response
+    public function index(MenuRepository $repo, PaginatorInterface $paginator, Request $request): Response
     {
         $menus = $repo->findAll();
 
+        $pagination = $paginator->paginate(
+            $menus,
+            $request->query->getInt('page', 1), /*page number*/
+            6 /*limit per page*/
+        );
+
         return $this->render('admin/menu/index.html.twig', [
             'menus' => $menus,
+            'pagination' => $pagination,
         ]);
     }
 

@@ -5,7 +5,7 @@
 <div class="container mt-4">
     <h1>Liste de Nos Menus:</h1>
     <div class="row">
-        {% for menu in menus %}
+        {% for menu in pagination %}
             <div class="col-md-4 mt-2">
                 <div class="card bg light mb-3">
                     <div class="card header text-center">
@@ -66,6 +66,9 @@
                 </div>
             </div>
         {% endfor %}
+    </div>
+    <div class="d-flex justify-content-center">
+        {{ knp_pagination_render(pagination) }}
     </div>
 </div>
 {% endblock %}
