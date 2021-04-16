@@ -6,6 +6,7 @@ use App\Entity\Regime;
 use App\Form\RegimeType;
 use App\Repository\RegimeRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,12 +19,19 @@ class RegimeController extends AbstractController
      * 
      * @return Response
      */
-    public function index(RegimeRepository $repo): Response
+    public function index(RegimeRepository $repo, PaginatorInterface $paginator, Request $request): Response
     {
         $regimes = $repo->findAll();
 
+        $pagination = $paginator->paginate(
+            $regimes,
+            $request->query->getInt('page', 1), /*page number*/
+            6 /*limit per page*/
+        );
+
         return $this->render('admin/regime/index.html.twig', [
             'regimes' => $regimes,
+            'pagination' => $pagination,
         ]);
     }
 
