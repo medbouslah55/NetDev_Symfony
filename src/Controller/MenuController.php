@@ -7,10 +7,10 @@ use App\Form\MenuType;
 use App\Repository\MenuRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
+use Ob\HighchartsBundle\Highcharts\Highchart;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
@@ -152,7 +152,7 @@ class MenuController extends AbstractController
     }
 
     /**
-     * Permet de supprimer un regime
+     * Permet de supprimer un menu
      * 
      * @Route("/admin/menus/{id}/delete", name="menu_delete")
      * 
@@ -169,4 +169,33 @@ class MenuController extends AbstractController
         return $this->redirectToRoute('menus_index');
     }
 
+    /**
+     * @Route("/admin/menus/statistique", name="menu_stat")
+     */
+    public function chartAction()
+    { 
+        $ob = new Highchart();
+        $ob->chart->renderTo('linechart');
+        $ob->title->text('Statistiques des Menus');
+        $ob->xAxis->title(array('text'  => "L'identitfiant des menus"));
+        $ob->yAxis->title(array('text'  => "Nombre de Calories"));
+
+        $offre = $this->getDoctrine()
+            ->getRepository(Menu::class)
+            ->findAll();
+
+        $data =array();
+
+        foreach ($offre as $values)
+        {
+            $a =array($values->getIdMenu(),intval($values->getTotalCalories()));
+            array_push($data,$a);
+        }
+
+        $ob->series(array(array('name' => 'Courbe calorique', 'data' => $data)));
+       
+        return $this->render('admin/menu/stat.html.twig', array(
+            'chart' => $ob
+        ));
+    }
 }
