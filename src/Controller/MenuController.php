@@ -147,7 +147,7 @@ class MenuController extends AbstractController
 
         return $this->render('admin/menu/edit.html.twig', [
             'form' => $form->createView(),
-            'regime' => $menu,
+            'menu' => $menu,
         ]);
     }
 
@@ -177,16 +177,17 @@ class MenuController extends AbstractController
         $ob = new Highchart();
         $ob->chart->renderTo('linechart');
         $ob->title->text('Statistiques des Menus');
+        $ob->chart->type('column');
         $ob->xAxis->title(array('text'  => "L'identitfiant des menus"));
         $ob->yAxis->title(array('text'  => "Nombre de Calories"));
 
-        $offre = $this->getDoctrine()
+        $menus = $this->getDoctrine()
             ->getRepository(Menu::class)
             ->findAll();
 
         $data =array();
 
-        foreach ($offre as $values)
+        foreach ($menus as $values)
         {
             $a =array($values->getIdMenu(),intval($values->getTotalCalories()));
             array_push($data,$a);
