@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos Regimes{% endblock %}
+
+{% block body %}
+<!-- Start of .preloader -->
+<div class="preloader">
+    <div class="loader"></div>
+    <h6 class="preloader-text">Chargement...<br>Nos Regimes</h6>
+</div>
+<!-- End of .preloader -->
+
+<!------------------------------------------------------------------------>
+
+<div class="page">
+
+    <!-- Start of .header-bottom-4 -->
+    <header class="header-bottom-4">
+        <img src="./images/banner/banner10.jpg">
+        <div class="header-bottom-4__bg">
+            <div class="icon">
+                <img src="./images/banner/banner-shape.png">
+            </div>
+        </div>
+        <div class="container">
+            <h1 class="section-title">Nos <span>Régimes</span></h1>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ path('home') }}">Home</a></li>
+                <li class="breadcrumb-item active">Regimes</li>
+            </ol>
+        </div>
+    </header>
+    <!-- End of .header-bottom-4 -->
+    
+    <!-- Start of .latest-news-4 -->
+    <section class="latest-news-4 main-blog">
+        <div class="main-blog__bg">
+            <div class="icon">
+                <img src="./images/png-shapes/form-shape.png">
+            </div>
+            <div class="icon">
+                <img src="./images/png-shapes/specialists__left-bottom-shape.png">
+            </div>
+        </div>
+    <!-------------------------------------------------------------->
+        <div class="container">
+        {% for regime in pagination %}
+            <a href="blog-details_left.html" class="item">
+                <div class="img">
+                    <img src="/admin/img/regime/{{regime.image}}">
+                    <span class="date">{{ regime.createdAt | format_datetime() }}</span>
+                    {# https://twig.symfony.com/doc/3.x/filters/format_datetime.html #}
+                </div>
+                <h4 class="title">{{ regime.type }}</h4>
+                <p class="text">
+                    {{ regime.description }}
+                </p>
+                <span class="read-more-2">read more</span>
+            </a>
+        {% endfor %}
+        </div>
+        <div class="d-flex justify-content-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+    </section>
+    
+    <!-- End of .latest-news-4 -->
+</div>
+{% endblock %}
