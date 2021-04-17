@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Tracking{% endblock %}
+
+{% block body %}
+    <!-- Start of .shop -->
+    <section class="contact main-blog">
+        <div class="main-blog__bg">
+            <div class="icon">
+                <img src="./images/png-shapes/form-shape.png">
+            </div>
+            <div class="icon">
+                <img src="./images/png-shapes/specialists__left-bottom-shape.png">
+            </div>
+        </div>
+
+        <div class="contact-map-2">
+            <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d40674.95943414137!2d-74.02830237109018!3d40.73596674750672!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a197c06b7cb%3A0x40a06c78f79e5de6!2sOzodlik%20minorasi!5e0!3m2!1suz!2sus!4v1594532528185!5m2!1suz!2sus"
+                    width="100%" height="590px" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false"
+                    tabindex="0"></iframe>
+            <div class="container">
+                <div class="contact-map__card-2">
+                    <img src="./images/jpg/contact2.jpg">
+                    <div class="blue"></div>
+                    <div class="content">
+                        <form>
+                            {{ include('tracking/_form.html.twig') }}
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- End of .shop -->
+
+
+
+{% endblock %}

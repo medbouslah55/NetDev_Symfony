@@ -1,0 +1,104 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Membre index{% endblock %}
+
+{% block body %}
+    <main class="content">
+        <div class="container-fluid p-0">
+
+            <h1 class="h3 mb-3">Clients</h1>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-actions float-right">
+                                <div class="dropdown show">
+                                    <a href="#" data-toggle="dropdown" data-display="static">
+                                        <i class="align-middle" data-feather="more-horizontal"></i>
+                                    </a>
+
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item" href="#">Action</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <h5 class="card-title mb-0">Clients</h5>
+                        </div>
+                        <div class="card-body">
+                            <table id="datatables-clients" class="table table-striped" style="width:100%">
+                                <thead>
+                                <tr>
+                                    <th>Cin</th>
+                                    <th>Nom</th>
+                                    <th>Prenom</th>
+                                    <th>Sexe</th>
+                                    <th>Datee</th>
+                                    <th>Taille</th>
+                                    <th>Poids</th>
+                                    <th>Email</th>
+                                    <th>Password</th>
+                                    <th>Telephone</th>
+                                    <th>Dettaile</th>
+                                    <th>Modifier</th>
+                                    <th>Supprimer</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for membre in membres %}
+                                    <tr>
+                                        <td>{{ membre.cin }}</td>
+                                        <td>{{ membre.nom }}</td>
+                                        <td>{{ membre.prenom }}</td>
+                                        <td>{{ membre.sexe }}</td>
+                                        <td>{{ membre.datee ? membre.datee|date('Y-m-d') : '' }}</td>
+                                        <td>{{ membre.taille }}</td>
+                                        <td>{{ membre.poids }}</td>
+                                        <td>{{ membre.email }}</td>
+                                        <td>{{ membre.password }}</td>
+                                        <td>{{ membre.telephone }}</td>
+                                        <td>
+                                            <a href="{{ path('membre_show', {'cin': membre.cin}) }}"><i class="align-middle" data-feather="align-center"></i></a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ path('membre_edit', {'cin': membre.cin}) }}"><i class="align-middle" data-feather="edit"></i></a></a>
+                                        </td>
+                                        <td>
+                                            {{ include('membre/_delete_form.html.twig') }}
+                                        </td>
+                                    </tr>
+                                {% else %}
+                                    <tr>
+                                        <td colspan="11">no records found</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                                <tr>
+                                    <th>Cin</th>
+                                    <th>Nom</th>
+                                    <th>Prenom</th>
+                                    <th>Sexe</th>
+                                    <th>Datee</th>
+                                    <th>Taille</th>
+                                    <th>Poids</th>
+                                    <th>Email</th>
+                                    <th>Password</th>
+                                    <th>Telephone</th>
+                                    <th>Dettaile</th>
+                                    <th>Modifier</th>
+                                    <th>Supprimer</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+{% endblock %}

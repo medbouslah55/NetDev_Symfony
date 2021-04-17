@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tracking index{% endblock %}
+
+{% block body %}
+    <h1>Tracking index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>IdTrack</th>
+                <th>OldPoids</th>
+                <th>Imc</th>
+                <th>CinMembre</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for tracking in trackings %}
+            <tr>
+                <td>{{ tracking.idTrack }}</td>
+                <td>{{ tracking.oldPoids }}</td>
+                <td>{{ tracking.imc }}</td>
+                <td>{{ tracking.cinMembre }}</td>
+                <td>
+                    <a href="{{ path('tracking_show', {'idTrack': tracking.idTrack}) }}">show</a>
+                    <a href="{{ path('tracking_edit', {'idTrack': tracking.idTrack}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('tracking_new') }}">Create new</a>
+{% endblock %}
