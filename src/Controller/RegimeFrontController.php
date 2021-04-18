@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Menu;
 use App\Repository\RegimeRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,6 +30,20 @@ class RegimeFrontController extends AbstractController
         return $this->render('regime_front/index.html.twig', [
             'regimes' => $regimes,
             'pagination' => $pagination,
+        ]);
+    }
+
+    /**
+     * @Route("/regimes/{id}", name="menus_front")
+     * 
+     * @return Response
+     */
+    public function show($id): Response
+    {
+        $menu = $this->getDoctrine()->getRepository(Menu::class)->findOneBy(array('idRegime' => $id));
+
+        return $this->render('menu_front/index.html.twig', [
+            'menu' => $menu,
         ]);
     }
 }

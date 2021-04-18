@@ -189,7 +189,7 @@ class MenuController extends AbstractController
 
         foreach ($menus as $values)
         {
-            $a =array($values->getIdMenu(),intval($values->getTotalCalories()));
+            $a =array($values->getDescription(),intval($values->getTotalCalories()));
             array_push($data,$a);
         }
 

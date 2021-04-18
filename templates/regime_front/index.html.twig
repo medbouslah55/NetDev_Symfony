@@ -45,10 +45,10 @@
     <!-------------------------------------------------------------->
         <div class="container">
         {% for regime in pagination %}
-            <a href="blog-details_left.html" class="item">
+            <a href="{{ path('menus_front', {'id': regime.idRegime}) }}" class="item">
                 <div class="img">
                     <img src="/admin/img/regime/{{regime.image}}">
-                    <span class="date">{{ regime.createdAt | format_datetime() }}</span>
+                    <span class="date">{{ regime.createdAt | format_date() }}</span>
                     {# https://twig.symfony.com/doc/3.x/filters/format_datetime.html #}
                 </div>
                 <h4 class="title">{{ regime.type }}</h4>
