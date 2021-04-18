@@ -38,12 +38,42 @@ class RegimeFrontController extends AbstractController
      * 
      * @return Response
      */
-    public function show($id): Response
+    public function show($id, PaginatorInterface $paginator, Request $request): Response
     {
-        $menu = $this->getDoctrine()->getRepository(Menu::class)->findOneBy(array('idRegime' => $id));
+        $menu = $this->getDoctrine()->getRepository(Menu::class)->findOneBy(array('idRegime' => $id), array('numJour' => 'ASC'));
+        $menus = $this->getDoctrine()->getRepository(Menu::class)->findBy(array('idRegime' => $id), array('numJour' => 'ASC'));
+        
+        $pagination = $paginator->paginate(
+            $menus,
+            $request->query->getInt('page', 1), /*page number*/
+            3 /*limit per page*/
+        );
 
         return $this->render('menu_front/index.html.twig', [
             'menu' => $menu,
+            'menus' => $menus,
+            'pagination' => $pagination,
+        ]);
+    }
+
+    /**
+     * @Route("/regimes/{id}/menus", name="menus_front_show")
+     * 
+     * @return Response
+     */
+    public function showall($id, PaginatorInterface $paginator, Request $request): Response
+    {
+        $menus = $this->getDoctrine()->getRepository(Menu::class)->findBy(array('idRegime' => $id), array('numJour' => 'ASC'));
+
+        $pagination = $paginator->paginate(
+            $menus,
+            $request->query->getInt('page', 1), /*page number*/
+            6 /*limit per page*/
+        );
+
+        return $this->render('menu_front/show_all.html.twig', [
+            'menus' => $menus,
+            'pagination' => $pagination,
         ]);
     }
 }

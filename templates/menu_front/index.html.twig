@@ -53,7 +53,7 @@
                 <div class="content">
                     <h1 class="title">Menu Jour N°{{menu.numJour}}</h1>
                     <br>
-                    <p class="instock">Menu : {{ menu.description}}</p>
+                    <p class="instock">Nom du menu : {{ menu.description}}</p>
                     <table class="about">
                         <tr>
                             <th>Matin :</th>
@@ -74,54 +74,36 @@
                     </table>
                 </div>
             </div>
-            <div class="description">
-                <div class="head">
-                    <h1 class="name">Description</h1>
-                    <h1 class="reviews">Reviews(2)</h1>
-                </div>
-                <p class="text">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                    labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo
-                    viverra maecenas accumsan lacus vel facilisis. Quis ipsum suspendisse ultrices gravida.
-                    Risus commodo viverra maecenas accumsan lacus vel facilisis.
-                </p>
-                <ul class="list">
-                    <li class="list-item"><i class="fa fa-check"></i> Free Ambulance Transport</li>
-                    <li class="list-item"><i class="fa fa-check"></i> Highly Qualified Doctors</li>
-                    <li class="list-item"><i class="fa fa-check"></i> 24×7 Emergency Services</li>
-                    <li class="list-item"><i class="fa fa-check"></i> Free Ambulance Transport</li>
-                    <li class="list-item"><i class="fa fa-check"></i> Highly Qualified Doctors</li>
-                    <li class="list-item"><i class="fa fa-check"></i> 24×7 Emergency Services</li>
-                </ul>
-            </div>
-
         </div>
         <div class="relatives">
             <div class="head">
-                <h1 class="title">Related Products</h1>
-                <a href="shop.html" class="allCard">View All</a>
+                <h1 class="title">Menu des jours suivants: </h1>
+                <a href="{{ path('menus_front_show', {'id': app.request.get('id')}) }}" class="allCard">View All</a>
             </div>
-            <div class="relatives__carousel owl-carousel owl-theme">
-                <a href="shop-product_detail.html" class="relatives__card-item new">
-                    <div class="img">
-                        <div class="icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="11" viewBox="0 0 25 11"><path id="arrow-right-hover.svg" class="cls-2" d="M3302.09,1957v-1h-22.83v1h22.83Zm-4.35,4.2,0.82,0.79,4.89-4.71,0.81-.78-0.81-.79-4.89-4.7-0.82.78,4.89,4.71Z" transform="translate(-3279.25 -1951)"/></svg>
+            <br>
+            <br>
+            <div class="container">
+            {% for menus in pagination %}
+                <a href="{{ path('menus_front', {'id': app.request.get('id')}) }}" class="specialists__item p-5">
+                    <div class="inner-block">
+                        <div class="img">
+                            <img src="{{ asset('./admin/img/menu/' ~ menus.matinImg) }}">
                         </div>
-                        <img src="./images/jpg/shop.jpg">
-                    </div>
-                    <div class="content">
-                        <div class="text">
-                            <h1 class="name">New Tanometr</h1>
-                            <span class="price">$<span>25.00</span></span>
-                        </div>
-                        <div class="basket">
-                            <svg width="25.16" height="25.125" viewBox="0 0 25.16 25.125">
-                                <path id="bag.svg" class="cls-2"
-                                    d="M1049.15,437.286h-6.46l0.94,3.736a0.794,0.794,0,0,1-.58.951,0.677,0.677,0,0,1-.19.024,0.786,0.786,0,0,1-.76-0.6l-1.03-4.116h-8.99l-1.03,4.116a0.786,0.786,0,0,1-.76.6,0.677,0.677,0,0,1-.19-0.024,0.78,0.78,0,0,1-.57-0.951l0.93-3.736H1024v-1.569h6.85l1.82-7.258a0.784,0.784,0,1,1,1.52.382l-1.72,6.876h8.21l-1.72-6.876a0.784,0.784,0,1,1,1.52-.382l1.82,7.258h6.85v1.569Zm-22.01,3.089,1.48,11.043h15.91l1.48-11.043v-1.518h1.57l-0.01,1.674-1.66,12.458h-18.67l-1.67-12.562v-1.57h1.57v1.518Z"
-                                    transform="translate(-1024 -427.875)" /></svg>
-                        </div>
+                        <h1 class="name">Menu Jour N°{{menus.numJour}}</h1>
+                        <h4 class="proffesia">Menu : {{ menus.description}}</h4>
+                        <ul class="work-date">
+                            <li><span>Matin - {{ menus.matin }}</span></li>
+                            <li><span>Déjeuner - {{ menus.dejeuner }}</span></li>
+                            <li><span>Dinner - {{ menus.dinner }}</span></li>
+                        </ul>
+                        <span class="btn-2 btn-2_blue">Consulter<i
+                                class="fa fa-angle-right"></i></span>
                     </div>
                 </a>
+            {% endfor %}
+            </div>
+            <div class="d-flex justify-content-center mt-5">
+                {{ knp_pagination_render(pagination) }}
             </div>
         </div>
     </div>
