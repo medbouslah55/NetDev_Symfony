@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Menu;
+use App\Repository\MenuRepository;
 use App\Repository\RegimeRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -64,6 +65,44 @@ class RegimeFrontController extends AbstractController
     public function showall($id, PaginatorInterface $paginator, Request $request): Response
     {
         $menus = $this->getDoctrine()->getRepository(Menu::class)->findBy(array('idRegime' => $id), array('numJour' => 'ASC'));
+
+        $pagination = $paginator->paginate(
+            $menus,
+            $request->query->getInt('page', 1), /*page number*/
+            6 /*limit per page*/
+        );
+
+        return $this->render('menu_front/show_all.html.twig', [
+            'menus' => $menus,
+            'pagination' => $pagination,
+        ]);
+    }
+
+    /**
+     * @Route("/regimes/{id}/menus/trierMenu/ASC", name="trier_menu_description_ASC")
+     */
+    public function TrierParNumJourASC($id, PaginatorInterface $paginator, Request $request): Response
+    {
+        $menus = $this->getDoctrine()->getRepository(Menu::class)->findBy(array('idRegime' => $id), array('numJour' => 'ASC'));
+
+        $pagination = $paginator->paginate(
+            $menus,
+            $request->query->getInt('page', 1), /*page number*/
+            6 /*limit per page*/
+        );
+
+        return $this->render('menu_front/show_all.html.twig', [
+            'menus' => $menus,
+            'pagination' => $pagination,
+        ]);
+    }
+
+    /**
+     * @Route("/regimes/{id}/menus/trierMenu/DESC", name="trier_menu_description_DESC")
+     */
+    public function TrierParNumJourDESC($id, PaginatorInterface $paginator, Request $request): Response
+    {
+        $menus = $this->getDoctrine()->getRepository(Menu::class)->findBy(array('idRegime' => $id), array('numJour' => 'DESC'));
 
         $pagination = $paginator->paginate(
             $menus,

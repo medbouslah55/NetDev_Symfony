@@ -7,7 +7,7 @@
     <img src="{{ asset('./images/banner/banner10.jpg') }}">
     <div class="header-bottom-4__bg">
         <div class="icon">
-            <img src="{{asset('./images/banner/banner-shape.png')}}">
+            <img src="{{ asset('./images/banner/banner-shape.png') }}">
         </div>
     </div>
     <div class="container">
@@ -19,6 +19,11 @@
         </ol>
     </div>
 </header>
+<div class="container mt-5">
+    <th>Trier : </th>
+        <a href="{{ path('trier_menu_description_ASC', {'id': app.request.get('id')}) }}">&nbsp;ASC &nbsp;</a>|
+        <a href="{{ path('trier_menu_description_DESC', {'id': app.request.get('id')}) }}">&nbsp; DESC &nbsp;</a>
+</div>
 <div class="container">
     {% for menus in pagination %}
         <a href="{{ path('menus_front', {'id': app.request.get('id')}) }}" class="specialists__item p-5">
