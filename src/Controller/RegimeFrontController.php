@@ -78,6 +78,31 @@ class RegimeFrontController extends AbstractController
         ]);
     }
 
+
+    /**
+     * @param Request $request
+     * 
+     * @return Response
+     * @Route("/regimes/{id}/menus/search", name="search")
+     * 
+     */
+    public function search(MenuRepository $repository, PaginatorInterface $paginator, Request $request)
+    {
+        $requestString = $request->get('searchValue');
+        $menus = $repository->findMenubyDescription($requestString);
+        
+        $pagination = $paginator->paginate(
+            $menus,
+            $request->query->getInt('page', 1), /*page number*/
+            6 /*limit per page*/
+        );
+
+        return $this->render('menu_front/search.html.twig' ,[
+            'menus' => $menus,
+            'pagination' => $pagination,
+        ]);
+    }
+
     /**
      * @Route("/regimes/{id}/menus/trierMenu/ASC", name="trier_menu_description_ASC")
      */

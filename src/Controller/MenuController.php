@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use App\Entity\Menu;
 use App\Form\MenuType;
 use App\Repository\MenuRepository;
@@ -199,4 +201,40 @@ class MenuController extends AbstractController
             'chart' => $ob
         ));
     }
+
+    /**
+     * @Route("/admin/menus/pdf", name="pdf")
+     */
+    public function pdf()
+    {
+        // Configure Dompdf according to your needs
+        $pdfOptions = new Options();
+        $pdfOptions->set('defaultFont', 'Arial');
+
+        // Instantiate Dompdf with our options
+        $dompdf = new Dompdf($pdfOptions);
+
+        $menus = $this->getDoctrine()->getManager()->getRepository(Menu::class)->findAll();
+
+        // Retrieve the HTML generated in our twig file
+        $html = $this->renderView('admin/menu/listep.html.twig', [
+            'menus' => $menus,
+
+        ]);
+
+        // Load HTML to Dompdf
+        $dompdf->loadHtml($html);
+
+        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser (force download)
+        $dompdf->stream("mypdf.pdf", [
+            "Attachment" => true
+        ]);
+    }
+
 }

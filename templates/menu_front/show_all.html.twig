@@ -24,28 +24,61 @@
         <a href="{{ path('trier_menu_description_ASC', {'id': app.request.get('id')}) }}">&nbsp;ASC &nbsp;</a>|
         <a href="{{ path('trier_menu_description_DESC', {'id': app.request.get('id')}) }}">&nbsp; DESC &nbsp;</a>
 </div>
-<div class="container">
+
+<div class="container d-flex align-items-center mt-5">
+    <input class="form-control" type="search" id="search" placeholder="Search by Nom">
+    <a href="{{ path('search', {'id': app.request.get('id')}) }}"><i class="fa fa-sort"></i></a>
+</div>
+{# <div class="container">
     {% for menus in pagination %}
-        <a href="{{ path('menus_front', {'id': app.request.get('id')}) }}" class="specialists__item p-5">
-            <div class="inner-block">
-                <div class="img">
-                    <img src="{{ asset('./admin/img/menu/' ~ menus.matinImg) }}">
-                </div>
-                <h1 class="name">Menu Jour N°{{menus.numJour}}</h1>
-                <h4 class="proffesia">Menu : {{ menus.description}}</h4>
-                <ul class="work-date">
-                    <li><span>Matin - {{ menus.matin }}</span></li>
-                    <li><span>Déjeuner - {{ menus.dejeuner }}</span></li>
-                    <li><span>Dinner - {{ menus.dinner }}</span></li>
-                </ul>
-                <span class="btn-2 btn-2_blue">Consulter<i
-                        class="fa fa-angle-right"></i></span>
+    <a href="{{ path('menus_front', {'id': app.request.get('id')}) }}" class="specialists__item p-5">
+        <div class="inner-block">
+            <div class="img">
+                <img src="{{ asset('./admin/img/menu/' ~ menus.matinImg) }}">
             </div>
-        </a>
-    {% endfor %}
+            <h1 class="name">Menu Jour N°{{menus.numJour}}</h1>
+            <h4 class="proffesia">Menu : {{ menus.description}}</h4>
+            <ul class="work-date">
+                <li><span>Matin - {{ menus.matin }}</span></li>
+                <li><span>Déjeuner - {{ menus.dejeuner }}</span></li>
+                <li><span>Dinner - {{ menus.dinner }}</span></li>
+            </ul>
+            <span class="btn-2 btn-2_blue">
+                Consulter<i class="fa fa-angle-right"></i>
+            </span>
+        </div>
+    </a>
+{% endfor %} #}
+    <div class="container" id="all">
+        {% include 'menu_front/search.html.twig' %}
     </div>
     <div class="d-flex justify-content-center mt-5">
         {{ knp_pagination_render(pagination) }}
     </div>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $( document ).ready(function() {
+        var currentRequest = null;
+        $("#search").keyup(function(e){
+            var value = $(this).val();
+            if(currentRequest != null) {
+                currentRequest.abort();
+            }
+            currentRequest = $.ajax({
+                url : "{{ path('search', {'id': app.request.get('id')}) }}",
+                type : 'GET',
+                data: {
+                    'searchValue' : value
+                },
+                success : function(retour)
+                {
+                    $('#all').html(retour);
+                },
+            });
+            return false;
+        });
+    });
+</script>
 {% endblock %}

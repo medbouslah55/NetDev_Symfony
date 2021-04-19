@@ -19,6 +19,14 @@ class MenuRepository extends ServiceEntityRepository
         parent::__construct($registry, Menu::class);
     }
 
+    public function findMenubyDescription($description){
+        return $this->createQueryBuilder('menu')
+            ->where('menu.description LIKE :description')
+            ->setParameter('description', '%'.$description.'%')
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Menu[] Returns an array of Menu objects
     //  */
