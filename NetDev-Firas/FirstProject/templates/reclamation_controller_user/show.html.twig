@@ -1,51 +1,166 @@
 {% extends 'base.html.twig' %}
-
-
 {% block body %}
-    <header class="header-bottom-4">
-        <!--<img src="{{ asset('./images/ab1.png') }}">-->
-        <div class="header-bottom-4__bg">
-            <div class="icon">
-                <img src="{{ asset('./images/banner/banner-shape.png') }}">
-            </div>
-        </div>
-        <div class="container">
-            <h1 class="section-title">Details de la <span>Reclamation</span></h1>
-            <ol class="breadcrumb">
-            </ol>
-        </div>
-    </header>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Ibn Sino Html-5 Template | Cases details</title>
+        <link rel="icon" href="./images/icon.png">
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Nom</th>
-                <td>{{ reclamation.nom }}</td>
-            </tr>
-            <tr>
-                <th>Prenom</th>
-                <td>{{ reclamation.prenom }}</td>
-            </tr>
-            <tr>
-                <th>Mail</th>
-                <td>{{ reclamation.mail }}</td>
-            </tr>
-            <tr>
-                <th>Type</th>
-                <td>{{ reclamation.type }}</td>
-            </tr>
-            <tr>
-                <th>Date</th>
-                <td>{{ reclamation.date ? reclamation.date|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ reclamation.description }}</td>
-            </tr>
-            <tr>
-                <th>Etat</th>
-                <td>{{ reclamation.etat }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <!-- wow animation style -->
+        <!-- <link rel="stylesheet" href="./css/animate.css"> -->
+
+        <!-- owl-carousel -->
+        <link rel="stylesheet" href="./css/owl.carousel.min.css">
+        <link rel="stylesheet" href="./css/owl.theme.default.min.css">
+
+        <!-- fancybox 3 css -->
+        <link rel="stylesheet" href="./css/jquery.fancybox.min.css">
+
+        <!-- bootstrap style -->
+        <link rel="stylesheet" href="./css/bootstrap.min.css">
+
+        <!-- template style -->
+        <link rel="stylesheet" href="./css/main.css">
+
+        <!-- Responsive -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    </head>
+    <body>
+    <div>
+        <!-- Start of .case -->
+        <section class="case main-blog">
+
+            <div class="container">
+                <div class="case__detail">
+                    <h1 class="title">{{ reclamation.nom }} {{ reclamation.prenom }}</h1>
+                    <!-- hidden carousel for mobile window max-width < 1200px -->
+                    <div class="img-mobile">
+                        <div class="img-mobile__carousel owl-carousel owl-theme">
+                            <div class="img-mobile__item">
+                                <img src="./images/jpg/teeth.jpg">
+                            </div>
+                            <div class="img-mobile__item">
+                                <img src="./images/jpg/teeth-yellow.jpg">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="doctor-history">
+                        <div class="doctor">
+                            <div class="img">
+                                <img src="{{ asset('./images/rec2.jpg') }}">
+                            </div>
+                            <div class="content">
+                                <p class="property">Email:</p>
+                                <h5 class="value">{{ reclamation.mail }}</h5>
+                                <p class="property">Type de probléme:</p>
+                                <h5 class="value">{{ reclamation.type }}</h5>
+                                <p class="property">Date d'envoie:</p>
+                                <h5 class="value">{{ reclamation.date ? reclamation.date|date('Y-m-d') : '' }}</h5>
+                                <p class="property">Description:</p>
+                                <h5 class="value">{{ reclamation.description }}</h5>
+                                <p class="property">Etat:</p>
+                                <h5 class="value">{{ reclamation.etat }}</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End of .case -->
+    </div>
+
+    <!------------------------------------------------------------------------>
+
+    <!-- scroll top - to top page -->
+    <div class="to-top" id="scrollUp"><i class="fa fa-angle-up"></i></div>
+
+    <!-- search box -->
+    <div class="searchBox">
+        <span class="searchBox-close">&times;</span>
+        <form>
+            <input type="search" placeholder="Write Search Keyword & Press Enter">
+            <button type="submit">
+                <svg width="24.71" height="25.687" viewBox="0 0 24.71 24.687">
+                    <path id="search.svg" class="cls-2"
+                          d="M1144.4,440.468l8.19,8.178-3.47,3.467-8.19-8.178,1.18-1.177-1.38-1.385a7.878,7.878,0,1,1,1.11-1.11l1.38,1.383Zm-2.36-5.172a6.29,6.29,0,1,0-6.29,6.282A6.293,6.293,0,0,0,1142.04,435.3Zm8.33,13.35-3.61-3.6-1.24,1.245,3.6,3.6Zm-5.97-3.465,1.25-1.246-1.25-1.245-1.24,1.245Zm-11.79-9.885h-1.57a4.715,4.715,0,0,1,4.71-4.712v1.57A3.146,3.146,0,0,0,1132.61,435.3Z"
+                          transform="translate(-1127.88 -427.438)" /></svg>
+                search
+            </button>
+        </form>
+    </div>
+
+    <!-- Popup Form -->
+    <div class="popup-form">
+        <div class="inner-block">
+            <span class="popup-form-close" id="popup-form-close">&times;</span>
+            <div class="img">
+                <img src="./images/jpg/popup-form.jpg">
+            </div>
+            <form>
+                <h1 class="section-title">make an appointment</h1>
+                <div class="input-box">
+                    <label for="popup-name">Name *</label>
+                    <input type="text" id="popup-name" required>
+                </div>
+
+                <div class="input-box">
+                    <label for="popup-email">Email *</label>
+                    <input type="text" id="popup-email" required>
+                </div>
+
+                <div class="input-box">
+                    <label for="popup-phone">Phone *</label>
+                    <input type="tel" id="popup-phone" required>
+                </div>
+
+                <div class="select-box">
+                    <i class="fa fa-angle-down"></i>
+                    <select>
+                        <option selected>Department</option>
+                        <option selected>Department2</option>
+                        <option selected>Department3</option>
+                        <option selected>Department4</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-2_pink">send</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts + Jquery plagins -->
+
+    <!-- .preloader  -->
+    <script src="./js/my-preloader.js"></script>
+
+    <!-- jQuery -->
+    <script src="./js/jQuery-3.4.1.js"></script>
+
+    <!-- bootstrap js -->
+    <script src="./js/bootstrap.min.js"></script>
+
+    <!-- wow js animation -->
+    <!-- <script src="./js/wow.min.js"></script> -->
+
+    <!-- owl-carousel js -->
+    <script src="./js/owl.carousel.min.js"></script>
+    <script src="./js/carousel.js"></script>
+
+    <!-- fancybox 3 js -->
+    <script src="./js/jquery.fancybox.js"></script>
+
+    <!-- Counter up -->
+    <script src="./js/jquery.waypoints.min.js"></script>
+    <script src="./js/jquery.countup.min.js"></script>
+
+    <!-- isotope filter card -->
+    <script src="./js/isotope.pkgd.min.js"></script>
+
+    <!-- customer js -->
+    <script src="./js/index.js"></script>
+
+    </body>
+
+    </html>
 {% endblock %}
