@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class AbonnementControllerUserController extends AbstractController
 {
     /**
-     * @Route("/", name="abonnement_controller_user_index", methods={"GET"})
+     * @Route("/afficherAbonnement", name="afficherAbonnement", methods={"GET"})
      */
     public function index(): Response
     {

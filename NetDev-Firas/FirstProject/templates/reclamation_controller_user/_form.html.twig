@@ -1,11 +1,4 @@
 
-
-
-
-
-
-
-
 <!-- Start of .shop -->
 <section class="shop main-blog">
     <div class="main-blog__bg">
@@ -17,20 +10,18 @@
         </div>
     </div>
 
-
-
     <form class="shop-checkout container container_right-sidebar" {{ form_start(formRec,{'attr': {'novalidate': 'novalidate'}} ) }}
         <div class="article">
             <div class="form-block">
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="inputName2">Nom <span>*</span></label>
+
                         <input required type="text" class="form-control" id="inputLastname2"
                         {{ form_errors(formRec.nom) }}
                         {{ form_widget(formRec.nom) }}
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="inputName2">Prénom <span>*</span></label>
+
                         <input required type="text" class="form-control" id="inputLastname2"
                         {{ form_errors(formRec.prenom) }}
                         {{ form_widget(formRec.prenom) }}
@@ -40,7 +31,7 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="inputEmail2">Email<span>*</span></label>
+
                         <input required type="text" class="form-control" id="inputLastname2"
                         {{ form_errors(formRec.mail) }}
                         {{ form_widget(formRec.mail) }}
@@ -53,7 +44,6 @@
                         <select id="emailAdress2" class="form-control"
                             {{ form_errors(formRec.type) }}
                             {{ form_widget(formRec.type) }}
-
                     </div>
                 </div>
                 <div class="form-row">
@@ -65,14 +55,13 @@
                     </div>
                 </div>
                 <div class="form-group form-textarea">
-                    <label for="textarea">Description</label>
-                    <textarea id="textarea" class="form-control"
+                    <input required type="text" class="form-control" id="inputLastname3"
                     {{ form_errors(formRec.description) }}
                     {{ form_widget(formRec.description) }}
                 </div>
                 <br>
                 <br>
-                <button class="btn">{{ button_label|default('Save') }}</button>
+                <button class="btn btn_pink">{{ button_label|default('Save') }}</button>
             </div>
         </div>
 

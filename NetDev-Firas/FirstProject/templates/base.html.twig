@@ -257,38 +257,10 @@
                 </li>
 
                 <li class="navbar__menu-item">
-                    <a class="navbar__menu-link" href="#">Blog</a>
+                    <a class="navbar__menu-link" href="{{ asset('/abonnement/controller/user/afficherAbonnement') }}">Abonnez-Vous</a>
                     <ul class="navbar__submenu">
                         <li class="navbar__submenu-item">
-                            <a href="blog-grid.html" class="navbar__submenu-link">Blog-Grid</a>
-                        </li>
-
-                        <li class="navbar__submenu-item">
-                            <a href="blog-grid_left.html" class="navbar__submenu-link">Grid left sidebar</a>
-                        </li>
-
-                        <li class="navbar__submenu-item">
-                            <a href="blog-grid_right.html" class="navbar__submenu-link">Grid right sidebar</a>
-                        </li>
-
-                        <li class="navbar__submenu-item">
-                            <a href="blog-grid_1_column_right.html" class="navbar__submenu-link">Grid 1 column
-                                right sidebar</a>
-                        </li>
-
-                        <li class="navbar__submenu-item">
-                            <a href="blog-grid_1_column_left.html" class="navbar__submenu-link">Grid 1 column
-                                left sidebar</a>
-                        </li>
-
-                        <li class="navbar__submenu-item">
-                            <a href="blog-details_left.html" class="navbar__submenu-link">Details left
-                                sidebar</a>
-                        </li>
-
-                        <li class="navbar__submenu-item">
-                            <a href="blog-details_right.html" class="navbar__submenu-link">Details right
-                                sidebar</a>
+                            <a href="blog-grid.html" class="navbar__submenu-link">Listes de mes achats</a>
                         </li>
                     </ul>
                 </li>
@@ -297,11 +269,11 @@
                     <a class="navbar__menu-link" href="#">Contacts</a>
                     <ul class="navbar__submenu">
                         <li class="navbar__submenu-item">
-                            <a href="contact.html" class="navbar__submenu-link">Contact</a>
+                            <a href="{{ asset('/reclamation/controller/user/new') }}" class="navbar__submenu-link">Réclamer</a>
                         </li>
 
                         <li class="navbar__submenu-item">
-                            <a href="contact-2.html" class="navbar__submenu-link">Contact-2</a>
+                            <a href={{ asset('/reclamation/controller/user/afficherReclamation') }} class="navbar__submenu-link">Consulter Mes Réclamations</a>
                         </li>
                     </ul>
                 </li>

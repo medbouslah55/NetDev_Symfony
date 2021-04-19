@@ -3,14 +3,22 @@
 
 
 {% block body %}
-    <h1>Liste De Mes Reclamations</h1>
-
+    <header class="header-bottom-4">
+        <!--<img src="{{ asset('./images/ab1.png') }}">-->
+        <div class="header-bottom-4__bg">
+            <div class="icon">
+                <img src="{{ asset('./images/banner/banner-shape.png') }}">
+            </div>
+        </div>
+        <div class="container">
+            <h1 class="section-title">Liste De Mes <span>Reclamations</span></h1>
+            <ol class="breadcrumb">
+            </ol>
+        </div>
+    </header>
     <table class="table">
         <thead>
             <tr>
-                <th>Nom</th>
-                <th>Prenom</th>
-                <th>Mail</th>
                 <th>Type</th>
                 <th>Date</th>
                 <th>Description</th>
@@ -21,9 +29,6 @@
         <tbody>
         {% for reclamation in reclamations %}
             <tr>
-                <td>{{ reclamation.nom }}</td>
-                <td>{{ reclamation.prenom }}</td>
-                <td>{{ reclamation.mail }}</td>
                 <td>{{ reclamation.type }}</td>
                 <td>{{ reclamation.date ? reclamation.date|date('Y-m-d') : '' }}</td>
                 <td>{{ reclamation.description }}</td>
@@ -34,11 +39,9 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="9">no records found</td>
+                <td colspan="9">Il y a aucune reclamation</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('reclamation_controller_user_new') }}">Passer Une Autre Réclamation</a>
 {% endblock %}

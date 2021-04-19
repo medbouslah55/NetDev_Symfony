@@ -41,14 +41,18 @@ class ReclamationUserType extends AbstractType
             ])
             ->add('type',ChoiceType::class,[
                 'choices'=>[
-                    'Probléme technique'=>'Probléme technique',
-                    'Probléme connexion'=>'Probléme connexion',
-
+                    'Type de probléme' => 'Type de probléme',
+                    'Problème  technique'=>'Problème technique',
+                    'Problème de connexion'=>'Problème de connexion',
+                    'Problème au niveau de payemant'=>'Problème au niveau de payemant',
+                    'Problème au niveau de réservation'=>'Problème au niveau de réservation',
                 ]
             ])
 
+            ->add('date',DateType::class,[
+                'data' => new \DateTime(),
+            ])
 
-            ->add('date',DateType::class)
             ->add('description',TextareaType::class,[
                 'attr'=>[
                     'placeholder'=>'Description',
