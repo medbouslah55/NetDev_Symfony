@@ -219,7 +219,6 @@ class MenuController extends AbstractController
         // Retrieve the HTML generated in our twig file
         $html = $this->renderView('admin/menu/listep.html.twig', [
             'menus' => $menus,
-
         ]);
 
         // Load HTML to Dompdf
@@ -236,5 +235,4 @@ class MenuController extends AbstractController
             "Attachment" => true
         ]);
     }
-
 }
