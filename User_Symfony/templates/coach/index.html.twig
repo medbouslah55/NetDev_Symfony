@@ -28,7 +28,15 @@
                         </div>
                         <h5 class="card-title mb-0">Clients</h5>
                     </div>
-                    <div class="card-body">
+                    <form method="post">
+                        <br>
+                        <label>Chercher</label>
+                        <input class="col-10" type="text" name="AfficherClasse" onkeyup="myFunction()" placeholder="Nom (EX:med)" id="myInput">
+                        <a href="{{path('TrierParNomDESC') }}"><i class="align-middle" data-feather="arrow-down"></i></a>
+                        <a href="{{path('TrierParNomASC') }}"><i class="align-middle" data-feather="arrow-up"></i></a>
+                        <a class="btn btn-success" href="{{path('PDF') }}">  PDF </a>
+                    </form>
+                    <div class="card-body" id="mytable">
                         <table id="datatables-clients" class="table table-striped" style="width:100%">
                             <thead>
                             <tr>
@@ -90,9 +98,10 @@
         <div class="container-fluid p-0">
 
             <h1 class="h3 mb-3">Coach</h1>
-    {% for coach in coaches %}
+
             <div class="row">
                 <div class="col-xl-4">
+                    {% for coach in coaches %}
                     <div class="card">
 
                         <div class="card-body">
@@ -105,7 +114,7 @@
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                                 </div>
                             </div>
-                            <table class="table table-sm my-2">
+                            <table class="table table-sm my-2" >
                                 <tbody>
 
                                 <tr>
@@ -148,12 +157,35 @@
                             <hr />
                         </div>
                     </div>
+                    {% endfor %}
                 </div>
             </div>
-    {% endfor %}
+
         </div>
 
     </main>
+    <script>
+        function myFunction() {
+            var input, filter, table, tr, td, i,j, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("mytable");
+            tr = table.getElementsByTagName("tr");
+//   alert(td.length);
+            for (i = 0; i < tr.length; i++) {
+                td= tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
 
+
+    </script>
 
 {% endblock %}

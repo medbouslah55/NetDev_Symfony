@@ -4,16 +4,73 @@ namespace App\Controller;
 
 use App\Entity\Coach;
 use App\Form\CoachType;
+use App\Repository\CoachRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 /**
  * @Route("/coach")
  */
 class CoachController extends AbstractController
 {
+    /**
+     * @Route("/pdf", name="PDF", methods={"GET"})
+     */
+    public function pdf(CoachRepository $CoachRepository): Response
+    {
+        // Configure Dompdf according to your needs
+        $pdfOptions = new Options();
+        $pdfOptions->set('defaultFont', 'Arial');
+
+        // Instantiate Dompdf with our options
+        $dompdf = new Dompdf($pdfOptions);
+        // Retrieve the HTML generated in our twig file
+        $html = $this->renderView('coach/PdfCoach.html.twig', [
+            'coaches' => $CoachRepository->findAll(),
+        ]);
+
+        // Load HTML to Dompdf
+        $dompdf->loadHtml($html);
+        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+        // Output the generated PDF to Browser (inline view)
+        $dompdf->stream("mypdf.pdf", [
+            "coaches" => true
+        ]);
+    }
+
+    /**
+     * @Route("/TrierParNomDESC", name="TrierParNomDESC")
+     */
+    public function TrierParNom(Request $request): Response
+    {
+        $repository = $this->getDoctrine()->getRepository(Coach::class);
+        $coaches = $repository->findByName();
+
+        return $this->render('coach/index.html.twig', [
+            'coaches' => $coaches,
+        ]);
+    }
+    /**
+     * @Route("/TrierParNomASC", name="TrierParNomASC")
+     */
+    public function TrierParNom2(Request $request): Response
+    {
+        $repository = $this->getDoctrine()->getRepository(Coach::class);
+        $coaches = $repository->findByName2();
+
+        return $this->render('coach/index.html.twig', [
+            'coaches' => $coaches,
+        ]);
+    }
+
     /**
      * @Route("/", name="coach_index", methods={"GET"})
      */
@@ -86,7 +143,7 @@ class CoachController extends AbstractController
      */
     public function delete(Request $request, Coach $coach): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$coach->getCin(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $coach->getCin(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($coach);
             $entityManager->flush();
@@ -94,4 +151,7 @@ class CoachController extends AbstractController
 
         return $this->redirectToRoute('coach_index');
     }
+
+
+
 }

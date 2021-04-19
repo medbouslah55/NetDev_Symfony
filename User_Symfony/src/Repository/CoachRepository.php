@@ -47,4 +47,21 @@ class CoachRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findByName()
+    {
+        return $this->createQueryBuilder('Coach')
+            ->orderBy('Coach.nom','DESC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+    public function findByName2()
+    {
+        return $this->createQueryBuilder('Coach')
+            ->orderBy('Coach.nom','ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }
