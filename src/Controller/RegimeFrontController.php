@@ -86,10 +86,10 @@ class RegimeFrontController extends AbstractController
      * @Route("/regimes/{id}/menus/search", name="search")
      * 
      */
-    public function search(MenuRepository $repository, PaginatorInterface $paginator, Request $request)
+    public function search($id, MenuRepository $repository, PaginatorInterface $paginator, Request $request)
     {
         $requestString = $request->get('searchValue');
-        $menus = $repository->findMenubyDescription($requestString);
+        $menus = $repository->findMenubyDescription($requestString, $id);
         
         $pagination = $paginator->paginate(
             $menus,
