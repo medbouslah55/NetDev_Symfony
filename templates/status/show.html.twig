@@ -1,0 +1,30 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Status{% endblock %}
+
+{% block body %}
+    <h1>Status</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>IdPub</th>
+                <td>{{ status.idPub }}</td>
+            </tr>
+            <tr>
+                <th>DatePub</th>
+                <td>{{ status.datePub }}</td>
+            </tr>
+            <tr>
+                <th>Text</th>
+                <td>{{ status.text }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('status_index') }}">back to list</a>
+
+    <a href="{{ path('status_edit', {'idPub': status.idPub}) }}">edit</a>
+
+    {{ include('status/_delete_form.html.twig') }}
+{% endblock %}

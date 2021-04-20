@@ -1,0 +1,40 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Status index{% endblock %}
+
+{% block body %}
+    <h1>Status index</h1>
+    <a href="{{path('TrierParDatepDESC') }}"><i class="align-middle" data-feather="arrow-down"></i></a>
+    <a href="{{path('TrierParDatepASC') }}"><i class="align-middle" data-feather="arrow-up"></i></a>
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>IdPub</th>
+                <th>DatePub</th>
+                <th>Text</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for status in statuses %}
+            <tr>
+                <td>{{ status.idPub }}</td>
+                <td>{{ status.datePub }}</td>
+                <td>{{ status.text }}</td>
+                <td>
+                    <a href="{{ path('status_show', {'idPub': status.idPub}) }}">show</a>
+                    <a href="{{ path('status_edit', {'idPub': status.idPub}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('status_new') }}">Create new</a>
+{% endblock %}

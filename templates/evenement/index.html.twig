@@ -1,0 +1,42 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Evenement index{% endblock %}
+
+{% block body %}
+    <h1>Evenement index</h1>
+    <a href="{{path('TrierParDateDESC') }}"><i class="align-middle" data-feather="arrow-down"></i></a>
+    <a href="{{path('TrierParDateASC') }}"><i class="align-middle" data-feather="arrow-up"></i></a>
+    <table class="table">
+        <thead>
+            <tr>
+
+                <th>DatePub</th>
+                <th>DateEven</th>
+                <th>Image</th>
+                <th>Sujet</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for evenement in evenements %}
+            <tr>
+
+                <td>{{ evenement.datePub }}</td>
+                <td>{{ evenement.dateEven }}</td>
+                <td>{{ evenement.image }}</td>
+                <td>{{ evenement.sujet }}</td>
+                <td>
+                    <a href="{{ path('evenement_show', {'idPub': evenement.idPub}) }}">show</a>
+                    <a href="{{ path('evenement_edit', {'idPub': evenement.idPub}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('evenement_new') }}">Create new</a>
+{% endblock %}
