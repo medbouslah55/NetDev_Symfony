@@ -1,0 +1,11 @@
+{{ form_start(form) }}
+  {{ form_row(form.nom) }}
+  {{ form_row(form.prenom) }}
+  {{ form_row(form.dateAct) }}
+  {{ form_row(form.nbPlace) }}
+  {{ form_row(form.idAct, {
+    label  : 'Nom de l\'activité'
+  }) }}
+  {{ form_row(form.cinMembre) }}
+<div class="text-center" style="padding-top: 1rem"><button type="submit" class="reservationBtn">Réserver!</button></div>
+{{ form_end(form) }}

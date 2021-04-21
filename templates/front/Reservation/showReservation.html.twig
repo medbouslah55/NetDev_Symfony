@@ -1,0 +1,41 @@
+{% extends "front/baseFront.html.twig" %}
+
+{% block body %}
+    <section id="book-a-table" class="book-a-table" style="padding: 5rem">
+    <h1>Liste des Reservations</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Date de l'activité</th>
+            <th>Nombre de place</th>
+            <th>CIN Membre</th>
+            <th>Nom de l'activité</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for reservation in reservations %}
+            <tr>
+                <td>{{ reservation.nom }}</td>
+                <td>{{ reservation.prenom }}</td>
+                <td>{{ reservation.dateAct ? reservation.dateAct|date('Y-m-d') : '' }}</td>
+                <td>{{ reservation.nbPlace }}</td>
+                <td>{{ reservation.cinMembre }}</td>
+                <td>{{ reservation.idAct }}</td>
+                <td>
+                    <a href="{{ path('reservation_delete_front', {'idReservation': reservation.idReservation}) }}"><button class="btn btn_blue">Delete</button></a>
+                    <a href="{{ path('reservation_edit_front', {'idReservation': reservation.idReservation}) }}"><button class="btn btn-2_pink">Modifier</button></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">Aucune Réservation trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </section>
+{% endblock %}

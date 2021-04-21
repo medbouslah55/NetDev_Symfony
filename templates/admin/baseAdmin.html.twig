@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="Responsive Bootstrap 4 Admin &amp; Dashboard Template">
+        <meta name="author" content="Bootlab">
+
+        <link rel="preconnect" href="http://fonts.gstatic.com/" crossorigin>
+        <link href="/admin/css/classic.css" rel="stylesheet">
+
+        <script src="/admin/js/app.js"></script>
+
+        <title>{% block title %}Welcome!{% endblock %}</title>
+
+        {% block stylesheets %}{% endblock %}
+
+        {% block javascripts %}{% endblock %}
+    </head>
+    <body>
+        <div class="wrapper">
+            {% include 'admin/partials/sidenav.html.twig' %}
+
+            <div v class="main">
+                {% include 'admin/partials/topnav.html.twig' %}
+
+                {% block body %}{% endblock %}
+
+                {% include 'admin/partials/footer.html.twig' %}
+            </div>
+        </div>
+    </body>
+</html>

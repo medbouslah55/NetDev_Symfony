@@ -1,0 +1,13 @@
+{% extends "front/baseFront.html.twig" %}
+
+{% block body %}
+
+
+<div style="padding-top: 5rem">
+    <h1>Create new Panier</h1>
+
+    {{ include('front/panier/_form.html.twig') }}
+
+    <a href="{{ path('panier_index') }}">back to list</a>
+</div>
+{% endblock %}

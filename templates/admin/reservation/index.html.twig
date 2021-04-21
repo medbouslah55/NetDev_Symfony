@@ -1,0 +1,43 @@
+{% extends "admin/baseAdmin.html.twig" %}
+
+
+{% block body %}
+    <h1>Liste des Reservations</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>IdReservation</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Date de l'activité</th>
+                <th>Nombre de place</th>
+                <th>CIN Membre</th>
+                <th>Nom de l'activité</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reservation in reservations %}
+            <tr>
+                <td>{{ reservation.idReservation }}</td>
+                <td>{{ reservation.nom }}</td>
+                <td>{{ reservation.prenom }}</td>
+                <td>{{ reservation.dateAct ? reservation.dateAct|date('Y-m-d') : '' }}</td>
+                <td>{{ reservation.nbPlace }}</td>
+                <td>{{ reservation.cinMembre }}</td>
+                <td>{{ reservation.idAct }}</td>
+                <td>
+                    <a href="{{ path('reservation_show', {'idReservation': reservation.idReservation}) }}"><button class="btn-success">Afficher</button></a>
+                    <a href="{{ path('reservation_edit', {'idReservation': reservation.idReservation}) }}"><button class="btn-info">Modifier</button></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">Aucune Réservation trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+

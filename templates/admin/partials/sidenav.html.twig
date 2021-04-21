@@ -1,0 +1,40 @@
+<nav id="sidebar" class="sidebar">
+    <div class="sidebar-content ">
+        <a class="sidebar-brand" href="{{path('admin')}}"> <i class="align-middle" data-feather="box"></i> <span class="align-middle">MindSpace</span> </a>
+        <ul class="sidebar-nav">
+            <li class="sidebar-header"> Pages </li>
+            <li class="sidebar-item">
+                <a href="#dashboards" data-toggle="collapse" class="sidebar-link"> <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboards</span> <span class="sidebar-badge badge badge-primary">5</span> </a>
+                <ul id="dashboards" class="sidebar-dropdown list-unstyled collapse" data-parent="#sidebar">
+                    <li class="sidebar-item"><a class="sidebar-link" href="dashboard-default.html">Default</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="dashboard-analytics.html">Analytics</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="dashboard-e-commerce.html">E-commerce</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="dashboard-social.html">Social</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="dashboard-crypto.html">Crypto</a></li>
+                </ul>
+            </li>
+            <li class="sidebar-item">
+                <a href="#layouts" data-toggle="collapse" class="sidebar-link collapsed"> <i class="align-middle" data-feather="heart"></i> <span class="align-middle">Menu et Regime</span> </a>
+                <ul id="layouts" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{path('regime_create')}}">Ajouter Regime</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{path('regimes_index')}}">Afficher Regimes</a></li>
+                    {# <li class="sidebar-item"><a class="sidebar-link" href="layouts-boxed.html">Ajouter Menu</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="layouts-boxed.html">Afficher Menu</a></li> #}
+                </ul>
+                
+            </li>
+
+            <li class="sidebar-item">
+                <a href="#layouts" data-toggle="collapse" class="sidebar-link collapsed"> <i class="align-middle" data-feather="book"></i> <span class="align-middle">Réservation</span> </a>
+                <ul id="layouts" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{path('reservation_index')}}">Liste des réservation</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{path('reservation_new')}}">Ajouter Réservation</a></li>
+                    {# <li class="sidebar-item"><a class="sidebar-link" href="layouts-boxed.html">Ajouter Menu</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="layouts-boxed.html">Afficher Menu</a></li> #}
+                </ul>
+
+            </li>
+        </ul>
+
+    </div>
+</nav>

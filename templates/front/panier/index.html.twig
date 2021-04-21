@@ -1,0 +1,38 @@
+{% extends "front/baseFront.html.twig" %}
+
+{% block body %}
+    <div style="padding-top: 5rem">
+    <h1>Panier index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>NomAct</th>
+                <th>Prix</th>
+                <th>Capacite</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for panier in paniers %}
+            <tr>
+                <td>{{ panier.nomAct }}</td>
+                <td>{{ panier.prix }}</td>
+                <td>{{ panier.capacite }}</td>
+                <td>
+                    <a href="{{ path('panier_show', {'idPanier': panier.idPanier}) }}">show</a>
+                    <a href="{{ path('panier_edit', {'idPanier': panier.idPanier}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div style="padding: 2rem 0 2rem 2rem ">
+    <a href="{{ path('panier_new') }}"><button class="btn-success">Ajouter</button></a>
+    </div>
+    </div>
+{% endblock %}
