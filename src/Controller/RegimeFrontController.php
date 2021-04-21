@@ -104,6 +104,31 @@ class RegimeFrontController extends AbstractController
     }
 
     /**
+     * @param Request $request
+     * 
+     * @return Response
+     * @Route("/regimes/{id}/menus/{id_menu}", name="menu_single")
+     * 
+     */
+    public function showSingleMenu($id, $id_menu, PaginatorInterface $paginator, Request $request)
+    {
+        $menu = $this->getDoctrine()->getRepository(Menu::class)->findOneBy(array('idRegime' => $id, 'idMenu' => $id_menu), array('numJour' => 'ASC'));
+        $menus = $this->getDoctrine()->getRepository(Menu::class)->findBy(array('idRegime' => $id), array('numJour' => 'ASC'));
+        
+        $pagination = $paginator->paginate(
+            $menus,
+            $request->query->getInt('page', 1), /*page number*/
+            6 /*limit per page*/
+        );
+
+        return $this->render('menu_front/show_single.html.twig', [
+            'menu' => $menu,
+            'menus' => $menus,
+            'pagination' => $pagination,
+        ]);
+    }
+
+    /**
      * @Route("/regimes/{id}/menus/trierMenu/ASC", name="trier_menu_description_ASC")
      */
     public function TrierParNumJourASC($id, PaginatorInterface $paginator, Request $request): Response
