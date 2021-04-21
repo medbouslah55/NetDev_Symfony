@@ -3,7 +3,11 @@
 {% block body %}
     <section id="book-a-table" class="book-a-table" style="padding: 5rem">
     <h1>Liste des Reservations</h1>
-
+        <div class="sidebar">
+        <div class="shop-sidebar">
+        {% include "front/Reservation/_formSearch.html.twig" with {form : form} only %}
+        </div>
+        </div>
     <table class="table">
         <thead>
         <tr>
@@ -37,5 +41,6 @@
         {% endfor %}
         </tbody>
     </table>
+            {{ knp_pagination_render(reservations, 'front/components/pagination.html.twig') }}
     </section>
 {% endblock %}

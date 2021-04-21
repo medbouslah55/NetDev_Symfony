@@ -47,4 +47,14 @@ class ReservationRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findReservationByNom($data){
+        return
+            $this->createQueryBuilder('reservation')
+                ->where('reservation.nom LIKE :title')
+                ->orWhere('reservation.prenom LIKE :title')
+                ->setParameter('title', '%'.$data.'%')
+                ->getQuery() ->getResult();
+    }
+
 }

@@ -20970,3 +20970,26 @@ body {
   }
 }
 /*# sourceMappingURL=main.css.map */
+
+
+.pagination-nav ul li a {
+  background-color: transparent;
+  display: block;
+  font-size: 14px;
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+  width: 36px;
+  color : #1f3d9d;
+  font-weight: bold;
+}
+.pagination-nav ul li.active a {
+  background: #f22283 none repeat scroll 0 0;
+  color: #fff;
+  border-radius: 15%;
+  font-weight: bold;
+}
+.pagination-nav ul li {
+  display: inline-block;
+  margin: 0 2px;
+}

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Activite;
 use App\Entity\Reservation;
 use App\Form\ReservationType;
 use App\Repository\ActiviteRepository;
@@ -13,7 +14,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Knp\Component\Pager\PaginatorInterface;
+use App\Data\SearchData;
+use App\Form\SearchType;
 class DashboardController extends AbstractController
 {
 
@@ -48,16 +51,65 @@ class DashboardController extends AbstractController
     }
 
     /**
+     * @Route("/newreservation/{id}", name="newreservation", methods={"GET","POST"})
+     */
+    public function newReservation(Activite $id ,Request $request, ActiviteRepository $activiteRepository , PanierRepository $panierRepository , MembreRepository $membreRepository ): Response
+    {
+        $membre = $membreRepository->findAll()[0];
+        $panier = $panierRepository->findAll()[0];
+        $activite = $activiteRepository->find($id->getIdAct());
+
+        $reservation = new Reservation();
+        $reservation->setIdAct($activite);
+        $reservation->setDateAct(\DateTime::createFromFormat('Y-m-d', $activite->getDateAct()));
+        $reservation->setCinMembre($membre);
+        $reservation->setIdPanier($panier);
+        $form = $this->createForm(ReservationType::class, $reservation);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $res = $request->request->get('reservation');
+            $nbPlace = (int)$res["nbPlace"];
+            $newCapacite = $activite->getCapacite() - $nbPlace;
+            $activite->setCapacite($newCapacite);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($reservation);
+            $entityManager->flush();
+
+            return $this->render('front/checkout/index.html.twig' , [
+                'nbPlace' => $nbPlace,
+                'nomAct' => $activite->getNomAct(),
+                'price' => $activite->getPrixReservation()
+            ]);
+        }
+
+        return $this->render('front/Reservation/addReservation.html.twig', [
+            'reservation' => $reservation,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
      * @Route("/showreservation", name="showreservation", methods={"GET","POST"})
      */
-    public function show(Request $request, ActiviteRepository $activiteRepository , PanierRepository $panierRepository , MembreRepository $membreRepository): Response
+    public function show(Request $request, ActiviteRepository $activiteRepository , PanierRepository $panierRepository , MembreRepository $membreRepository , PaginatorInterface $paginator , ReservationRepository $reservationRepository): Response
     {
-        $reservations = $this->getDoctrine()
-            ->getRepository(Reservation::class)
-            ->findAll();
+        // instance of Data\searchData
+        $data = new SearchData();
+        $form =$this->createForm(SearchType::class, $data);
+        $form->handleRequest($request);
+        $reservation =$reservationRepository->findReservationByNom($data);
+
+        $reservations = $paginator->paginate(
+        // Doctrine Query, not results
+            $reservation,
+            $request->query->getInt('page', 1),
+            5
+        );
 
         return $this->render('front/reservation/showReservation.html.twig', [
             'reservations' => $reservations,
+            'form' => $form->createView(),
         ]);
 
     }
