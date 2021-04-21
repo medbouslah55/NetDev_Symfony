@@ -8,7 +8,7 @@ use phpDocumentor\Reflection\Types\Integer;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Constraints\Date;
 use Symfony\Component\Validator\Constraints\DateTime;
-
+use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * Reclamation
  * @ORM\Table(name="reclamation", indexes={@ORM\Index(name="FK_reclamation_membre", columns={"cin_membre"})})
@@ -22,6 +22,7 @@ class Reclamation
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @Groups ("reclamation")
      */
     private $id;
 
@@ -35,6 +36,7 @@ class Reclamation
      * @Assert\Type("string")
      * @Assert\NotNull
      * @ORM\Column(name="nom", type="string", length=255, nullable=false)
+     * @Groups ("reclamation")
      */
     private $nom;
 
@@ -48,6 +50,7 @@ class Reclamation
      * @Assert\Type("string")
      * @Assert\NotNull
      * @ORM\Column(name="prenom", type="string", length=255, nullable=false)
+     * @Groups ("reclamation")
      */
     private $prenom;
 
@@ -58,6 +61,7 @@ class Reclamation
      * @Assert\Email(
      *     message = "The email '{{ value }}' is not a valid email."
      * )
+     * @Groups ("reclamation")
      */
 
     private $mail;
@@ -72,12 +76,14 @@ class Reclamation
      * @Assert\Type("string")
      * @Assert\NotNull
      * @ORM\Column(name="type", type="string", length=255, nullable=false)
+     * @Groups("reclamation")
      */
     private $type;
 
     /**
      * @var Date
      * @ORM\Column(name="date", type="date", nullable=false)
+     * @Groups("reclamation")
      */
     private $date;
 
@@ -85,6 +91,7 @@ class Reclamation
      * @var string
      *
      * @ORM\Column(name="description", type="text", length=65535, nullable=false)
+     * @Groups("reclamation")
      */
     private $description;
 
@@ -92,6 +99,7 @@ class Reclamation
      * @var string|null
      *
      * @ORM\Column(name="etat", type="string", length=255, nullable=true, options={"default"="En cours"})
+     * @Groups("reclamation")
      */
     private $etat = 'En cours';
 
@@ -102,6 +110,7 @@ class Reclamation
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="cin_membre", referencedColumnName="cin")
      * })
+     * @Groups("reclamation")
      */
     private $cinMembre;
 
@@ -110,34 +119,6 @@ class Reclamation
         return $this->id;
     }
 
-    public function getNom(): ?string
-    {
-        return $this->nom;
-    }
-
-    public function setNom(string $nom): self
-    {
-        $this->nom = $nom;
-
-        return $this;
-    }
-
-    public function getPrenom(): ?string
-    {
-        return $this->prenom;
-    }
-
-    public function setPrenom(string $prenom): self
-    {
-        $this->prenom = $prenom;
-
-        return $this;
-    }
-
-    public function getMail(): ?string
-    {
-        return $this->mail;
-    }
 
     public function setMail(string $mail): self
     {
@@ -204,6 +185,35 @@ class Reclamation
         $this->cinMembre = $cinMembre;
 
         return $this;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getPrenom(): ?string
+    {
+        return $this->prenom;
+    }
+
+    public function setPrenom(string $prenom): self
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    public function getMail(): ?string
+    {
+        return $this->mail;
     }
 
 

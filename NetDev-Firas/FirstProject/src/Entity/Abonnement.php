@@ -7,7 +7,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Abonnement
- *
  * @ORM\Table(name="abonnement", indexes={@ORM\Index(name="FK_abonnement_act", columns={"id_act"})})
  * @ORM\Entity(repositoryClass="App\Repository\AbonnementRepository")
  */

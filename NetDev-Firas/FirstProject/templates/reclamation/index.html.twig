@@ -1,10 +1,12 @@
 {% extends 'baseAdmin.html.twig' %}
 
 
-{% block title %}Listes Des Reclamations{% endblock %}
+{% block title %}Lists Des Reclamations{% endblock %}
 {% block body %}
-
-    <table class="table">
+    <br>
+    <input id="searchN1" type="text" class="form-control" name="query" placeholder="Search now" aria-label="search" aria-describedby="search">
+    <br>
+    <table  id="t" class="table">
         <h1>Listes Des Reclamations</h1>
         <thead>
             <tr>
@@ -16,9 +18,10 @@
                 <th>Description</th>
                 <th>Etat</th>
                 <th>actions</th>
+                <th>Details</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="all">
         {% for reclamation in reclamations %}
             <tr>
                 <td>{{ reclamation.nom }}</td>
@@ -32,6 +35,7 @@
                     <a href="{{ path('reclamation_show', {'id': reclamation.id}) }}"> <i class="align-middle" data-feather="monitor"></i> <span class="align-middle"></span> </a>
                     <a href="{{ path('reclamation_edit', {'id': reclamation.id}) }}"> <i class="align-middle" data-feather="edit"></i> <span class="align-middle"></span> </a>
                     <a href="{{ path('reclamation_delete', {'id': reclamation.id}) }}"> <i class="align-middle" data-feather="check-square"></i> <span class="align-middle"></span> </a>
+                    <a class="btn btn-success" href="{{ path('listrec' , {'id': reclamation.id}) }}" download >Voir cv</a>
                 </td>
             </tr>
         {% else %}
@@ -40,5 +44,71 @@
             </tr>
         {% endfor %}
         </tbody>
+
+        <tbody id="searchN1">
+        </tbody>
+
     </table>
+
+
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+    <script>
+        $( document ).ready(function() {
+            $("#searchN1").keyup(function(e){
+                /* La variable value va prendre la valeur insérer dans le champ de texte afin d’effectuer la recherche */
+                var value = $(this).val();
+                /* Ajax est lancé lors du remplissage du champ texte dont l’id est « search » pour faire la recherche */
+                $.ajax({
+                    /* l’url est une chaine de caractères contenant l’adresse où la requête est envoyée */
+
+                    url : "{{ path('searchReclamation') }}",
+                    /* La méthode utilisée pour transférer les données est GET */
+                    method : 'GET',
+                    dataType: "JSON",
+                    /*Ici search value va prendre la chaine entrée par un utilisateur dans la zone de recherche et sera placée après l’url */
+                    data: {
+                        'searchValue' : value
+                    },
+                    async : true,
+                    /*Cette fonction permet de vider le contenu du tableau pour recevoir le nouveau contenu*/
+                    success : function(retour){
+                        if(retour){
+                            $('#t tbody#searchN1').empty();
+                            $(retour).each( function(reclamation, obj) {
+                                $('#t tbody#all').hide();
+                                $('#t tbody#searchN1').append(
+                                    '<tr>'+
+                                    '<td>'+ obj.id +'</td>' +
+                                    '<td>'+ obj.nom +'</td>' +
+                                    '<td>'+ obj.prenom +'</td>' +
+                                    '<td>'+ obj.mail +'</td>' +
+                                    '<td>'+ obj.type +'</td>' +
+                                    '<td>'+ obj.date +'</td>' +
+                                    '<td>'+ obj.description +'</td>' +
+                                    '<td>'+ obj.etat +'</td>' +
+                                    '</tr>'
+                                );
+                            });
+                        }
+                        else
+                        {
+                            $('#t tbody#all').show();
+                            $('#t tbody#searchN1').empty();
+                            $('#t tbody#searchN1').fadeIn('fast');
+                        }
+                    },
+                });
+                return false;
+            });
+        });
+    </script>
+
+
+
 {% endblock %}

@@ -20,15 +20,15 @@
     <!DOCTYPE html>
     <html lang="en">
     <body>
-
+{#
     <!-- Start of .preloader -->
     <div class="preloader">
         <div class="loader"></div>
         <h6 class="preloader-text">MindSpace<br>Mes Reclamations</h6>
     </div>
     <!-- End of .preloader -->
-
-    <div class="page">
+#}
+    <div>
 
 
         <!-- Start of .doctors -->
@@ -41,8 +41,20 @@
                     <img src="{{ asset('./images/png-shapes/specialists__left-bottom-shape.png') }}">
                 </div>
             </div>
+
             <div class="container">
-                <div class="doctors__cards doctorsFilterContainer">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="etat">Filtre etat</label>
+                        <select id="etat"  class="form__block-input">
+                            <option></option>
+                            <option>En cours</option>
+                            <option>Traiter</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id ="list" class="doctors__cards doctorsFilterContainer">
                     {% for reclamation in reclamations %}
                     <div class="doctors__cards-item filterDentists">
                         <a href="doctors-single_right.html">
@@ -63,10 +75,26 @@
                             <td colspan="9">Il y a aucune reclamation</td>
                         </tr>
                     {% endfor %}
+                    </div>
+                <div id="filtre" class="doctors__cards doctorsFilterContainer">
+
                 </div>
-            </div>
+                </div>
+
         </section>
         <!-- End of .doctors -->
+        {{ knp_pagination_render(
+            reclamations,
+            '@KnpPaginator/Pagination/twitter_bootstrap_v4_pagination.html.twig',
+            {
+                'queryParam1': 'param1 value',
+                'queryParam2': 'param2 value'
+            },
+            {
+                'viewParam1': 'param1 value',
+                'viewParam2': 'param2 value'
+            },
+        ) }}
     </div>
 
     <!------------------------------------------------------------------------>
@@ -130,34 +158,91 @@
     <!-- Scripts + Jquery plagins -->
 
     <!-- .preloader  -->
-    <script src="./js/my-preloader.js"></script>
+    <script src="{{ asset('./js/my-preloader.js') }}"></script>
 
     <!-- jQuery -->
-    <script src="./js/jQuery-3.4.1.js"></script>
+    <script src="{{ asset('./js/jQuery-3.4.1.js') }}"></script>
 
     <!-- bootstrap js -->
-    <script src="./js/bootstrap.min.js"></script>
+    <script src="{{ asset('./js/bootstrap.min.js') }}"></script>
 
     <!-- wow js animation -->
     <!-- <script src="./js/wow.min.js"></script> -->
 
     <!-- owl-carousel js -->
-    <script src="./js/owl.carousel.min.js"></script>
-    <script src="./js/carousel.js"></script>
+    <script src="{{ asset('./js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('./js/carousel.js') }}"></script>
 
     <!-- fancybox 3 js -->
-    <script src="./js/jquery.fancybox.js"></script>
+    <script src="{{ asset('./js/jquery.fancybox.js') }}"></script>
 
     <!-- Counter up -->
-    <script src="./js/jquery.waypoints.min.js"></script>
-    <script src="./js/jquery.countup.min.js"></script>
+    <script src="{{ asset('./js/jquery.waypoints.min.js') }}"></script>
+    <script src="{{ asset('./js/jquery.countup.min.js') }}"></script>
 
     <!-- isotope filter card -->
-    <script src="./js/isotope.pkgd.min.js"></script>
+    <script src="{{ asset('./js/isotope.pkgd.min.js') }}"></script>
 
     <!-- customer js -->
-    <script src="./js/index.js"></script>
+    <script src="{{ asset('./js/index.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+<script>
+    $( document ).ready(function() {
+        $("#etat").on('change',function(e){
+            /* La variable value va prendre la valeur insérer dans le champ de texte afin d’effectuer la recherche */
+            var value = $(this).children("option:selected").val();
+            /* Ajax est lancé lors du remplissage du champ texte dont l’id est « search » pour faire la recherche */
+            $.ajax({
+
+                /* l’url est une chaine de caractères contenant l’adresse où la requête est envoyée */
+                url : "{{ path('filtrereclamation') }}",
+                /* La méthode utilisée pour transférer les données est GET */
+                method : 'GET',
+                dataType: "JSON",
+                /*Ici search value va prendre la chaine entrée par un utilisateur dans la zone de recherche et sera placée après l’url */
+                data: {
+                    'filtreValue' : value
+                },
+                async : true,
+                /*Cette fonction permet de vider le contenu du tableau pour recevoir le nouveau contenu*/
+                success : function(retour){
+                    if(retour){
+                        //$('#list').empty();
+                        $('#filtre').empty();
+                        $(retour).each( function(reclamation, obj) {
+                            $('#list').hide();
+                            $('#filtre').append(
+                                '<div class="doctors__cards-item filterDentists">'+
+                                    '<a href="doctors-single_right.html">'+
+                                        '<div class="content">'+
+                                            '<h1 class="name">'+obj.etat+'</h1>'+
+                                            '<p class="profession">'+obj.date+'</p>'+
+                                            '<p class="text">'+obj.type+
+                                            '</p>'+
+                                        '</div>'+
+                                    '</a>'+
+                                    '<div class="socials">'+
+                                        '<a href="/reclamation/controller/user/show/'+obj.id+'">'+
+                                     '<i class="read-more">' +
+                                '</i>Lire la suite</a>'+
+                                    '</div>'+
+                                '</div>'
+                            );
+                        });
+                    }
+                    else
+                    {
+                        $('#list').show();
+                        $('#filtre').empty();
+                        $('#filtre').fadeIn('fast');
+                    }
+                },
+            });
+            return false;
+        });
+    });
+</script>
     </body>
 
     </html>

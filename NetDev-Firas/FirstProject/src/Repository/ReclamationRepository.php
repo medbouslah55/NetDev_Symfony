@@ -47,4 +47,25 @@ class ReclamationRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function filtreParType($etat)
+    {
+        return $this->createQueryBuilder('reclamationG')
+        ->where('reclamation.etat LIKE :etat')
+        ->setParameter('etat', '%'.$etat.'%')
+        ->getQuery()
+        ->getResult();
+    }
+
+
+
+    public function findReclamation($etat): ?Reclamation
+    {
+        return $this->createQueryBuilder('reclamation')
+            ->where('reclamation.etat LIKE :etat')
+            ->setParameter('etat', '%'.$etat.'%')
+            ->getQuery()
+            ->getResult();
+    }
+
 }
