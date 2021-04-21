@@ -172,6 +172,31 @@ class MenuController extends AbstractController
     }
 
     /**
+     * @param Request $request
+     * 
+     * @return Response
+     * 
+     * @Route("/admin/menus/search", name="searchAdmin")
+     * 
+     */
+    public function searchAdmin(MenuRepository $repository, PaginatorInterface $paginator, Request $request)
+    {
+        $requestString = $request->get('searchValue');
+        $menu = $repository->findAllMenubyDescription($requestString);
+        
+        $pagination = $paginator->paginate(
+            $menu,
+            $request->query->getInt('page', 1), /*page number*/
+            6 /*limit per page*/
+        );
+
+        return $this->render('admin/menu/_search.html.twig', [
+            'menu' => $menu,
+            'pagination' => $pagination,
+        ]);
+    }
+
+    /**
      * @Route("/admin/menus/statistique", name="menu_stat")
      */
     public function chartAction()
@@ -195,7 +220,7 @@ class MenuController extends AbstractController
             array_push($data,$a);
         }
 
-        $ob->series(array(array('name' => 'Courbe calorique', 'data' => $data)));
+        $ob->series(array(array('name' => 'Courbe Calorique', 'data' => $data)));
        
         return $this->render('admin/menu/stat.html.twig', array(
             'chart' => $ob

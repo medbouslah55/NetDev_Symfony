@@ -30,6 +30,15 @@ class MenuRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findAllMenubyDescription($description){
+        return $this->createQueryBuilder('menu')
+            ->where('menu.description LIKE :description')
+            ->orderBy('menu.numJour', 'ASC')
+            ->setParameter('description', '%'.$description.'%')
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Menu[] Returns an array of Menu objects
     //  */
