@@ -241,57 +241,32 @@
                         </li>
                     </ul>
                 </li>
-
+                {% if not app.user %}
                 <li class="navbar__menu-item">
-                    <a class="navbar__menu-link" href="#">Blog</a>
-                    <ul class="navbar__submenu">
-                        <li class="navbar__submenu-item">
-                            <a href="blog-grid.html" class="navbar__submenu-link">Blog-Grid</a>
-                        </li>
+                    <a class="navbar__menu-link" href="{{ path('connexion') }}">Connexion</a>
 
-                        <li class="navbar__submenu-item">
-                            <a href="blog-grid_left.html" class="navbar__submenu-link">Grid left sidebar</a>
-                        </li>
-
-                        <li class="navbar__submenu-item">
-                            <a href="blog-grid_right.html" class="navbar__submenu-link">Grid right sidebar</a>
-                        </li>
-
-                        <li class="navbar__submenu-item">
-                            <a href="blog-grid_1_column_right.html" class="navbar__submenu-link">Grid 1 column
-                                right sidebar</a>
-                        </li>
-
-                        <li class="navbar__submenu-item">
-                            <a href="blog-grid_1_column_left.html" class="navbar__submenu-link">Grid 1 column
-                                left sidebar</a>
-                        </li>
-
-                        <li class="navbar__submenu-item">
-                            <a href="blog-details_left.html" class="navbar__submenu-link">Details left
-                                sidebar</a>
-                        </li>
-
-                        <li class="navbar__submenu-item">
-                            <a href="blog-details_right.html" class="navbar__submenu-link">Details right
-                                sidebar</a>
-                        </li>
-                    </ul>
                 </li>
+                    <li class="navbar__menu-item">
+                        <a class="navbar__menu-link" href="{{ path('membre_new') }}">Inscription</a>
 
+                    </li>
+
+                {% else %}
                 <li class="navbar__menu-item">
-                    <a class="navbar__menu-link" href="#">Contacts</a>
-                    <ul class="navbar__submenu">
-                        <li class="navbar__submenu-item">
-                            <a href="contact.html" class="navbar__submenu-link">Contact</a>
-                        </li>
+                    <a class="navbar__menu-link" href="{{ path('deconnexion') }}">Deconnexion</a>
 
-                        <li class="navbar__submenu-item">
-                            <a href="contact-2.html" class="navbar__submenu-link">Contact-2</a>
-                        </li>
-                    </ul>
                 </li>
+                    <li class="navbar__menu-item">
+                        <a class="navbar__menu-link" href="{{ path('membre_show', {'cin': app.user.cin}) }}">Profile</a>
+
+                    </li>
+                {% endif %}
             </ul>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+                <p>Username: {{ app.user.nom }}</p>
+
+            {% endif %}
 
             <div class="navbar__right">
 
@@ -343,7 +318,7 @@
                               transform="translate(-1127.88 -427.438)" /></svg>
                 </div>
 
-                <a href="#" class="btn btn_pink" id="popup-form-open">MAKE AN APPOINTMENT</a>
+
 
             </div>
         </div>
@@ -477,44 +452,7 @@
 </footer>
 <!-- End of .footer -->
 
-<!-- Popup Form -->
-<div class="popup-form">
-    <div class="inner-block">
-        <span class="popup-form-close" id="popup-form-close">&times;</span>
-        <div class="img">
-            <img src="./images/jpg/popup-form.jpg">
-        </div>
-        <form>
-            <h1 class="section-title">make an appointment</h1>
-            <div class="input-box">
-                <label for="popup-name">Name *</label>
-                <input type="text" id="popup-name" required>
-            </div>
 
-            <div class="input-box">
-                <label for="popup-email">Email *</label>
-                <input type="text" id="popup-email" required>
-            </div>
-
-            <div class="input-box">
-                <label for="popup-phone">Phone *</label>
-                <input type="tel" id="popup-phone" required>
-            </div>
-
-            <div class="select-box">
-                <i class="fa fa-angle-down"></i>
-                <select>
-                    <option selected>Department</option>
-                    <option selected>Department2</option>
-                    <option selected>Department3</option>
-                    <option selected>Department4</option>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-2_pink">send</button>
-        </form>
-    </div>
-</div>
-<!-- end Popup Form -->
 
 {% block js %}
     <!-- Scripts + Jquery plagins -->

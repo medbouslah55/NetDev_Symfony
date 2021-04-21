@@ -1,0 +1,124 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Admin index{% endblock %}
+
+{% block body %}
+    <main class="content">
+        <div class="container-fluid p-0">
+
+            <h1 class="h3 mb-3">Admin</h1>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-actions float-right">
+                                <div class="dropdown show">
+                                    <a href="#" data-toggle="dropdown" data-display="static">
+                                        <i class="align-middle" data-feather="more-horizontal"></i>
+                                    </a>
+
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item" href="#">Action</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <h5 class="card-title mb-0">Admin</h5>
+                        </div>
+                        <form method="post">
+                            <br>
+                            <label>Chercher</label>
+                            <input class="col-12" type="text" name="AfficherClasse" onkeyup="myFunction()" placeholder="Nom (EX:med)" id="myInput">
+
+                        </form>
+                        <div class="card-body" id="mytable">
+                            <table id="datatables-clients" class="table table-striped" style="width:100%">
+                                <thead>
+                                <tr>
+                                    <th>Cin</th>
+                                    <th>Nom</th>
+                                    <th>Prenom</th>
+                                    <th>Sexe</th>
+                                    <th>Datee</th>
+                                    <th>Email</th>
+                                    <th>Telephone</th>
+                                    <th>Detaille</th>
+                                    <th>Supprimer</th>
+                                    <th>Modifier</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for admin in admins %}
+                                    <tr>
+                                        <td>{{ admin.cin }}</td>
+                                        <td>{{ admin.nom }}</td>
+                                        <td>{{ admin.prenom }}</td>
+                                        <td>{{ admin.sexe }}</td>
+                                        <td>{{ admin.datee ? admin.datee|date('Y-m-d') : '' }}</td>
+                                        <td>{{ admin.email }}</td>
+                                        <td>{{ admin.telephone }}</td>
+                                        <td>
+                                            <a href="{{ path('admin_show', {'cin': admin.cin}) }}"><i class="align-middle" data-feather="align-center"></i></a>
+
+                                        </td>
+                                        <td>
+                                            {{ include('admin/_delete_form.html.twig') }}
+                                        </td>
+                                        <td><a href="{{ path('admin_edit', {'cin': admin.cin}) }}"><i class="align-middle" data-feather="edit"></i></a></td>
+                                    </tr>
+                                {% else %}
+                                    <tr>
+                                        <td colspan="6">no records found</td>
+                                    </tr>
+                                {% endfor %}
+
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>Cin</th>
+                                    <th>Nom</th>
+                                    <th>Prenom</th>
+                                    <th>Sexe</th>
+                                    <th>Datee</th>
+                                    <th>Email</th>
+                                    <th>Telephone</th>
+                                    <th>Detaille</th>
+                                    <th>Supprimer</th>
+                                    <th>Modifier</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        function myFunction() {
+            var input, filter, table, tr, td, i,j, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("mytable");
+            tr = table.getElementsByTagName("tr");
+//   alert(td.length);
+            for (i = 0; i < tr.length; i++) {
+                td= tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+
+    </script>
+
+
+{% endblock %}

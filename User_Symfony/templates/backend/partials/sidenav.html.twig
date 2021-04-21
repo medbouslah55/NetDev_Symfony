@@ -4,7 +4,13 @@
         <ul class="sidebar-nav">
             <li class="sidebar-header"> Pages </li>
 
-
+            <li class="sidebar-item">
+                <a href="#admin" data-toggle="collapse" class="sidebar-link collapsed"> <i class="align-middle" data-feather="user"></i> <span class="align-middle">Admin</span> </a>
+                <ul id="admin" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{path('admin_new')}}">Ajouter un Admin</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{path('admin_index')}}">Afficher les Admins</a></li>
+                </ul>
+            </li>
 
             <li class="sidebar-item">
                 <a href="#membre" data-toggle="collapse" class="sidebar-link collapsed"> <i class="align-middle" data-feather="users"></i> <span class="align-middle">Membres</span> </a>
@@ -17,11 +23,13 @@
             <li class="sidebar-item">
                 <a href="#coach" data-toggle="collapse" class="sidebar-link collapsed"> <i class="align-middle" data-feather="user"></i> <span class="align-middle">Coachs</span> </a>
                 <ul id="coach" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
-                    <li class="sidebar-item"><a class="sidebar-link" href="{{path('coach_index')}}">Afficher les Coachs</a></li>
                     <li class="sidebar-item"><a class="sidebar-link" href="{{path('coach_new')}}">Ajouter un Coach</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{path('coach_index')}}">Afficher les Coachs</a></li>
+
 
                 </ul>
             </li>
+
         </ul>
         <div class="sidebar-bottom d-none d-lg-block">
             <div class="media"> <img class="rounded-circle mr-3" src="/admin/img/avatars/avatar.jpg" alt="Chris Wood" width="40" height="40">

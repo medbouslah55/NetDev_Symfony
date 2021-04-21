@@ -24,8 +24,8 @@ class MembreType extends AbstractType
             ->add('datee')
             ->add('taille')
             ->add('poids')
-            ->add('email')
-            ->add('password')
+            ->add('email',EmailType::class)
+            ->add('password',PasswordType::class)
             ->add('telephone')
         ;
     }

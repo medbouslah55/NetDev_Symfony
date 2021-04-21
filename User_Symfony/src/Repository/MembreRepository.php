@@ -47,4 +47,14 @@ class MembreRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findMembrebyName($nom)
+    {
+        return $this->createQueryBuilder('membre')
+            ->where('membre.nom LIKE :nom')
+            ->setParameter('nom','%'.$nom.'%')
+            ->getQuery()
+            ->getResult();
+
+    }
 }

@@ -35,6 +35,11 @@
                         <form>
                             <input id="impression" class="js-programmatic-set-val btn btn-outline-primary mr-1 mb-1s" name="impression" type="button" onclick="imprimer_page()" value="Print this page" />
                         </form>
+                        <div class="container d-flex align-items-center mt-5">
+                            <input class="form-control" type="search" id="search" placeholder="Search by Nom">
+                            <a href="{{ path('search') }}"><i class="fa fa-sort"></i></a>
+                        </div>
+
                         <div class="card-body">
                             <table id="datatables-clients" class="table table-striped" style="width:100%">
                                 <thead>
@@ -47,42 +52,20 @@
                                     <th>Taille</th>
                                     <th>Poids</th>
                                     <th>Email</th>
-                                    <th>Password</th>
+
                                     <th>Telephone</th>
-                                    <th>Dettaile</th>
-                                    <th>Modifier</th>
+
                                     <th>Supprimer</th>
                                 </tr>
                                 </thead>
-                                <tbody>
-                                {% for membre in membres %}
-                                    <tr>
-                                        <td>{{ membre.cin }}</td>
-                                        <td>{{ membre.nom }}</td>
-                                        <td>{{ membre.prenom }}</td>
-                                        <td>{{ membre.sexe }}</td>
-                                        <td>{{ membre.datee ? membre.datee|date('Y-m-d') : '' }}</td>
-                                        <td>{{ membre.taille }}</td>
-                                        <td>{{ membre.poids }}</td>
-                                        <td>{{ membre.email }}</td>
-                                        <td>{{ membre.password }}</td>
-                                        <td>{{ membre.telephone }}</td>
-                                        <td>
-                                            <a href="{{ path('membre_show', {'cin': membre.cin}) }}"><i class="align-middle" data-feather="align-center"></i></a>
-                                        </td>
-                                        <td>
-                                            <a href="{{ path('membre_edit', {'cin': membre.cin}) }}"><i class="align-middle" data-feather="edit"></i></a></a>
-                                        </td>
-                                        <td>
-                                            {{ include('membre/_delete_form.html.twig') }}
-                                        </td>
-                                    </tr>
-                                {% else %}
-                                    <tr>
-                                        <td colspan="11">no records found</td>
-                                    </tr>
-                                {% endfor %}
+                                <tbody id="all">
+                                {% include 'membre/search.html.twig' %}
+                                <div class="nk-pagination nk-pagination-center">
+                                    {{ knp_pagination_render(membres) }}
+
+                                </div>
                                 </tbody>
+                                <tfoot>
                                 <tr>
                                     <th>Cin</th>
                                     <th>Nom</th>
@@ -92,10 +75,7 @@
                                     <th>Taille</th>
                                     <th>Poids</th>
                                     <th>Email</th>
-                                    <th>Password</th>
                                     <th>Telephone</th>
-                                    <th>Dettaile</th>
-                                    <th>Modifier</th>
                                     <th>Supprimer</th>
                                 </tr>
                                 </tfoot>
@@ -108,5 +88,28 @@
     </main>
 
 
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $( document ).ready(function() {
+            var currentRequest = null;
+            $("#search").keyup(function(e){
+                var value = $(this).val();
+                if(currentRequest != null) {
+                    currentRequest.abort();
+                }
+                currentRequest = $.ajax({
+                    url : "{{ path('search', {'id': app.request.get('id')}) }}",
+                    type : 'GET',
+                    data: {
+                        'searchValue' : value
+                    },
+                    success : function(retour)
+                    {
+                        $('#all').html(retour);
+                    },
+                });
+                return false;
+            });
+        });
+    </script>
 {% endblock %}

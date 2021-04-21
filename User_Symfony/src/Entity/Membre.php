@@ -3,15 +3,18 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Membre
  *
  * @ORM\Table(name="membre")
  * @ORM\Entity(repositoryClass="App\Repository\MembreRepository")
+ *
  */
-class Membre
+class Membre implements UserInterface
 {
     /**
      * @param int $cin
@@ -94,6 +97,7 @@ class Membre
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=50, nullable=false)
+     * @Assert\Email()
      */
     private $email;
 
@@ -224,5 +228,20 @@ class Membre
         return $this;
     }
 
-
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
+    }
+    public function getSalt()
+    {
+        // TODO: Implement getSalt() method.
+    }
+    public function getRoles()
+    {
+        return ['ROLE_USER'];
+    }
+    public function getUsername()
+    {
+        // TODO: Implement getUsername() method.
+    }
 }
