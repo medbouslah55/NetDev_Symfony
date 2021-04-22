@@ -177,7 +177,7 @@ class MembreController extends AbstractController
             $entityManager->persist($membre);
             $entityManager->flush();
 
-            return $this->redirectToRoute('membre_index');
+            return $this->redirectToRoute('connexion');
         }
 
         return $this->render('membre/new.html.twig', [
@@ -199,12 +199,14 @@ class MembreController extends AbstractController
     /**
      * @Route("/{cin}/edit", name="membre_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Membre $membre): Response
+    public function edit(Request $request, Membre $membre,UserPasswordEncoderInterface $encoder): Response
     {
         $form = $this->createForm(MembreType::class, $membre);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $hash = $encoder->encodePassword($membre,$membre->getPassword());
+            $membre->setPassword($hash);
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('home');

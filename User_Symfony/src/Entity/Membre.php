@@ -242,6 +242,6 @@ class Membre implements UserInterface
     }
     public function getUsername()
     {
-        // TODO: Implement getUsername() method.
+        return $this->nom;
     }
 }
