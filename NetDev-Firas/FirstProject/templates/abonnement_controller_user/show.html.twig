@@ -1,29 +1,39 @@
 {% extends 'base.html.twig' %}
 
+
 {% block body %}
     <h1>Abonnement</h1>
 
     <table class="table">
         <tbody>
-            <tr>
-                <th>Titre</th>
-                <td>{{ abonnement.titre }}</td>
-            </tr>
-            <tr>
-                <th>Type</th>
-                <td>{{ abonnement.type }}</td>
-            </tr>
-            <tr>
-                <th>Prix</th>
-                <td>{{ abonnement.prix }}</td>
-            </tr>
-            <tr>
-                <th>DescrAb</th>
-                <td>{{ abonnement.descrAb }}</td>
-            </tr>
+        <tr>
+            <th>Titre</th>
+            <td>{{ abonnement.titre }}</td>
+        </tr>
+        <tr>
+            <th>Type</th>
+            <td>{{ abonnement.type }}</td>
+        </tr>
+        <tr>
+            <th>Prix</th>
+            <td>{{ abonnement.prix }}</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>{{ abonnement.descrAb }}</td>
+        </tr>
         </tbody>
     </table>
+    <div>
+        <form method="post" action="{{ path('abonnement_delete', {'id': abonnement.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ abonnement.id) }}">
+            <button class="validate">Supprimer</button>
+        </form>
 
-    <a href="#">Acheter</a>
-
+        <form method="post" action="{{ path('abonnement_edit', {'id': abonnement.id}) }}">
+            <input type="hidden" name="_token" value="{{ csrf_token('edit' ~ abonnement.id) }}">
+            <button class="validate">Modifier</button>
+        </form>
+    </div>
 {% endblock %}
+

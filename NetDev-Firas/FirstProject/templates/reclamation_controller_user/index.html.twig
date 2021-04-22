@@ -83,6 +83,7 @@
 
         </section>
         <!-- End of .doctors -->
+        <ul class="my-pagination">
         {{ knp_pagination_render(
             reclamations,
             '@KnpPaginator/Pagination/twitter_bootstrap_v4_pagination.html.twig',
@@ -95,6 +96,7 @@
                 'viewParam2': 'param2 value'
             },
         ) }}
+        </ul>
     </div>
 
     <!------------------------------------------------------------------------>

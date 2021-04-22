@@ -6,7 +6,13 @@
     <br>
     <input id="searchN1" type="text" class="form-control" name="query" placeholder="Search now" aria-label="search" aria-describedby="search">
     <br>
-    <table  id="t" class="table">
+    <div class="box-header">
+        <p><button onclick="sortTable()"> Trier Par Date</button></p>
+    </div>
+    <br>
+    {# id="t" #}
+
+    <table  class="table" id="myT">
         <h1>Listes Des Reclamations</h1>
         <thead>
             <tr>
@@ -21,7 +27,7 @@
                 <th>Details</th>
             </tr>
         </thead>
-        <tbody id="all">
+        <tbody>
         {% for reclamation in reclamations %}
             <tr>
                 <td>{{ reclamation.nom }}</td>
@@ -35,7 +41,7 @@
                     <a href="{{ path('reclamation_show', {'id': reclamation.id}) }}"> <i class="align-middle" data-feather="monitor"></i> <span class="align-middle"></span> </a>
                     <a href="{{ path('reclamation_edit', {'id': reclamation.id}) }}"> <i class="align-middle" data-feather="edit"></i> <span class="align-middle"></span> </a>
                     <a href="{{ path('reclamation_delete', {'id': reclamation.id}) }}"> <i class="align-middle" data-feather="check-square"></i> <span class="align-middle"></span> </a>
-                    <a class="btn btn-success" href="{{ path('listrec' , {'id': reclamation.id}) }}" download >Voir cv</a>
+                    <a class="btn btn-success" href="{{ path('listrec' , {'id': reclamation.id}) }}" download >PDF</a>
                 </td>
             </tr>
         {% else %}
@@ -43,6 +49,44 @@
                 <td colspan="9">no records found</td>
             </tr>
         {% endfor %}
+        <script>
+            function sortTable() {
+                var table, rows, switching, i, x, y, shouldSwitch,dir;
+                table = document.getElementById("myT");
+                switching = true;
+                // Set the sorting direction to ascending:
+
+
+                while (switching) {
+
+                    switching = false;
+                    rows = table.rows;
+
+                    for (i = 1; i < (rows.length - 1); i++) {
+
+                        shouldSwitch = false;
+
+                        x = rows[i].getElementsByTagName("TD")[5];
+                        y = rows[i + 1].getElementsByTagName("TD")[5];
+
+
+
+                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+
+                            shouldSwitch = true;
+                            break;
+                        } }
+
+                    if (shouldSwitch) {
+
+                        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                        switching = true;
+                    }
+
+
+                }
+            }
+        </script>
         </tbody>
 
         <tbody id="searchN1">
@@ -51,11 +95,23 @@
     </table>
 
 
-
-
-
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     <script>

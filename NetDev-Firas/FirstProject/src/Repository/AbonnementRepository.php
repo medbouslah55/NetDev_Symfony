@@ -2,9 +2,12 @@
 
 namespace App\Repository;
 
+use App\Data\SearchData;
 use App\Entity\Abonnement;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
+use Knp\Component\Pager\Pagination\PaginationInterface;
 
 /**
  * @method Abonnement|null find($id, $lockMode = null, $lockVersion = null)
@@ -47,4 +50,44 @@ class AbonnementRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function findSearch(SearchData $search)
+    {
+        $query = $this
+            ->createQueryBuilder('abonnement');
+
+        if (!empty($search->abonnements)) {
+            $query = $query
+                ->andWhere('abonnement.id IN (:abonnement)')
+                ->setParameter('abonnement', $search->abonnements);
+        }
+
+        if (!empty($search->q)) {
+            $query = $query
+                ->where('abonnement.titre LIKE :title')
+                ->orWhere('abonnement.type LIKE :title')
+                ->orWhere('abonnement.prix LIKE :title')
+                ->setParameter('title', '%'.$search->q.'%');
+        }
+        if (!empty($search->min)) {
+            $query = $query
+                ->where('abonnement.prix >= :title')
+                ->setParameter('title', '%'.$search->min.'%');
+        }
+
+        if (!empty($search->max)) {
+            $query = $query
+                ->where('abonnement.prix <= :title')
+                ->setParameter('title', '%'.$search->max.'%');
+        }
+        return $query->getQuery() ->getResult();
+    }
+    public function findReservationByTitre($data){
+        return
+            $this
+                ->createQueryBuilder('abonnement')
+                ->where('abonnement.titre LIKE :title')
+                ->orWhere('abonnement.type LIKE :title')
+                ->setParameter('title', '%'.$data.'%')
+                ->getQuery() ->getResult();
+    }
 }

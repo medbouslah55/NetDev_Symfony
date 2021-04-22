@@ -33,10 +33,8 @@
         </tbody>
     </table>
 {% endblock %}
- #}
-
+#}
 {% block body %}
-
     <!DOCTYPE html>
     <html lang="en">
 
@@ -68,12 +66,7 @@
 
     <body>
 
-    <!-- Start of .preloader -->
-    <div class="preloader">
-        <div class="loader"></div>
-        <h6 class="preloader-text">MindSpace<br>Achéter Un Abonnement</h6>
-    </div>
-    <!-- End of .preloader -->
+
 
     <!------------------------------------------------------------------------>
 
@@ -94,155 +87,124 @@
         <!-- End of .header-bottom-4 -->
 
         <!-- Start of .latest-news-4 -->
-        <section class="latest-news-4 mian-blog">
-            <div class="main-blog__bg">
-                <div class="icon">
-                    <img src="{{ asset('./images/png-shapes/form-shape.png') }}">
-                </div>
-                <div class="icon">
-                    <img src="{{ asset('./images/png-shapes/specialists__left-bottom-shape.png') }}">
-                </div>
+
+            <div class="col-md-3">
+                {% include 'abonnement_controller_user/_filter.html.twig' with {form: form} only %}
             </div>
-            <div class="container container_right-sidebar">
-                <div class="sidebar">
-                    <div class="blog-sidebar">
-                        <div class="categories">
-                            <h1 class="blog-sidebar-title">categories</h1>
-                            <ul class="lists">
-                                <li class="item">
-                                    <a href="#">
-                                        <span class="name">Dental</span>
-                                        <span class="count">16</span>
-                                    </a>
-                                </li>
-                                <li class="item active">
-                                    <a href="#">
-                                        <span class="name">Ophtalmology</span>
-                                        <span class="count">36</span>
-                                    </a>
-                                </li>
-                                <li class="item">
-                                    <a href="#">
-                                        <span class="name">Urology</span>
-                                        <span class="count">03</span>
-                                    </a>
-                                </li>
-                                <li class="item">
-                                    <a href="#">
-                                        <span class="name">New Technology</span>
-                                        <span class="count">18</span>
-                                    </a>
-                                </li>
-                                <li class="item">
-                                    <a href="#">
-                                        <span class="name">Emergency Services</span>
-                                        <span class="count">32</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="instagram">
-                            <h1 class="blog-sidebar-title">instagram</h1>
-                            <div class="items">
-                                <a href="#" class="item">
-                                    <img src="./images/jpg/instagram1.jpg">
-                                </a>
-                                <a href="#" class="item">
-                                    <img src="./images/jpg/instagram2.jpg">
-                                </a>
-                                <a href="#" class="item">
-                                    <img src="./images/jpg/instagram3.jpg">
-                                </a>
-                                <a href="#" class="item">
-                                    <img src="./images/jpg/instagram4.jpg">
-                                </a>
-                                <a href="#" class="item">
-                                    <img src="./images/jpg/instagram5.jpg">
-                                </a>
-                                <a href="#" class="item">
-                                    <img src="./images/jpg/instagram6.jpg">
-                                </a>
-                                <a href="#" class="item">
-                                    <img src="./images/jpg/instagram7.jpg">
-                                </a>
-                                <a href="#" class="item">
-                                    <img src="./images/jpg/instagram8.jpg">
-                                </a>
-                                <a href="#" class="item">
-                                    <img src="./images/jpg/instagram9.jpg">
-                                </a>
+        <div class="col-md-9">
+            <section class="latest-news-4 mian-blog">
+                <div class="main-blog__bg">
+                    <div class="icon">
+                        <img src="{{ asset('./images/png-shapes/form-shape.png') }}">
+                    </div>
+                    <div class="icon">
+                        <img src="{{ asset('./images/png-shapes/specialists__left-bottom-shape.png') }}">
+                    </div>
+                </div>
+                <div class="container container_right-sidebar">
+                    <div class="sidebar">
+                        <div class="blog-sidebar">
+                            <div class="categories">
+                                <h1 class="blog-sidebar-title">categories</h1>
+                                <ul class="lists">
+                                    <li class="item">
+                                        <a href="#">
+                                            <span class="name">Urology</span>
+                                            <span class="count">03</span>
+                                        </a>
+                                    </li>
+                                    <li class="item">
+                                        <a href="#">
+                                            <span class="name">New Technology</span>
+                                            <span class="count">18</span>
+                                        </a>
+                                    </li>
+                                    <li class="item">
+                                        <a href="#">
+                                            <span class="name">Emergency Services</span>
+                                            <span class="count">32</span>
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
-                        </div>
-                        <div class="follow">
-                            <h1 class="blog-sidebar-title">Follow Us</h1>
-                            <div class="socials">
-                                <a href="#">
-                                    <i class="fa fa-facebook"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="fa fa-twitter"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="fa fa-instagram"></i>
-                                </a>
+                        {{ form_end(form) }}
+                            <div class="instagram">
+                                <h1 class="blog-sidebar-title">instagram</h1>
+                                <div class="items">
+                                    <a href="#" class="item">
+                                        <img src="./images/jpg/instagram1.jpg">
+                                    </a>
+                                    <a href="#" class="item">
+                                        <img src="./images/jpg/instagram2.jpg">
+                                    </a>
+                                    <a href="#" class="item">
+                                        <img src="./images/jpg/instagram3.jpg">
+                                    </a>
+                                    <a href="#" class="item">
+                                        <img src="./images/jpg/instagram4.jpg">
+                                    </a>
+                                    <a href="#" class="item">
+                                        <img src="./images/jpg/instagram5.jpg">
+                                    </a>
+                                    <a href="#" class="item">
+                                        <img src="./images/jpg/instagram6.jpg">
+                                    </a>
+                                    <a href="#" class="item">
+                                        <img src="./images/jpg/instagram7.jpg">
+                                    </a>
+                                    <a href="#" class="item">
+                                        <img src="./images/jpg/instagram8.jpg">
+                                    </a>
+                                    <a href="#" class="item">
+                                        <img src="./images/jpg/instagram9.jpg">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="follow">
+                                <h1 class="blog-sidebar-title">Follow Us</h1>
+                                <div class="socials">
+                                    <a href="#">
+                                        <i class="fa fa-facebook"></i>
+                                    </a>
+                                    <a href="#">
+                                        <i class="fa fa-twitter"></i>
+                                    </a>
+                                    <a href="#">
+                                        <i class="fa fa-instagram"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
+
+                    <div class="article">
+                        {% for abonnement in abonnements %}
+                            <a href="blog-details_right.html" class="item">
+                                <div class="img">
+                                    {% if abonnement.type == "Gold" %}
+                                        <img src="{{ asset('./images/gold.jpg') }}" alt="Girl in a jacket" width="30" height="30">
+                                    {% elseif abonnement.type == "Silver" %}
+                                        <img src="{{ asset('./images/silver.jpg') }}">
+                                    {% else %}
+                                        <img src="{{ asset('./images/bronze.jpg') }}">
+                                    {% endif %}
+                                    <span class="date">{{ abonnement.prix }} Dt</span>
+                                </div>
+                                <h4 class="title">{{ abonnement.titre }}</h4>
+                                <h2 class="title">{{ abonnement.type }}</h2>
+                                <p class="text">
+                                    {{ abonnement.descrAb }}
+                                </p>
+                                <span class="read-more-2" href="#">Achéter</span>
+                                <span class="read-more-2" href="{{ path('abonnement_controller_user_show', {'id': abonnement.id}) }}">afficher</span>
+                            </a>
+                        {% endfor %}
+                    </div>
+
                 </div>
-                <div class="article">
-                    {% for abonnement in abonnements %}
-                    <a href="blog-details_right.html" class="item">
-                        <div class="img">
-                            {% if abonnement.type == "Gold" %}
-                                <img src="{{ asset('./images/gold.jpg') }}" alt="Girl in a jacket" width="30" height="30">
-                            {% elseif abonnement.type == "Silver" %}
-                                <img src="{{ asset('./images/silver.jpg') }}">
-                            {% else %}
-                                <img src="{{ asset('./images/bronze.jpg') }}">
-                            {% endif %}
-                            <span class="date">{{ abonnement.prix }} Dt</span>
-                        </div>
-                        <h4 class="title">{{ abonnement.titre }}</h4>
-                        <h2 class="title">{{ abonnement.type }}</h2>
-                        <p class="text">
-                            {{ abonnement.descrAb }}
-                        </p>
-                        <span class="read-more-2" href="#">Achéter</span>
-                        <span class="read-more-2" href="{{ path('abonnement_controller_user_show', {'id': abonnement.id}) }}">Afficher</span>
-                    </a>
-                    {% else %}
+            </section>
+        </div>
 
-                    {% endfor %}
-
-
-
-
-                    <ul class="my-pagination">
-                        <li class="disabled">
-                            <span class="fa fa-angle-left"></span>
-                        </li>
-                        <li class="active">
-                            <a href="#">01</a>
-                        </li>
-                        <li class="">
-                            <a href="#">02</a>
-                        </li>
-                        <li class="">
-                            <a href="#">03</a>
-                        </li>
-                        <li class="dotted">
-                            <p>...</p>
-                        </li>
-                        <li class="">
-                            <a href="#">09</a>
-                        </li>
-                        <li class="">
-                            <span class="fa fa-angle-right"></span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
         <!-- End of .latest-news-4 -->
     </div>
 

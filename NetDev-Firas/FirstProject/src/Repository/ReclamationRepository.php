@@ -59,13 +59,12 @@ class ReclamationRepository extends ServiceEntityRepository
 
 
 
-    public function findReclamation($etat): ?Reclamation
+    public function findReclamation($etat)
     {
         return $this->createQueryBuilder('reclamation')
             ->where('reclamation.etat LIKE :etat')
             ->setParameter('etat', '%'.$etat.'%')
-            ->getQuery()
-            ->getResult();
+            ->getQuery()->getResult();
     }
 
 }

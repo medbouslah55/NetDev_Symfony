@@ -41,7 +41,7 @@ class ReclamationControllerUserController extends AbstractController
            // Define the page parameter
            $request->query->getInt('page', 1),
            // Items per page
-           1
+           3
        );
 
 
@@ -72,8 +72,7 @@ class ReclamationControllerUserController extends AbstractController
 
 
 
-
-            $message = (new \Swift_Message('Annonce formation'))
+            $message = (new \Swift_Message('Confirmation Réclamation'))
                 ->setFrom('fg7@students.kiron.ngo')
                 ->setTo('firasgacha8@gmail.com')
                 ->setBody(

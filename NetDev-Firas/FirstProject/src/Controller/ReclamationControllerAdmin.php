@@ -24,7 +24,7 @@ class ReclamationControllerAdmin extends AbstractController
     /**
      * @Route("/searchReclamation ", name="searchReclamation")
      */
-    public function searchReclamation(Request $request,NormalizerInterface $Normalizer): JsonResponse
+    public function searchReclamation(Request $request,NormalizerInterface $Normalizer): Response
     {
         $repository = $this->getDoctrine()->getRepository(Reclamation::class);
         $requestString=$request->get('searchValue');
@@ -45,7 +45,10 @@ class ReclamationControllerAdmin extends AbstractController
         }
 
 
-        return new JsonResponse($data);
+        //return new JsonResponse($data);
+        return $this->render('reclamation/index.html.twig', [
+            'reclamations' => $reclamation,
+        ]);
     }
     /**
      * @Route("/", name="reclamation_index", methods={"GET"})
