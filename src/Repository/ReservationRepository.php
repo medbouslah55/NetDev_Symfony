@@ -5,7 +5,8 @@ namespace App\Repository;
 use App\Entity\Reservation;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Query\Parameter;
 /**
  * @method Reservation|null find($id, $lockMode = null, $lockVersion = null)
  * @method Reservation|null findOneBy(array $criteria, array $orderBy = null)
@@ -49,12 +50,20 @@ class ReservationRepository extends ServiceEntityRepository
     */
 
     public function findReservationByNom($data){
-        return
-            $this->createQueryBuilder('reservation')
-                ->where('reservation.nom LIKE :title')
-                ->orWhere('reservation.prenom LIKE :title')
-                ->setParameter('title', '%'.$data.'%')
-                ->getQuery() ->getResult();
+        $tri = 'reservation.'.$data->gettri();
+
+
+        $query = $this->createQueryBuilder('reservation')
+            ->where('reservation.nom LIKE :title')
+            ->orWhere('reservation.prenom LIKE :title')
+           ->setParameter('title', "%{$data->q}%")
+            ->orderBy($tri, 'ASC');
+
+        return $query->getQuery() ->getResult();
+
     }
+
+
+
 
 }

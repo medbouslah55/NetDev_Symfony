@@ -98,8 +98,8 @@ class DashboardController extends AbstractController
         $data = new SearchData();
         $form =$this->createForm(SearchType::class, $data);
         $form->handleRequest($request);
-        $reservation =$reservationRepository->findReservationByNom($data);
 
+        $reservation =$reservationRepository->findReservationByNom($data);
         $reservations = $paginator->paginate(
         // Doctrine Query, not results
             $reservation,

@@ -6,5 +6,20 @@
     #}
 
 {{ form_start(form, { 'attr': {'class': 'shop-sidebar__search'} })}}
+<div>
+{{ form_widget(form.q) }}
+</div>
+<div style="height: 12px"></div>
+<div style="width: 250px">
+{{ form_widget(form.tri) }}
+</div>
 <button type="submit"><i class="fa fa-search"></i></button>
+
 {{ form_end(form) }}
+
+<style>
+    select.form-control:not([size]):not([multiple]) {
+        height: 38px;
+    }
+
+</style>
