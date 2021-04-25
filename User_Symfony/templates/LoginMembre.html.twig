@@ -32,7 +32,7 @@
             <div class="benefits-form__form">
                 <h1 class="section-title">Looking for <span>a quality meditation services?</span></h1>
 
-                <form action="{{ path('connexion') }}" method="post">
+                <form action="{{ path('loginadmin') }}" method="post">
                     <h1 class="section-title">make an appointment</h1>
 
 
@@ -57,6 +57,8 @@
     <!-- End of .header-bottom -->
 
 
-
+    <a href="{{ path('connect_google_start') }}">
+        Google
+    </a>
 
 {% endblock %}

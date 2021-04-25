@@ -25,8 +25,29 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
  */
 class MembreController extends AbstractController
 {
+
     /**
-     * @IsGranted("ROLE_ADMIN")
+     *
+     * @Route ("/loginadmin",name="loginadmin")
+     */
+    public function Loginadmin(Request $request)
+    {
+     $email=$request->get('_username');
+     $pass=$request->get('_password');
+     if(($email=="admin@admin.com")&&($pass=="admin"))
+     {
+         return $this->redirectToRoute('admin_index');
+     }
+     else
+     {
+         return $this->redirectToRoute('coach_index');
+     }
+
+
+    }
+
+    /**
+     *
      * @Route("/", name="membre_index", methods={"GET"})
      */
     public function index(Request $request ,PaginatorInterface $paginator): Response
@@ -49,12 +70,15 @@ class MembreController extends AbstractController
         ]);
     }
 
+
+
     /**
      *
      * @Route ("/connexion",name="connexion")
      */
     public function Login()
     {
+
         return $this->render('LoginMembre.html.twig');
     }
     /**

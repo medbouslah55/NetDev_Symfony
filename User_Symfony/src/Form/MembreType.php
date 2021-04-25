@@ -27,6 +27,7 @@ class MembreType extends AbstractType
             ->add('email',EmailType::class)
             ->add('password',PasswordType::class)
             ->add('telephone')
+
         ;
     }
 

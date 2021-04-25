@@ -36,9 +36,12 @@ class Tracking
     private $imc;
 
     /**
-     * @var int|null
+     * @var \Membre
      *
-     * @ORM\Column(name="cin_membre", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Membre")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="cin_membre", referencedColumnName="cin")
+     * })
      */
     private $cinMembre;
 
@@ -71,12 +74,12 @@ class Tracking
         return $this;
     }
 
-    public function getCinMembre(): ?int
+    public function getCinMembre(): ?Membre
     {
         return $this->cinMembre;
     }
 
-    public function setCinMembre(?int $cinMembre): self
+    public function setCinMembre(?Membre $cinMembre): self
     {
         $this->cinMembre = $cinMembre;
 

@@ -115,6 +115,21 @@ class Membre implements UserInterface
      */
     private $telephone;
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Regime", mappedBy="cinMembre")
+     */
+    private $idRegime;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->idRegime = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
     public function getCin(): ?int
     {
         return $this->cin;
@@ -226,6 +241,48 @@ class Membre implements UserInterface
         $this->telephone = $telephone;
 
         return $this;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getIdRegime()
+    {
+        return $this->idRegime;
+    }
+
+    /**
+     * @param \Doctrine\Common\Collections\Collection $idRegime
+     * @return Membre
+     */
+    public function setIdRegime($idRegime)
+    {
+        $this->idRegime = $idRegime;
+        return $this;
+    }
+
+    public function addIdRegime(Regime $idRegime): self
+    {
+        if (!$this->idRegime->contains($idRegime)) {
+            $this->idRegime[] = $idRegime;
+            $idRegime->addCinMembre($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIdRegime(Regime $idRegime): self
+    {
+        if ($this->idRegime->removeElement($idRegime)) {
+            $idRegime->removeCinMembre($this);
+        }
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return (string)$this->cin;
     }
 
     public function eraseCredentials()

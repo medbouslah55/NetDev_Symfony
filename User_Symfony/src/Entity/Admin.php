@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\This;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Admin
@@ -10,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="admin")
  * @ORM\Entity(repositoryClass="App\Repository\AdminRepository")
  */
-class Admin
+class Admin implements UserInterface
 {
     /**
      * @param int $cin
@@ -165,6 +167,34 @@ class Admin
 
         return $this;
     }
+    public function loginAdmin()
+    {
+        if(($this->email=="admin@admin.com")&&($this->password=="admin") )
+        {
+            return true;
+        }
+        else
+            return false;
+    }
 
 
+    public function getRoles()
+    {
+        return ['ROLE_ADMIN'];
+    }
+
+    public function getSalt()
+    {
+        // TODO: Implement getSalt() method.
+    }
+
+    public function getUsername()
+    {
+        return "admin";
+    }
+
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
+    }
 }
