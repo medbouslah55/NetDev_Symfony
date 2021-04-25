@@ -2,5 +2,7 @@
 
 {% block body %}
     <h1>Modifier Abonnement</h1>
-        {{ include('abonnement/_form.html.twig', {'button_label': 'Modifier'}) }}
+        <div class="form-control">
+            {{ include('abonnement/_form.html.twig', {'button_label': 'Modifier'}) }}
+        </div>
 {% endblock %}

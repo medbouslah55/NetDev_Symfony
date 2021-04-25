@@ -1,20 +1,21 @@
-{% extends 'baseAdmin.html.twig' %}
-{% block title %}Ajouter Nouveau Abonnement{% endblock %}
+{% extends "baseAdmin.html.twig" %}
 
 
 {% block body %}
-    <main class="content">
-        <div class="container-fluid p-0">
-            <h2 class="h3 mb-3">Ajouter Nouveau Abonnement</h2>
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-body">
-                            {{ include('abonnement/_form.html.twig') }}
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+
+
+    <div class="card-body">
+    <form  method="post"{{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+        <div class="form-group">
+            <label for="abonnement_titre" class="required">Titre</label>
+            <span class="form-control">
+                {{ form_errors(form.titre) }}
+                {{ form_widget(form.titre, {'attr' : { 'class' : 'form__block-input reservation-padding' , 'placeholder' :'Nom'}}) }}
+            </span>
         </div>
-    </main>
+        <div class="text-center" style="padding-top: 1rem"><button type="submit" class="reservationBtn">{{ button_label|default('Ajouter') }}</button></div>
+        {{ form_end(form) }}
+        </form>
+    </div>
 {% endblock %}

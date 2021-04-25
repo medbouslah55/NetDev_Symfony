@@ -61,7 +61,6 @@ class ReclamationUserType extends AbstractType
             ])
 
             ->getForm();
-        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)

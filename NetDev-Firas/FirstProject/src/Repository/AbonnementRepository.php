@@ -88,6 +88,7 @@ class AbonnementRepository extends ServiceEntityRepository
                 ->where('abonnement.titre LIKE :title')
                 ->orWhere('abonnement.type LIKE :title')
                 ->setParameter('title', '%'.$data.'%')
-                ->getQuery() ->getResult();
+                ->getQuery()
+                ->getResult();
     }
 }

@@ -3,7 +3,7 @@
 
 {% block body %}
     <!DOCTYPE html>
-    <html lang="en">
+    <html lang="en" xmlns="http://www.w3.org/1999/html">
 
     <head>
         <meta charset="UTF-8">
@@ -55,31 +55,35 @@
         <section class="form">
             <div class="container">
                 <div class="form__block">
-                    <form method="POST" {{ form_start(formRec,{'attr': {'novalidate': 'novalidate'}} ) }}
-                    <input class="form__block-input" type="text" placeholder="Nom"
-                    {{ form_errors(formRec.nom) }}
-                    {{ form_widget(formRec.nom) }}
-                    <input class="form__block-input" type="text" placeholder="Prénom"
-                    {{ form_errors(formRec.prenom) }}
-                    {{ form_widget(formRec.prenom) }}
-                    <input class="form__block-input" type="email" placeholder="Email"
-                    {{ form_errors(formRec.mail) }}
-                    {{ form_widget(formRec.mail) }}
+                    <form method="POST" {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+                    <span class="d-block">
+                        {{ form_errors(form.nom) }}
+                        {{ form_widget(form.nom, {'attr' : { 'class' : 'form__block-input reservation-padding' , 'placeholder' :'Nom'}}) }}
+                    </span>
+                    <span class="d-block">
+                        {{ form_errors(form.prenom) }}
+                        {{ form_widget(form.prenom, {'attr' : { 'class' : 'form__block-input reservation-padding' , 'placeholder' :'Prénom'}}) }}
+                    </span>
+                    <span class="d-block">
+                        {{ form_errors(form.mail) }}
+                        {{ form_widget(form.mail, {'attr' : { 'class' : 'form__block-input reservation-padding' , 'placeholder' :'Email'}}) }}
+                    </span>
                     <select class="form__block-input"
-                    {{ form_errors(formRec.type) }}
-                    {{ form_widget(formRec.type) }}
+                        {{ form_errors(form.type) }}
+                        {{ form_widget(form.type, {'attr' : { 'class' : 'form__block-input reservation-padding' , 'placeholder' :'Nom'}}) }}
                     </select>
                     <textarea placeholder="Description"
-                    {{ form_errors(formRec.description) }}
-                    {{ form_widget(formRec.description) }}
+                        {{ form_errors(form.description) }}
+                        {{ form_widget(form.description, {'attr' : { 'class' : 'form__block-text reservation-padding' , 'placeholder' :'Description'}}) }}
+                    </textarea>
                     <button class="btn btn_pink">{{ button_label|default('Envoyer') }}</button>
                     <label>* Les données personnelles seront cryptées</label>
                     <div hidden>
                         <input class="form-control" id="inputLastname2"
-                        {{ form_errors(formRec.date) }}
-                        {{ form_widget(formRec.date) }}
+                        {{ form_errors(form.date) }}
+                        {{ form_widget(form.date) }}
                     </div>
-                    {{ form_end(formRec) }}
+                    {{ form_end(form) }}
                     </form>
                 </div>
             </div>

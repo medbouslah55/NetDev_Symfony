@@ -16,7 +16,7 @@ class SearchData
      * @var string
      */
     public $q = '';
-
+    public $tri = '';
     /**
      * @var Abonnement[]
      */
@@ -36,9 +36,22 @@ class SearchData
      * @var boolean
      */
     public $promo = false;
+    public function getq(): ?string
+    {
+        return $this->q;
+    }
+
+    public function gettri(): ?string
+    {
+        return $this->tri;
+    }
 
     public function __toString()
     {
-        return (string) $this->q;
+        return (string) $this->getq();
+    }
+    public function toArray()
+    {
+        return [$this->q , $this->tri];
     }
 }

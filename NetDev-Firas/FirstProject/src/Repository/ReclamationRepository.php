@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Data\SearchRec;
 use App\Entity\Reclamation;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -57,14 +58,63 @@ class ReclamationRepository extends ServiceEntityRepository
         ->getResult();
     }
 
-
-
     public function findReclamation($etat)
     {
         return $this->createQueryBuilder('reclamation')
             ->where('reclamation.etat LIKE :etat')
+            ->orWhere('reclamation.nom LIKE :etat')
+            ->orWhere('reclamation.prenom LIKE :etat')
+            ->orderBy('reclamation.date', 'ASC')
             ->setParameter('etat', '%'.$etat.'%')
-            ->getQuery()->getResult();
+            ->getQuery()
+            ->getResult();
+    }
+    public function ReclamationParDate()
+    {
+        return $this->createQueryBuilder('reclamation')
+            ->orderBy('reclamation.date','DESC')
+            ->getQuery()
+            ->getResult();
     }
 
+    public function chercherReclamationParNP($data){
+        return
+            $this->createQueryBuilder('reclamation')
+            ->where('reclamation.nom LIKE :title')
+            ->orWhere('reclamation.prenom LIKE :title')
+            ->setParameter('title', "%{$data->q}%")
+            ->getQuery() ->getResult();
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getMonth()
+    {
+
+        $qb = $this->createQueryBuilder('v')
+            ->select('COUNT(v.id) AS post, SUBSTRING(v.date, 1, 7) AS month')
+            ->groupBy('month');
+        return $qb->getQuery()
+            ->getResult();
+    }
+    public function getYear()
+    {
+
+        $qb = $this->createQueryBuilder('v')
+            ->select('COUNT(v.id) AS post, SUBSTRING(v.date, 1, 4) AS year')
+            ->groupBy('year');
+        return $qb->getQuery()
+            ->getResult();
+    }
+    public function getDay()
+    {
+
+        $qb = $this->createQueryBuilder('v')
+            ->select('COUNT(v.id) AS post, SUBSTRING(v.date, 1, 10) AS day')
+            ->groupBy('day');
+        return $qb->getQuery()
+            ->getResult();
+    }
 }

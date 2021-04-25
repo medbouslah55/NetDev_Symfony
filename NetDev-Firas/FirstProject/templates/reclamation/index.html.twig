@@ -1,47 +1,63 @@
 {% extends 'baseAdmin.html.twig' %}
-
-
 {% block title %}Lists Des Reclamations{% endblock %}
-{% block body %}
-    <br>
-    <input id="searchN1" type="text" class="form-control" name="query" placeholder="Search now" aria-label="search" aria-describedby="search">
-    <br>
-    <div class="box-header">
-        <p><button onclick="sortTable()"> Trier Par Date</button></p>
-    </div>
-    <br>
-    {# id="t" #}
 
-    <table  class="table" id="myT">
-        <h1>Listes Des Reclamations</h1>
+
+{% block body %}
+
+        <div class="p-4 bg-light" style="text-align-all: center">
+            <h2>Lists Des Reclamations</h2>
+        </div>
+
+    <div>
+        <input id="searchN1" type="text" class="form-control" name="query" placeholder="Chercher" aria-label="search" aria-describedby="search">
+    </div>
+<br>
+    <div style="width: 150px">
+        <h5 class="card-title mb-0">Trier Par :</h5>
+    </div>
+    <div style="width: 100px" >
+        <table>
+        <tr>
+            <th> <button class="btn btn-primary btn-block" onclick="TriNOM()">Nom</button></th>
+            <th><button class="btn btn-primary btn-block" onclick="TriPRENOM()">Prenom</button></th>
+            <th><button class="btn btn-primary btn-block" onclick="TriDATE()">Date</button></th>
+            <th><button class="btn btn-primary btn-block" onclick="TriETAT()">Etat</button></th>
+        </tr>
+        </table>
+    </div>
+
+    <table id="t" style="width: border-box" id="datatables-dashboard-projects" class="table table-striped my-0 dataTable no-footer" role="grid" aria-describedby="datatables-dashboard-projects_info">
         <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Prenom</th>
-                <th>Mail</th>
-                <th>Type</th>
-                <th>Date</th>
-                <th>Description</th>
-                <th>Etat</th>
-                <th>actions</th>
-                <th>Details</th>
-            </tr>
+        <tr>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Mail</th>
+            <th>Type</th>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Etat</th>
+            <th>Actions</th>
+        </tr>
         </thead>
-        <tbody>
+        <tbody id="searchN1">
         {% for reclamation in reclamations %}
-            <tr>
-                <td>{{ reclamation.nom }}</td>
-                <td>{{ reclamation.prenom }}</td>
+            <tr role="row" class="odd">
+                <td class="sorting_1">{{ reclamation.nom }}</td>
+                <td class="sorting_1">{{ reclamation.prenom }}</td>
                 <td>{{ reclamation.mail }}</td>
                 <td>{{ reclamation.type }}</td>
                 <td>{{ reclamation.date ? reclamation.date|date('Y-m-d') : '' }}</td>
                 <td>{{ reclamation.description }}</td>
-                <td>{{ reclamation.etat }}</td>
                 <td>
-                    <a href="{{ path('reclamation_show', {'id': reclamation.id}) }}"> <i class="align-middle" data-feather="monitor"></i> <span class="align-middle"></span> </a>
+                    {% if reclamation.etat == "En cours" %}
+                    <span class="badge badge-danger">{{ reclamation.etat }}</span></td>
+                    {% else %}
+                    <span class="badge badge-success">{{ reclamation.etat }}</span></td>
+                    {% endif %}
+                <td>
+                    <a id="aff" href="{{ path('reclamation_show', {'id': reclamation.id}) }}"> <i class="align-middle" data-feather="monitor"></i> <span class="align-middle"></span> </a>
                     <a href="{{ path('reclamation_edit', {'id': reclamation.id}) }}"> <i class="align-middle" data-feather="edit"></i> <span class="align-middle"></span> </a>
-                    <a href="{{ path('reclamation_delete', {'id': reclamation.id}) }}"> <i class="align-middle" data-feather="check-square"></i> <span class="align-middle"></span> </a>
-                    <a class="btn btn-success" href="{{ path('listrec' , {'id': reclamation.id}) }}" download >PDF</a>
+                    <a href="{{ path('listrec' , {'id': reclamation.id}) }}"> <i class="align-middle" data-feather="download"></i> <span class="align-middle"></span> </a>
                 </td>
             </tr>
         {% else %}
@@ -50,9 +66,9 @@
             </tr>
         {% endfor %}
         <script>
-            function sortTable() {
+            function TriNOM() {
                 var table, rows, switching, i, x, y, shouldSwitch,dir;
-                table = document.getElementById("myT");
+                table = document.getElementById("t");
                 switching = true;
                 // Set the sorting direction to ascending:
 
@@ -66,8 +82,116 @@
 
                         shouldSwitch = false;
 
-                        x = rows[i].getElementsByTagName("TD")[5];
-                        y = rows[i + 1].getElementsByTagName("TD")[5];
+                        x = rows[i].getElementsByTagName("TD")[0];
+                        y = rows[i + 1].getElementsByTagName("TD")[0];
+
+
+
+                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+
+                            shouldSwitch = true;
+                            break;
+                        } }
+
+                    if (shouldSwitch) {
+
+                        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                        switching = true;
+                    }
+
+
+                }
+            }
+            function TriPRENOM() {
+                var table, rows, switching, i, x, y, shouldSwitch,dir;
+                table = document.getElementById("t");
+                switching = true;
+                // Set the sorting direction to ascending:
+
+
+                while (switching) {
+
+                    switching = false;
+                    rows = table.rows;
+
+                    for (i = 1; i < (rows.length - 1); i++) {
+
+                        shouldSwitch = false;
+
+                        x = rows[i].getElementsByTagName("TD")[1];
+                        y = rows[i + 1].getElementsByTagName("TD")[1];
+
+
+
+                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+
+                            shouldSwitch = true;
+                            break;
+                        } }
+
+                    if (shouldSwitch) {
+
+                        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                        switching = true;
+                    }
+
+
+                }
+            }
+            function TriDATE() {
+                var table, rows, switching, i, x, y, shouldSwitch,dir;
+                table = document.getElementById("t");
+                switching = true;
+                // Set the sorting direction to ascending:
+
+
+                while (switching) {
+
+                    switching = false;
+                    rows = table.rows;
+
+                    for (i = 1; i < (rows.length - 1); i++) {
+
+                        shouldSwitch = false;
+
+                        x = rows[i].getElementsByTagName("TD")[4];
+                        y = rows[i + 1].getElementsByTagName("TD")[4];
+
+
+
+                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+
+                            shouldSwitch = true;
+                            break;
+                        } }
+
+                    if (shouldSwitch) {
+
+                        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                        switching = true;
+                    }
+
+
+                }
+            }
+            function TriETAT() {
+                var table, rows, switching, i, x, y, shouldSwitch,dir;
+                table = document.getElementById("t");
+                switching = true;
+                // Set the sorting direction to ascending:
+
+
+                while (switching) {
+
+                    switching = false;
+                    rows = table.rows;
+
+                    for (i = 1; i < (rows.length - 1); i++) {
+
+                        shouldSwitch = false;
+
+                        x = rows[i].getElementsByTagName("TD")[6];
+                        y = rows[i + 1].getElementsByTagName("TD")[6];
 
 
 
@@ -88,32 +212,23 @@
             }
         </script>
         </tbody>
-
-        <tbody id="searchN1">
-        </tbody>
-
     </table>
 
-
+    <ul class="my-pagination">
+        {{ knp_pagination_render(
+            reclamations,
+            '@KnpPaginator/Pagination/twitter_bootstrap_v4_pagination.html.twig',
+            {
+                'queryParam1': 'param1 value',
+                'queryParam2': 'param2 value'
+            },
+            {
+                'viewParam1': 'param1 value',
+                'viewParam2': 'param2 value'
+            },
+        ) }}
+    </ul>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <script>
         $( document ).ready(function() {
             $("#searchN1").keyup(function(e){
@@ -140,7 +255,6 @@
                                 $('#t tbody#all').hide();
                                 $('#t tbody#searchN1').append(
                                     '<tr>'+
-                                    '<td>'+ obj.id +'</td>' +
                                     '<td>'+ obj.nom +'</td>' +
                                     '<td>'+ obj.prenom +'</td>' +
                                     '<td>'+ obj.mail +'</td>' +

@@ -2,12 +2,16 @@
 
 namespace App\Controller;
 
+use App\Data\SearchData;
 use App\Entity\Reclamation;
 use App\Form\ReclamationType;
 use App\Repository\ReclamationRepository;
+use CMEN\GoogleChartsBundle\GoogleCharts\Charts\BarChart;
 use Dompdf\Dompdf;
 use Dompdf\Options;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\SearchType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,9 +26,66 @@ use Symfony\Component\Serializer\Serializer;
 class ReclamationControllerAdmin extends AbstractController
 {
     /**
+     * @Route("/statsReclamation", name="statsReclamation")
+     */
+    public function stats() : Response
+    {
+
+        $p=$this->getDoctrine()->getRepository(Reclamation::class);
+        //year
+        $years = $p->getYear();
+        $data = [['Years', 'Nombre de reclamation']];
+        foreach($years as $year)
+        {
+            $data[] = array($year['year'], $year['post']);
+        }
+
+        $bar1 = new barchart();
+        $bar1->getData()->setArrayToDataTable(
+            $data
+        );
+        $bar1->getOptions()->setTitle('par années');
+        $bar1->getOptions()->getTitleTextStyle()->setColor('#07600');
+        $bar1->getOptions()->getTitleTextStyle()->setFontSize(25);
+
+        //month
+        $months = $p->getMonth();
+        $data = [['Mois', 'Nombre de postulations']];
+        foreach($months as $month)
+        {
+            $data[] = array($month['month'], $month['post']);
+        }
+
+        $bar2 = new barchart();
+        $bar2->getData()->setArrayToDataTable(
+            $data
+        );
+        $bar2->getOptions()->setTitle('par mois');
+        $bar2->getOptions()->getTitleTextStyle()->setColor('#07600');
+        $bar2->getOptions()->getTitleTextStyle()->setFontSize(25);
+
+        //day
+        $days = $p->getDay();
+        $data = [['Années', 'Nombre de postulations']];
+        foreach($days as $day)
+        {
+            $data[] = array($day['day'], $day['post']);
+        }
+
+        $bar3 = new barchart();
+        $bar3->getData()->setArrayToDataTable(
+            $data
+        );
+        $bar3->getOptions()->setTitle('par jour');
+        $bar3->getOptions()->getTitleTextStyle()->setColor('#07600');
+        $bar3->getOptions()->getTitleTextStyle()->setFontSize(25);
+
+        return $this->render('reclamation/stats.html.twig', array('barchart1' => $bar1, 'barchart2' => $bar2,'barchart3' => $bar3));
+    }
+    /**
      * @Route("/searchReclamation ", name="searchReclamation")
      */
-    public function searchReclamation(Request $request,NormalizerInterface $Normalizer): Response
+    public function searchReclamation(Request $request,PaginatorInterface $paginator): Response
     {
         $repository = $this->getDoctrine()->getRepository(Reclamation::class);
         $requestString=$request->get('searchValue');
@@ -44,23 +105,39 @@ class ReclamationControllerAdmin extends AbstractController
                 "etat"=>$v->getEtat()));
         }
 
-
-        //return new JsonResponse($data);
-        return $this->render('reclamation/index.html.twig', [
-            'reclamations' => $reclamation,
-        ]);
+        $reclamation = $paginator->paginate(
+        // Doctrine Query, not results
+            $reclamation,
+            // Define the page parameter
+            $request->query->getInt('page', 1),
+            // Items per page
+            5
+        );
+        return new JsonResponse($data);
+       // return $this->render('reclamation/index.html.twig', [
+         //   'reclamations' => $reclamation,
+        //]);
     }
     /**
-     * @Route("/", name="reclamation_index", methods={"GET"})
+     * @Route("/", name="reclamation_index", methods={"GET","POST"})
      */
-    public function index(): Response
+    public function index(ReclamationRepository $repository,PaginatorInterface $paginator, Request $request): Response
     {
-        $reclamations = $this->getDoctrine()
-            ->getRepository(Reclamation::class)
-            ->findAll();
-
+        $data=new SearchData();
+        $form =$this->createForm(SearchType::class, $data);
+        $form->handleRequest($request);
+        $reclamations = $repository->chercherReclamationParNP($data);
+        $reclamations = $paginator->paginate(
+        // Doctrine Query, not results
+            $reclamations,
+            // Define the page parameter
+            $request->query->getInt('page', 1),
+            // Items per page
+            5
+        );
         return $this->render('reclamation/index.html.twig', [
             'reclamations' => $reclamations,
+            'form'=>$form->createView()
         ]);
     }
 
@@ -169,6 +246,55 @@ class ReclamationControllerAdmin extends AbstractController
             "Attachment" => false
         ]);
     }
+
+    /**
+     * @param Request $request
+     *
+     * @return Response
+     *
+     * @Route("reclamation/search", name="searchAdmin")
+     *
+     */
+    public function searchAdmin(ReclamationRepository $repository, PaginatorInterface $paginator, Request $request)
+    {
+        $requestString = $request->get('searchValue');
+        $reclamation = $repository->findReclamation($requestString);
+
+        $pagination = $paginator->paginate(
+            $reclamation,
+            $request->query->getInt('page', 1), /*page number*/
+            6 /*limit per page*/
+        );
+
+        return $this->render('reclamation/_searchRec.html.twig', [
+            'data' => $reclamation,
+            'pagination' => $pagination,
+        ]);
+    }
+    /**
+     * @Route("/showreclamation", name="showreclamation", methods={"GET","POST"})
+     */
+    public function chercherreclamation(Request $request, ReclamationRepository $reclamationRepository,PaginatorInterface $paginator ): Response
+    {
+        // instance of Data\searchData
+        $data = new SearchRec();
+        $form =$this->createForm(SearchType::class, $data);
+        $form->handleRequest($request);
+        $reservation =$reclamationRepository->chercherReclamationParNP($data);
+        $reservations = $paginator->paginate(
+        // Doctrine Query, not results
+            $reservation,
+            $request->query->getInt('page', 1),
+            5
+        );
+
+        return $this->render('reclamation/index.html.twig', [
+            'reservations' => $reservations,
+            'form' => $form->createView(),
+        ]);
+
+    }
+
 
 
 }

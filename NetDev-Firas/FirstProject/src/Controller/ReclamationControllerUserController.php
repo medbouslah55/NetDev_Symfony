@@ -11,6 +11,7 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -32,7 +33,7 @@ class ReclamationControllerUserController extends AbstractController
    {
         $reclamations = $this->getDoctrine()
               ->getRepository(Reclamation::class)
-             ->findAll();
+              ->ReclamationParDate();
 
 
        $reclamations = $paginator->paginate(
@@ -66,12 +67,8 @@ class ReclamationControllerUserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-
             $date->setDate(2020,05,13);
             $reclamation->getCinMembre(0);
-
-
-
             $message = (new \Swift_Message('Confirmation Réclamation'))
                 ->setFrom('fg7@students.kiron.ngo')
                 ->setTo('firasgacha8@gmail.com')
@@ -93,7 +90,7 @@ class ReclamationControllerUserController extends AbstractController
 
         return $this->render('reclamation_controller_user/new.html.twig', [
             'reclamation' => $reclamation,
-            'formRec' => $form->createView(),
+            'form' => $form->createView(),
         ]);
     }
 
