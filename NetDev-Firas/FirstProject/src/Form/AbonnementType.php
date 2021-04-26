@@ -14,12 +14,7 @@ class AbonnementType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('titre',TextType::class,[
-                'attr'=>[
-                    'label' => 'nom',
-                    'placeholder'=>'titre',
-                ]
-            ])
+            ->add('titre')
             ->add('type')
             ->add('prix')
             ->add('descrAb');

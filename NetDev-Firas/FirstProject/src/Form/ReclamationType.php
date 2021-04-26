@@ -20,6 +20,7 @@ class ReclamationType extends AbstractType
             ->add('type')
             ->add('date')
             ->add('description')
+            ->add('etat')
         ;
     }
 
