@@ -11,7 +11,7 @@
     <div>
         <input id="searchN1" type="text" class="form-control" name="query" placeholder="Chercher" aria-label="search" aria-describedby="search">
     </div>
-<br>
+    <br>
     <div style="width: 150px">
         <h5 class="card-title mb-0">Trier Par :</h5>
     </div>
@@ -22,6 +22,9 @@
             <th><button class="btn btn-primary btn-block" onclick="TriPRENOM()">Prenom</button></th>
             <th><button class="btn btn-primary btn-block" onclick="TriDATE()">Date</button></th>
             <th><button class="btn btn-primary btn-block" onclick="TriETAT()">Etat</button></th>
+            <th>
+                <button onClick="window.location.reload();" class="btn btn-primary shadow-sm"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-refresh-cw align-middle"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg> </button>
+            </th>
         </tr>
         </table>
     </div>

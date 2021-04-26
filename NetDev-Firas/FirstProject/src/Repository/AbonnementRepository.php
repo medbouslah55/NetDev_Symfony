@@ -50,34 +50,34 @@ class AbonnementRepository extends ServiceEntityRepository
         ;
     }
     */
-    public function findSearch(SearchData $search)
+    public function findSearch($search)
     {
         $query = $this
             ->createQueryBuilder('abonnement');
 
-        if (!empty($search->abonnements)) {
-            $query = $query
-                ->andWhere('abonnement.id IN (:abonnement)')
-                ->setParameter('abonnement', $search->abonnements);
-        }
+        //if (!empty($search->abonnements)) {
+        //      $query = $query
+        //          ->andWhere('abonnement.id IN (:abonnement)')
+        //           ->setParameter('abonnement', $search->abonnements);
+        //  }
 
         if (!empty($search->q)) {
             $query = $query
                 ->where('abonnement.titre LIKE :title')
                 ->orWhere('abonnement.type LIKE :title')
                 ->orWhere('abonnement.prix LIKE :title')
-                ->setParameter('title', '%'.$search->q.'%');
+                ->setParameter('title', $search->q);
         }
         if (!empty($search->min)) {
             $query = $query
                 ->where('abonnement.prix >= :title')
-                ->setParameter('title', '%'.$search->min.'%');
+                ->setParameter('title', $search->min);
         }
 
         if (!empty($search->max)) {
             $query = $query
                 ->where('abonnement.prix <= :title')
-                ->setParameter('title', '%'.$search->max.'%');
+                ->setParameter('title', $search->max);
         }
         return $query->getQuery() ->getResult();
     }

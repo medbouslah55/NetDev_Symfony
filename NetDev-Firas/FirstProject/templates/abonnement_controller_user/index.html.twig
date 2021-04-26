@@ -36,7 +36,7 @@
 #}
 {% block body %}
     <!DOCTYPE html>
-    <html lang="en">
+    <html lang="en" xmlns="http://www.w3.org/1999/html">
 
     <head>
         <meta charset="UTF-8">
@@ -89,8 +89,9 @@
         <!-- Start of .latest-news-4 -->
 
             <div class="col-md-3">
-                {% include 'abonnement_controller_user/_filter.html.twig' with {form: form} only %}
+                {# {% include 'abonnement_controller_user/_filter.html.twig' with {form: form} only %} #}
             </div>
+
         <div class="col-md-9">
             <section class="latest-news-4 mian-blog">
                 <div class="main-blog__bg">
@@ -105,58 +106,65 @@
                     <div class="sidebar">
                         <div class="blog-sidebar">
                             <div class="categories">
+                                    <div class="container">
+
+                                        <div class="form-block">
+                                            <form id="formulaire" {{ form_start(form, {attr: {class: 'filter'}}) }}
+                                            <span class="d-block">
+                    {{ form_errors(form.q) }}
+                                                {{ form_widget(form.q, {'attr' : { 'class' : 'form__block-input reservation-padding' , 'placeholder' :'Chercher'}}) }}
+                </span>
+                                            <span>
+                    {{ form_errors(form.min) }}
+                                                {{ form_widget(form.min, {'attr' : { 'class' : 'form__block-input reservation-padding' , 'placeholder' :'Min'}}) }}
+                                                {{ form_errors(form.max) }}
+                                                {{ form_widget(form.max, {'attr' : { 'class' : 'form__block-input reservation-padding' , 'placeholder' :'Max'}}) }}
+                </span>
+                                            <div>
+                                                <button type="submit" class="btn btn-primary" >Filtrer</button>
+                                            </div>
+                                            <br>
+                                            <br>
+                                            <div>
+                                                <button type="reset" class="btn btn-primary">Vider Les champs</button>
+                                            </div>
+                                            </form>
+                                            {{ form_end(form) }}
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="categories">
                                 <h1 class="blog-sidebar-title">categories</h1>
                                 <ul class="lists">
+                                    {% for abonnement in abonnements %}
                                     <li class="item">
                                         <a href="#">
-                                            <span class="name">Urology</span>
-                                            <span class="count">03</span>
+                                            <span class="name">{{ abonnement.titre }}</span>
                                         </a>
                                     </li>
-                                    <li class="item">
-                                        <a href="#">
-                                            <span class="name">New Technology</span>
-                                            <span class="count">18</span>
-                                        </a>
-                                    </li>
-                                    <li class="item">
-                                        <a href="#">
-                                            <span class="name">Emergency Services</span>
-                                            <span class="count">32</span>
-                                        </a>
-                                    </li>
+                                    {% endfor %}
                                 </ul>
                             </div>
-                        {{ form_end(form) }}
                             <div class="instagram">
                                 <h1 class="blog-sidebar-title">instagram</h1>
                                 <div class="items">
                                     <a href="#" class="item">
-                                        <img src="./images/jpg/instagram1.jpg">
+                                        <img src="{{ asset('./images/m1.jpg') }}">
                                     </a>
                                     <a href="#" class="item">
-                                        <img src="./images/jpg/instagram2.jpg">
+                                        <img src="{{ asset('./images/y1.jpg') }}">
                                     </a>
                                     <a href="#" class="item">
-                                        <img src="./images/jpg/instagram3.jpg">
+                                        <img src="{{ asset('./images/m2.jpeg') }}">
                                     </a>
                                     <a href="#" class="item">
-                                        <img src="./images/jpg/instagram4.jpg">
+                                        <img src="{{ asset('./images/y2.jpg') }}">
                                     </a>
                                     <a href="#" class="item">
-                                        <img src="./images/jpg/instagram5.jpg">
+                                        <img src="{{ asset('./images/m3.jpg') }}">
                                     </a>
                                     <a href="#" class="item">
-                                        <img src="./images/jpg/instagram6.jpg">
-                                    </a>
-                                    <a href="#" class="item">
-                                        <img src="./images/jpg/instagram7.jpg">
-                                    </a>
-                                    <a href="#" class="item">
-                                        <img src="./images/jpg/instagram8.jpg">
-                                    </a>
-                                    <a href="#" class="item">
-                                        <img src="./images/jpg/instagram9.jpg">
+                                        <img src="{{ asset('./images/y3.jpg') }}">
                                     </a>
                                 </div>
                             </div>
@@ -267,7 +275,6 @@
     </div>
 
     <!-- Scripts + Jquery plagins -->
-
     <!-- .preloader  -->
     <script src="./js/my-preloader.js"></script>
 

@@ -117,4 +117,11 @@ class ReclamationRepository extends ServiceEntityRepository
         return $qb->getQuery()
             ->getResult();
     }
+    public function  getTypeRec(){
+        $qb = $this->createQueryBuilder('v')
+            ->select(' count(v.type) AS post, SUBSTRING(v.date, 1, 10) AS type')
+            ->groupBy('type');
+        return $qb->getQuery()
+            ->getResult();
+    }
 }

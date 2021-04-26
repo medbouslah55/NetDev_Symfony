@@ -26,13 +26,6 @@ class SearchForm extends AbstractType
                     'placeholder' => 'Rechercher'
                 ]
             ])
-            ->add('abonnements', EntityType::class, [
-                'label' => false,
-                'required' => false,
-                'class' => Abonnement::class,
-                'expanded' => true,
-                'multiple' => true
-            ])
             ->add('min', NumberType::class, [
                 'label' => false,
                 'required' => false,

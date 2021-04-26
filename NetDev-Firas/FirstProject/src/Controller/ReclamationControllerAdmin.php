@@ -7,6 +7,7 @@ use App\Entity\Reclamation;
 use App\Form\ReclamationType;
 use App\Repository\ReclamationRepository;
 use CMEN\GoogleChartsBundle\GoogleCharts\Charts\BarChart;
+use CMEN\GoogleChartsBundle\GoogleCharts\Charts\LineChart;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 use Knp\Component\Pager\PaginatorInterface;
@@ -32,6 +33,20 @@ class ReclamationControllerAdmin extends AbstractController
     {
 
         $p=$this->getDoctrine()->getRepository(Reclamation::class);
+        //type
+        $type= $p->getTypeRec();
+        $data = [['type', 'Reclamation']];
+        foreach ($type as $types)
+        {
+            $data[] = array($types['post'], $types['type']);
+        }
+        $line = new lineChart();
+        $line->getData()->setArrayToDataTable(
+            $data
+        );
+        $line->getOptions()->setTitle('Classification Par Type');
+        $line->getOptions()->getTitleTextStyle()->setColor('#F44455');
+        $line->getOptions()->getTitleTextStyle()->setFontSize(25);
         //year
         $years = $p->getYear();
         $data = [['Years', 'Nombre de reclamation']];
@@ -40,47 +55,47 @@ class ReclamationControllerAdmin extends AbstractController
             $data[] = array($year['year'], $year['post']);
         }
 
-        $bar1 = new barchart();
+        $bar1 = new BarChart();
         $bar1->getData()->setArrayToDataTable(
             $data
         );
-        $bar1->getOptions()->setTitle('par années');
-        $bar1->getOptions()->getTitleTextStyle()->setColor('#07600');
+        $bar1->getOptions()->setTitle('Par Années');
+        $bar1->getOptions()->getTitleTextStyle()->setColor('#354052');
         $bar1->getOptions()->getTitleTextStyle()->setFontSize(25);
 
         //month
         $months = $p->getMonth();
-        $data = [['Mois', 'Nombre de postulations']];
+        $data = [['Mois', 'Nombre de reclamation']];
         foreach($months as $month)
         {
             $data[] = array($month['month'], $month['post']);
         }
 
-        $bar2 = new barchart();
+        $bar2 = new BarChart();
         $bar2->getData()->setArrayToDataTable(
             $data
         );
-        $bar2->getOptions()->setTitle('par mois');
-        $bar2->getOptions()->getTitleTextStyle()->setColor('#07600');
+        $bar2->getOptions()->setTitle('Par Mois');
+        $bar2->getOptions()->getTitleTextStyle()->setColor('#FCC100');
         $bar2->getOptions()->getTitleTextStyle()->setFontSize(25);
 
         //day
         $days = $p->getDay();
-        $data = [['Années', 'Nombre de postulations']];
+        $data = [['Années', 'Nombre de reclamation']];
         foreach($days as $day)
         {
             $data[] = array($day['day'], $day['post']);
         }
 
-        $bar3 = new barchart();
+        $bar3 = new BarChart();
         $bar3->getData()->setArrayToDataTable(
             $data
         );
-        $bar3->getOptions()->setTitle('par jour');
-        $bar3->getOptions()->getTitleTextStyle()->setColor('#07600');
+        $bar3->getOptions()->setTitle('Par Jour');
+        $bar3->getOptions()->getTitleTextStyle()->setColor('#47BAC1');
         $bar3->getOptions()->getTitleTextStyle()->setFontSize(25);
 
-        return $this->render('reclamation/stats.html.twig', array('barchart1' => $bar1, 'barchart2' => $bar2,'barchart3' => $bar3));
+        return $this->render('reclamation/stats.html.twig', array('barchart1' => $bar1, 'barchart2' => $bar2,'barchart3' => $bar3,'linechart'=>$line));
     }
     /**
      * @Route("/searchReclamation ", name="searchReclamation")
