@@ -41,10 +41,15 @@
                         {{ form_widget(form.cinMembre, {'attr' : { 'class' : 'form__block-input reservation-dropdown' }}) }}
                      </span>
                 {% endif %}
-                    <button type="submit" class="btn btn_blue">RESERVER !</button>
-
+                <div class="g-recaptcha" data-sitekey="6Ldo344aAAAAAMx1gqWork-4AZ9a1UXppWsFTPrn" name="recaptcha"></div>
+                <button type="submit" class="btn btn_blue">RESERVER !</button>
                 {{ form_end(form) }}
             </div>
+            {% if error is defined %}
+               <div class="captcha-error">
+                   <h3>Priére de verifier le CAPTCHA avant de Réserver</h3>
+               </div>
+            {% endif %}
         </div>
         {#{% if not form.vars.valid %}
             <ul>
@@ -77,5 +82,15 @@
         @media (max-width: 600px) {
 
         }
+        .captcha-error {
+            margin-top: 30px;
+            color : #fff;
+            background-color: #db106f;
+            padding: 5px;
+            border-radius: 0.5em;
+        }
+
     </style>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 {% endblock %}

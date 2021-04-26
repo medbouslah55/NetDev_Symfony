@@ -56,13 +56,43 @@ class ReservationRepository extends ServiceEntityRepository
         $query = $this->createQueryBuilder('reservation')
             ->where('reservation.nom LIKE :title')
             ->orWhere('reservation.prenom LIKE :title')
-           ->setParameter('title', "%{$data->q}%")
-            ->orderBy($tri, 'ASC');
+           ->setParameter('title', "%{$data->q}%");
+            if (!empty($data->gettri())){
+                $query = $query
+                ->orderBy($tri);
+            }
+
 
         return $query->getQuery() ->getResult();
 
     }
+    public function getMonth()
+    {
 
+        $qb = $this->createQueryBuilder('v')
+            ->select('COUNT(v.idReservation) AS post, SUBSTRING(v.dateAct, 1, 7) AS month')
+            ->groupBy('month');
+        return $qb->getQuery()
+            ->getResult();
+    }
+    public function getYear()
+    {
+
+        $qb = $this->createQueryBuilder('v')
+            ->select('COUNT(v.idReservation) AS post, SUBSTRING(v.dateAct, 1, 4) AS year')
+            ->groupBy('year');
+        return $qb->getQuery()
+            ->getResult();
+    }
+    public function getDay()
+    {
+
+        $qb = $this->createQueryBuilder('v')
+            ->select('COUNT(v.idReservation) AS post, SUBSTRING(v.dateAct, 1, 10) AS day')
+            ->groupBy('day');
+        return $qb->getQuery()
+            ->getResult();
+    }
 
 
 

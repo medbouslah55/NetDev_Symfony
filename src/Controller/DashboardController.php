@@ -17,6 +17,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use Knp\Component\Pager\PaginatorInterface;
 use App\Data\SearchData;
 use App\Form\SearchType;
+use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
+use Symfony\Component\HttpFoundation\Session\Session;
+
 class DashboardController extends AbstractController
 {
 
@@ -36,6 +39,7 @@ class DashboardController extends AbstractController
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($reservation);
@@ -53,7 +57,7 @@ class DashboardController extends AbstractController
     /**
      * @Route("/newreservation/{id}", name="newreservation", methods={"GET","POST"})
      */
-    public function newReservation(Activite $id ,Request $request, ActiviteRepository $activiteRepository , PanierRepository $panierRepository , MembreRepository $membreRepository ): Response
+    public function newReservation(Session $session ,Activite $id ,Request $request, ActiviteRepository $activiteRepository , PanierRepository $panierRepository , MembreRepository $membreRepository ): Response
     {
         $membre = $membreRepository->findAll()[0];
         $panier = $panierRepository->findAll()[0];
@@ -66,8 +70,19 @@ class DashboardController extends AbstractController
         $reservation->setIdPanier($panier);
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
+        $recaptcha = $request->request->get('g-recaptcha-response');
 
-        if ($form->isSubmitted() && $form->isValid()) {
+
+        if ($form->isSubmitted() && $form->isValid() ) {
+            if(!$recaptcha){
+                $error = true;
+                return $this->render('front/Reservation/addReservation.html.twig', [
+                    'reservation' => $reservation,
+                    'form' => $form->createView(),
+                    'error' => $error,
+                ]);
+
+            } else {
             $res = $request->request->get('reservation');
             $nbPlace = (int)$res["nbPlace"];
             $newCapacite = $activite->getCapacite() - $nbPlace;
@@ -75,12 +90,14 @@ class DashboardController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($reservation);
             $entityManager->flush();
+            $session->set('nbPlace' , $nbPlace);
+            $session->set('price' , $activite->getPrixReservation());
+            $session->set('nomAct' , $activite->getNomAct());
 
-            return $this->render('front/checkout/index.html.twig' , [
-                'nbPlace' => $nbPlace,
-                'nomAct' => $activite->getNomAct(),
-                'price' => $activite->getPrixReservation()
-            ]);
+
+
+                return $this->redirectToRoute('check' );
+            }
         }
 
         return $this->render('front/Reservation/addReservation.html.twig', [

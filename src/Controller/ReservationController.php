@@ -11,7 +11,9 @@ use App\Repository\ActiviteRepository;
 use App\Repository\MembreRepository;
 use App\Repository\PanierRepository;
 use App\Repository\ReservationRepository;
+use CMEN\GoogleChartsBundle\GoogleCharts\Charts\BarChart;
 use Doctrine\ORM\EntityManager;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,15 +27,80 @@ class ReservationController extends AbstractController
     /**
      * @Route("/show", name="reservation_index", methods={"GET"})
      */
-    public function index(): Response
+    public function index(Request $request,PaginatorInterface $paginator,ReservationRepository $reservationRepository): Response
     {
-        $reservations = $this->getDoctrine()
-            ->getRepository(Reservation::class)
-            ->findAll();
+
+
+        $reservation =$reservationRepository->findAll();
+        $reservations = $paginator->paginate(
+        // Doctrine Query, not results
+            $reservation,
+            $request->query->getInt('page', 1),
+            5
+        );
 
         return $this->render('admin/reservation/index.html.twig', [
             'reservations' => $reservations,
         ]);
+    }
+
+    /**
+     * @Route("/stats", name="statsreservation")
+     */
+    public function stats() : Response
+    {
+
+        $p=$this->getDoctrine()->getRepository(Reservation::class);
+        //year
+        $years = $p->getYear();
+        $data = [['Years', 'Nombre de reservations']];
+        foreach($years as $year)
+        {
+            $data[] = array($year['year'], $year['post']);
+        }
+
+        $bar1 = new barchart();
+        $bar1->getData()->setArrayToDataTable(
+            $data
+        );
+        $bar1->getOptions()->setTitle('par années');
+        $bar1->getOptions()->getTitleTextStyle()->setColor('#07600');
+        $bar1->getOptions()->getTitleTextStyle()->setFontSize(25);
+
+        //month
+        $months = $p->getMonth();
+        $data = [['Mois', 'Nombre de reservations']];
+        foreach($months as $month)
+        {
+            $data[] = array($month['month'], $month['post']);
+        }
+
+        $bar2 = new barchart();
+        $bar2->getData()->setArrayToDataTable(
+            $data
+        );
+        $bar2->getOptions()->setTitle('par mois');
+        $bar2->getOptions()->getTitleTextStyle()->setColor('#07600');
+        $bar2->getOptions()->getTitleTextStyle()->setFontSize(25);
+
+        //day
+        $days = $p->getDay();
+        $data = [['Années', 'Nombre de reservations']];
+        foreach($days as $day)
+        {
+            $data[] = array($day['day'], $day['post']);
+        }
+
+        $bar3 = new barchart();
+        $bar3->getData()->setArrayToDataTable(
+            $data
+        );
+        $bar3->getOptions()->setTitle('par jour');
+        $bar3->getOptions()->getTitleTextStyle()->setColor('#07600');
+        $bar3->getOptions()->getTitleTextStyle()->setFontSize(25);
+
+
+        return $this->render('admin/reservation/stats.html.twig', array('barchart1' => $bar1, 'barchart2' => $bar2,'barchart3' => $bar3));
     }
 
     /**
@@ -109,6 +176,8 @@ class ReservationController extends AbstractController
 
         return $this->redirectToRoute('reservation_index');
     }
+
+
 
 
 }

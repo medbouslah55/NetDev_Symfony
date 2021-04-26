@@ -11,8 +11,8 @@
                 <img src="./images/png-shapes/specialists__left-bottom-shape.png">
             </div>
         </div>
-        <form class="shop-checkout container container_right-sidebar">
-            <div class="article">
+        <form class="shop-checkout container container_right-sidebar" method="post">
+           {#  <div class="article">
                 <h1 class="title">Billing Details</h1>
                 <div class="form-block">
                     <div class="form-row">
@@ -123,7 +123,7 @@
                         <textarea id="textarea" class="form-control" placeholder="Notes about your order, e.g. special notes for delivery"></textarea>
                     </div>
                 </div>
-            </div>
+            </div> #}
             <div class="sidebar">
                 <div class="checkout-sidebar">
                     <h1 class="title">Your Order</h1>
@@ -202,7 +202,7 @@
                                                 condition<span>*</span></a></span>
                                 </label>
                             </div>
-                            <button type="submit" href="#">place order</button>
+                            <button type="submit" href="{{ path('checkout') }}">place order</button>
                         </div>
                     </div>
                 </div>

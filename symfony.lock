@@ -1,4 +1,7 @@
 {
+    "cmen/google-charts-bundle": {
+        "version": "4.0.0"
+    },
     "composer/package-versions-deprecated": {
         "version": "1.11.99.1"
     },
@@ -85,8 +88,30 @@
     "egulias/email-validator": {
         "version": "3.1.1"
     },
+    "excelwebzone/recaptcha-bundle": {
+        "version": "1.5",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.5",
+            "ref": "fd4da7bc71749db65bc83abf5d164bfa9c839cf4"
+        },
+        "files": [
+            "./config/packages/dev/ewz_recaptcha.yaml",
+            "./config/packages/ewz_recaptcha.yaml"
+        ]
+    },
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.3"
+    },
+    "google/recaptcha": {
+        "version": "1.1",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.1",
+            "ref": "d087df3e087f50da3955f2def05079380da5894b"
+        }
     },
     "knplabs/knp-components": {
         "version": "v2.5.1"
@@ -141,6 +166,9 @@
         "files": [
             "./config/packages/sensio_framework_extra.yaml"
         ]
+    },
+    "stripe/stripe-php": {
+        "version": "v7.77.0"
     },
     "symfony/asset": {
         "version": "v4.4.20"

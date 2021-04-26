@@ -109,6 +109,10 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/annotations" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/knplabs/knp-paginator-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/knplabs/knp-components" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/cmen/google-charts-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/google/recaptcha" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/excelwebzone/recaptcha-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/stripe/stripe-php" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
