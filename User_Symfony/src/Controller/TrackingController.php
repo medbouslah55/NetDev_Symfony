@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 /**
  * @Route("/tracking")
@@ -31,13 +32,14 @@ class TrackingController extends AbstractController
     /**
      * @Route("/new", name="tracking_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request,TokenStorageInterface $storage): Response
     {
         $tracking = new Tracking();
         $form = $this->createForm(TrackingType::class, $tracking);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $tracking->setCinMembre($storage->getToken()->getUser());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($tracking);
             $entityManager->flush();

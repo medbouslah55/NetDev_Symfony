@@ -14,7 +14,7 @@ class TrackingType extends AbstractType
         $builder
             ->add('oldPoids')
             ->add('imc')
-            ->add('cinMembre')
+
         ;
     }
 
