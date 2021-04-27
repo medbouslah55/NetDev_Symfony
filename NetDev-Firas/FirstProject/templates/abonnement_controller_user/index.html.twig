@@ -187,7 +187,7 @@
 
                     <div class="article">
                         {% for abonnement in abonnements %}
-                            <a href="blog-details_right.html" class="item">
+                            <div class="item">
                                 <div class="img">
                                     {% if abonnement.type == "Gold" %}
                                         <img src="{{ asset('./images/gold.jpg') }}" alt="Girl in a jacket" width="30" height="30">
@@ -203,9 +203,9 @@
                                 <p class="text">
                                     {{ abonnement.descrAb }}
                                 </p>
-                                <span class="read-more-2" href="#">Achéter</span>
-                                <span class="read-more-2" href="{{ path('abonnement_controller_user_show', {'id': abonnement.id}) }}">Afficher</span>
-                            </a>
+                                <a class="read-more-2" href="#">Achéter</a>
+                                <a class="read-more-2" href="{{ path('abonnement_controller_user_show', {'id': abonnement.id}) }}">Afficher</a>
+                            </div>
                         {% endfor %}
                     </div>
 
