@@ -1,7 +1,17 @@
 window.onload = () => {
     // Variables
     let stripe = Stripe('pk_test_51IZ0qiCipLoFwRXwTLZD2bGhlNh2GxONNp5hTqyXKEF27buRhMzxkCzlQGHh294IpyXpPPmbuIkGa3SlPZOmojaI009dQrsPGU')
-    let elements = stripe.elements()
+    var elements = stripe.elements({
+        fonts: [
+            {
+                cssSrc: 'https://fonts.googleapis.com/css?family=Roboto',
+            },
+        ],
+        // Stripe's examples are localized to specific languages, but if
+        // you wish to have Elements automatically detect your user's locale,
+        // use `locale: 'auto'` instead.
+        locale: window.__exampleLocale
+    });
     let redirect = "/"
 
 
@@ -13,7 +23,30 @@ window.onload = () => {
     console.log(document.referrer);
 
     // Crée les éléments du formulaire de carte bancaire
-    let card  = elements.create("card");
+    var card = elements.create('card', {
+        iconStyle: 'solid',
+        style: {
+            base: {
+                iconColor: '#1f3d9d',
+                color: '#000',
+                fontWeight: 500,
+                fontFamily: 'Roboto, Open Sans, Segoe UI, sans-serif',
+                fontSize: '16px',
+                fontSmoothing: 'antialiased',
+
+                ':-webkit-autofill': {
+                    color: '#fce883',
+                },
+                '::placeholder': {
+                    color: '#1f3d9d',
+                },
+            },
+            invalid: {
+                iconColor: '#FFC7EE',
+                color: '#FFC7EE',
+            },
+        },
+    });
     card.mount("#card-elements")
 
     //gerer  la saisie

@@ -1,8 +1,7 @@
-<!DOCTYPE html>
-
-<title>Hello CheckoutController!</title>
 
 {% block body %}
+
+
     <html lang="fr">
     <head>
         <meta charset="UTF-8">
@@ -23,10 +22,10 @@
 				</div> #}
         </div>
         <form class="post" id="login-form">
-            <div id="errors"></div>
+            <div class="background"></div>
             <!--contiendra les messages d'erreurs de payment-->
             <div class="form-group">
-                <input type="text" id="cardholder-name" placeholder="titulaire de la carte" class="form-control is-valid">
+                <input type="text" id="cardholder-name"  placeholder="titulaire de la carte" class="form-control is-valid">
             </div>
             <div class="form-group">
                 <div id="card-elements" class="form-control is-invalid"></div>
@@ -38,9 +37,52 @@
             </button>
         </form>
     </div>
+
     <script src="https://js.stripe.com/v3/"></script>
     <script src="/js/scripts.js"></script>
+    <script src="/front/assets/js/stripe.js"></script>
 
     </body>
     </html>
+<style>
+    *, body {
+        background-color: #f2f2f2;
+    }
+    .post{
+        width: 500px;
+        margin-left: 32.5%;
+        margin-top: 15%;
+
+    }
+    input {
+        margin-bottom: 30px;
+        padding-top: 7px;
+        padding-bottom: 7px;
+        width : 490px;
+
+    }
+    button {
+        margin-top: 30px;
+        width : 490px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        background-color: #f22283;
+        color: #fff;
+        border-radius: 3%;
+        border-color: transparent;
+        font-weight: bold;
+    }
+
+    #card-errors {
+        padding-left: 567px;
+        padding-top: 181px;
+        z-index: 99;
+        position: absolute;
+        background-color: transparent;
+        font-weight: bold;
+        font-size: 20px;
+    }
+
+</style>
+
 {% endblock %}
