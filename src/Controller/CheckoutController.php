@@ -22,7 +22,7 @@ class CheckoutController extends AbstractController
         $nomAct = $session->get('nomAct') ;
         $total = $nbPlace * $price;
 
-        require_once('C:\Users\trabe\Desktop\Integration_Web\vendor\autoload.php');
+        require_once('C:\xampp\htdocs\Integration_Web\NetDev_Symfony\vendor\autoload.php');
 
         $prix = $total;
 

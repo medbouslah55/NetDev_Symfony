@@ -1,0 +1,20 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}SMS Centre{% endblock %}
+
+{% block body %}
+<div class="container">
+    <form action="{{path('sms') }}" method="GET">
+        <label for="nom">Nom Centre</label>
+        <input class="form-control" type="text" id="nom" name="nom"  value="{{ centre.nomCentre }}" readonly><br>
+
+        <label for="tel">Numéro centre</label>
+        <input class="form-control" type="text" id="tel" name="tel"  value="{{ centre.telCentre }}" readonly><br>
+        
+        <label for="msg">Message</label>
+        <textarea  class="form-control" id="msg" name="msg" placeholder="Veuillez saisir votre message.." style="height:200px"></textarea>
+        <input class="btn btn-success" type="submit" value="Envoyer SMS" />
+    </form>
+    {# <div class="mt-3 mb-3">    <a class="btn btn-success" href="{{path('PDF') }}">  PDF </a></div>#}
+</div>
+{% endblock %}

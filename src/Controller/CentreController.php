@@ -2,20 +2,21 @@
 
 namespace App\Controller;
 
-use App\Entity\Activite;
-use App\Entity\Centre;
-use App\Form\CentreType;
-use App\Repository\ActiviteRepository;
-use App\Repository\CentreRepository;
-use MercurySeries\FlashyBundle\FlashyNotifier;
-use Ob\HighchartsBundle\Highcharts\Highchart;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Dompdf\Dompdf;
 use Dompdf\Options;
+use App\Entity\Centre;
+use Twilio\Rest\Client;
+use App\Entity\Activite;
+use App\Form\CentreType;
+use App\Repository\CentreRepository;
+use App\Repository\ActiviteRepository;
+use Ob\HighchartsBundle\Highcharts\Highchart;
+use Symfony\Component\HttpFoundation\Request;
+use MercurySeries\FlashyBundle\FlashyNotifier;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 
 /**
@@ -49,6 +50,51 @@ private static $nb;
         self::$nb = $nb;
     }
 
+/**
+     *
+     * @Route("/sms/{idCentre}", name="smsinter")
+     *  @throws \Twilio\Exceptions\TwilioException
+     */
+    public function smsinter(Centre $centre)
+    {
+        return $this->render('admin/centre/sms.html.twig', [
+            'centre' => $centre,
+        ]);
+
+
+    }
+    /**
+     *
+     * @Route("/sms", name="sms")
+     *  @throws \Twilio\Exceptions\TwilioException
+     */
+    public function sms(Request $request ,FlashyNotifier $flashy)
+    {
+        $tel = $request->query->get('tel');
+        $nom = $request->query->get('nom');
+        $msg = $request->query->get('msg');
+        $sid = "AC92ac579b17df5817b6d5a235f882587e"; // Your Account SID from www.twilio.com/console
+        $token = "b1704eaf6715336414d975619246d5b9"; // Your Auth Token from www.twilio.com/console
+
+        $client = new Client($sid, $token);
+        $centres = $this->getDoctrine()
+            ->getRepository(Centre::class)
+            ->findAll();
+       $message = $client->messages->create(
+      '+216'.$tel, // Text this number
+         [
+            'from' => '+19312884448', // From a valid Twilio number
+            'body' => $msg
+         ]
+        );
+
+      print $message->sid;
+
+        $flashy->success('SMS envoyé avec succès au centre '.$nom.'!');
+        return $this->render('admin/centre/index.html.twig', [
+            'centres' => $centres,
+        ]);
+    }
 
 
 
