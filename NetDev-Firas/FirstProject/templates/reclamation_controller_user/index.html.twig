@@ -45,12 +45,11 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">
-                        <label for="etat">Filtre etat</label>
-                        <select id="etat"  class="form__block-input">
-                            <option></option>
-                            <option>En cours</option>
-                            <option>Traiter</option>
-                        </select>
+                        {% for message in app.flashes('info') %}
+                            <div class="alert alert-success" style="width: 300px;" >
+                                {{ message }}
+                            </div>
+                        {% endfor %}
                     </div>
                 </div>
 

@@ -11,6 +11,12 @@
         <input id="searchN1" type="text" class="form-control" name="query" placeholder="Chercher" aria-label="search" aria-describedby="search">
     </div>
     <br>
+    {% for message in app.flashes('info') %}
+        <div class="alert alert-success" style="width: 300px;" >
+            {{ message }}
+        </div>
+    {% endfor %}
+    <br>
     <div style="width: 150px">
         <h5 class="card-title mb-0">Trier Par :</h5>
     </div>

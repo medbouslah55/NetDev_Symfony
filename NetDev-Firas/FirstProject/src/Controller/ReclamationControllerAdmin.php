@@ -201,6 +201,10 @@ class ReclamationControllerAdmin extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            $this->addFlash(
+                'info',
+                'Votre Réclamation a été modifier avec succès !'
+            );
 
             return $this->redirectToRoute('reclamation_index');
         }
