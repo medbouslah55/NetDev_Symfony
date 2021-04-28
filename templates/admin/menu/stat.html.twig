@@ -1,0 +1,16 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Statistique{% endblock %}
+
+{% block body %}
+<div class="container p-5">
+    <div id="linechart" style="min-width: 1000px; height: 600px; margin: 0 auto"></div>
+</div>
+
+<script script src="//code.highcharts.com/4.1.8/highcharts.js"></script>
+<script src="//code.highcharts.com/4.1.8/modules/exporting.js"></script>
+<script type="text/javascript">
+    {{ chart(chart) }}
+</script>
+    
+{% endblock %}

@@ -1,0 +1,19 @@
+{% for menus in pagination %}
+    <a href="{{ path('menus_front', {'id': app.request.get('id')}) }}" class="specialists__item p-5">
+        <div class="inner-block">
+            <div class="img">
+                <img src="{{ asset('./admin/img/menu/' ~ menus.matinImg) }}">
+            </div>
+            <h1 class="name">Menu Jour N°{{menus.numJour}}</h1>
+            <h4 class="proffesia">Menu : {{ menus.description}}</h4>
+            <ul class="work-date">
+                <li><span>Matin - {{ menus.matin }}</span></li>
+                <li><span>Déjeuner - {{ menus.dejeuner }}</span></li>
+                <li><span>Dinner - {{ menus.dinner }}</span></li>
+            </ul>
+            <span class="btn-2 btn-2_blue">
+                Consulter<i class="fa fa-angle-right"></i>
+            </span>
+        </div>
+    </a>
+{% endfor %}

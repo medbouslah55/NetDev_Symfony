@@ -1,0 +1,19 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}New Centre{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet"  href="{{ asset('bundles/mercuryseriesflashy/css/flashy.css') }}">
+{% endblock %}
+{% block body %}
+    <h1>L'ajout d'un nouveau centre</h1>
+
+    {{ include('admin/centre/_form.html.twig') }}
+
+    <a href="{{ path('centre_index') }}">Retour à la liste</a>
+    <!-- Flashy depends on jQuery -->
+    <script src="//code.jquery.com/jquery.js"></script>
+    <!-- Load Flashy default JavaScript -->
+    <script src="{{ asset ('bundles/mercuryseriesflashy/js/flashy.js') }}"></script>
+    <!-- Include Flashy default partial -->
+    {{ include ('@MercurySeriesFlashy/flashy.html.twig') }}
+{% endblock %}

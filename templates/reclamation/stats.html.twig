@@ -1,0 +1,25 @@
+{% extends 'baseAdmin.html.twig' %}
+{% block title %}Stats Reclamation{% endblock %}
+{% block body %}
+    <h3>Nombre de reclamation:</h3>
+
+    <div id="div_chart1"></div>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        {{ gc_draw(barchart1, 'div_chart1') }}
+    </script>
+
+    <div id="div_chart2"></div>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        {{ gc_draw(barchart2, 'div_chart2') }}
+    </script>
+
+    <div id="div_chart3"></div>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        {{ gc_draw(barchart3, 'div_chart3') }}
+    </script>
+{% endblock %}

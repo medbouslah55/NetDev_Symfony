@@ -1,0 +1,15 @@
+{#
+{{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+    {{ form_widget(form) }}
+<button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
+#}
+
+
+{{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+  {{ form_row(form.titre) }}
+  {{ form_row(form.type) }}
+  {{ form_row(form.prix) }}
+  {{ form_row(form.descrAb) }}
+<div class="text-center" style="padding-top: 1rem"><button type="submit" class="reservationBtn">{{ button_label|default('Ajouter') }}</button></div>
+{{ form_end(form) }}

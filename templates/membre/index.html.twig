@@ -1,0 +1,115 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Membre index{% endblock %}
+
+{% block body %}
+    <main class="content">
+        <div class="container-fluid p-0">
+
+            <h1 class="h3 mb-3">Membres</h1>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-actions float-right">
+                                <div class="dropdown show">
+                                    <a href="#" data-toggle="dropdown" data-display="static">
+                                        <i class="align-middle" data-feather="more-horizontal"></i>
+                                    </a>
+
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item" href="#">Action</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <h5 class="card-title mb-0">Membres</h5>
+                        </div>
+                        <script type="text/javascript">
+                            function imprimer_page(){
+                                window.print();
+                            }
+                        </script>
+                        <form>
+                            <input id="impression" class="js-programmatic-set-val btn btn-outline-primary mr-1 mb-1s" name="impression" type="button" onclick="imprimer_page()" value="Print this page" />
+                        </form>
+                        <div class="container d-flex align-items-center mt-5">
+                            <input class="form-control" type="search" id="search" placeholder="Search by Nom">
+                            <a href="{{ path('search') }}"><i class="fa fa-sort"></i></a>
+                        </div>
+
+                        <div class="card-body">
+                            <table id="datatables-clients" class="table table-striped" style="width:100%">
+                                <thead>
+                                <tr>
+                                    <th>Cin</th>
+                                    <th>Nom</th>
+                                    <th>Prenom</th>
+                                    <th>Sexe</th>
+                                    <th>Datee</th>
+                                    <th>Taille</th>
+                                    <th>Poids</th>
+                                    <th>Email</th>
+
+                                    <th>Telephone</th>
+
+                                    <th>Supprimer</th>
+                                </tr>
+                                </thead>
+                                <tbody id="all">
+                                {% include 'membre/search.html.twig' %}
+                                <div class="nk-pagination nk-pagination-center">
+                                    {{ knp_pagination_render(membres) }}
+
+                                </div>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>Cin</th>
+                                    <th>Nom</th>
+                                    <th>Prenom</th>
+                                    <th>Sexe</th>
+                                    <th>Datee</th>
+                                    <th>Taille</th>
+                                    <th>Poids</th>
+                                    <th>Email</th>
+                                    <th>Telephone</th>
+                                    <th>Supprimer</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $( document ).ready(function() {
+            var currentRequest = null;
+            $("#search").keyup(function(e){
+                var value = $(this).val();
+                if(currentRequest != null) {
+                    currentRequest.abort();
+                }
+                currentRequest = $.ajax({
+                    url : "{{ path('search', {'id': app.request.get('id')}) }}",
+                    type : 'GET',
+                    data: {
+                        'searchValue' : value
+                    },
+                    success : function(retour)
+                    {
+                        $('#all').html(retour);
+                    },
+                });
+                return false;
+            });
+        });
+    </script>
+{% endblock %}

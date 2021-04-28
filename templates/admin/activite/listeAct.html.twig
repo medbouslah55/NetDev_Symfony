@@ -1,0 +1,22 @@
+{% for activite in activites %}
+    <tr>
+        <td>{{ activite.idAct }}</td>
+        <td>{{ activite.categorieAct }}</td>
+        <td>{{ activite.nomAct }}</td>
+        <td>{{ activite.prixReservation }}</td>
+        <td>{{ activite.dateAct }}</td>
+        <td>{{ activite.capacite }}</td>
+        <td>{{ activite.description }}</td>
+        <td>{{ activite.idCentre.nomCentre}}</td>
+        <td>{{ activite.cinCoach.nom }}  {{ activite.cinCoach.prenom }}</td>
+        <td>
+            <a href="{{ path('activite_show', {'idAct': activite.idAct}) }}"><i class="align-middle" data-feather="eye"></i></a>
+            <a href="{{ path('activite_edit', {'idAct': activite.idAct}) }}"><i class="align-middle" data-feather="edit"></i></a>
+            {{ include('admin/activite/_delete_form.html.twig') }}
+        </td>
+    </tr>
+{% else %}
+    <tr>
+        <td colspan="8">Pas de résultat</td>
+    </tr>
+{% endfor %}

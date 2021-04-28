@@ -1,0 +1,150 @@
+{% extends "baseAdmin.html.twig" %}
+
+
+{% block body %}
+   {#
+    <h1>Liste des Reservations</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Date de l'activité</th>
+                <th>Nombre de place</th>
+                <th>CIN Membre</th>
+                <th>Nom de l'activité</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reservation in reservations %}
+            <tr>
+
+                <td>{{ reservation.nom }}</td>
+                <td>{{ reservation.prenom }}</td>
+                <td>{{ reservation.dateAct ? reservation.dateAct|date('Y-m-d') : '' }}</td>
+                <td>{{ reservation.nbPlace }}</td>
+                <td>{{ reservation.cinMembre }}</td>
+                <td>{{ reservation.idAct }}</td>
+                <td>
+                    <a href="{{ path('reservation_show', {'idReservation': reservation.idReservation}) }}"><button class="btn-success">Afficher</button></a>
+                    <a href="{{ path('reservation_edit', {'idReservation': reservation.idReservation}) }}"><button class="btn-info">Modifier</button></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">Aucune Réservation trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+<div class="container align-items-center">  {{ knp_pagination_render(
+        reservations,
+        '@KnpPaginator/Pagination/twitter_bootstrap_v4_pagination.html.twig',
+        {
+            'queryParam1': 'param1 value',
+            'queryParam2': 'param2 value'
+        },
+        {
+            'viewParam1': 'param1 value',
+            'viewParam2': 'param2 value'
+        },
+    ) }}
+</div>
+
+{% endblock %}
+   #}
+
+        <script src="{{ asset('js/jquery.min.js') }}"></script>
+        <center><input type="text" id="search" placeholder="CHERCHER Reservations..."></center>
+        <center>
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="table-responsive" id="source0">
+                        <table class="table table-bordered"  width="100%" cellspacing="0" id="tableac">
+
+                            <tr>
+
+                                <th>Nom</th>
+                                <th>Prenom</th>
+                                <th>Date de l'activité</th>
+                                <th>Nombre de place</th>
+                                <th>CIN Membre</th>
+                                <th>Nom de l'activité</th>
+                                <th></th>
+                            </tr>
+                            <tbody>
+                            {% for i in reservations %}
+                                <tr>
+                                    <td>{{ i.nom }}</td>
+                                    <td>{{ i.prenom }}</td>
+                                    <td>{{ i.dateAct | date('d/m/y') }}</td>
+                                    <td>{{ i.nbPlace }}</td>
+                                    <td>{{ i.cinMembre }}</td>
+                                    <td>{{ i.idAct }}</td>
+                                    <td><a href="{{path("reservation_show",{'idReservation':i.idReservation})}}">Afficher</a>
+                                    </td>
+                                    <td><a href="{{path("reservation_edit",{'idReservation':i.idReservation})}}">modifier</a>
+                                    </td>
+
+                                    <script>
+                                        $(document).ready(function(){
+                                            $('#search').keyup(function(){
+                                                search_table($(this).val());
+                                            });
+                                            function search_table(value){
+                                                $('#tableac tbody tr').each(function(){
+                                                    var found = 'false';
+                                                    $(this).each(function(){
+                                                        if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)
+                                                        {
+                                                            found = 'true';
+                                                        }
+                                                    });
+                                                    if(found == 'true')
+                                                    {
+                                                        $(this).show();
+
+                                                    }
+                                                    else
+                                                    {
+                                                        $(this).hide();
+
+                                                    }
+                                                });
+                                            }
+                                        });
+                                    </script>
+                                </tr>
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+            <div class="container align-items-center">  {{ knp_pagination_render(
+                    reservations,
+                    '@KnpPaginator/Pagination/twitter_bootstrap_v4_pagination.html.twig',
+                    {
+                        'queryParam1': 'param1 value',
+                        'queryParam2': 'param2 value'
+                    },
+                    {
+                        'viewParam1': 'param1 value',
+                        'viewParam2': 'param2 value'
+                    },
+                ) }}
+            </div>
+
+
+        </center>
+    {% endblock %}
+
+
+
+
+

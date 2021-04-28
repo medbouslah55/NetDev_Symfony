@@ -1,0 +1,20 @@
+{% for membre in membres %}
+    <tr>
+        <td>{{ membre.cin }}</td>
+        <td>{{ membre.nom }}</td>
+        <td>{{ membre.prenom }}</td>
+        <td>{{ membre.sexe }}</td>
+        <td>{{ membre.datee ? membre.datee|date('Y-m-d') : '' }}</td>
+        <td>{{ membre.taille }}</td>
+        <td>{{ membre.poids }}</td>
+        <td>{{ membre.email }}</td>
+        <td>{{ membre.telephone }}</td>
+        <td>
+            {{ include('membre/_delete_form.html.twig') }}
+        </td>
+    </tr>
+{% else %}
+    <tr>
+        <td colspan="11">no records found</td>
+    </tr>
+{% endfor %}

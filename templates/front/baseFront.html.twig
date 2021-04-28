@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	{% block title %}<title>Ibn Sino Html-5 Template | Home-3</title>{% endblock %}
+	<link rel="icon" href="./images/icon.png">
+
+	<!-- wow animation style -->
+	<!-- <link rel="stylesheet" href="./css/animate.css"> -->
+
+
+		<!-- wow animation style -->
+		<!-- <link rel="stylesheet" href="./css/animate.css"> -->
+
+		<!-- owl-carousel -->
+		<link rel="stylesheet" href="{{ asset('./front/css/owl.carousel.min.css') }}">
+		<link rel="stylesheet" href="{{ asset('./front/css/owl.theme.default.min.css') }}">
+
+		<!-- bootstrap style -->
+		<link rel="stylesheet" href="{{ asset('./front/css/bootstrap.min.css') }}">
+
+		<!-- template style -->
+		<link rel="stylesheet" href="{{ asset('./front/css/main.css') }}">
+
+		<!-- Responsive -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+
+</head>
+
+<body>
+
+<!-- Start of .preloader -->
+<div class="preloader">
+	<div class="loader"></div>
+	<h6 class="preloader-text">Mind<br>Space</h6>
+</div>
+<!-- End of .preloader -->
+
+<!------------------------------------------------------------------------>
+
+<div class="page">
+
+	<!-- Start of .header-top -->
+	<header class="header-top">
+		<div class="container">
+
+			<!-- header-top__logo -->
+
+		</div>
+	</header>
+	<!-- End of .header-top -->
+
+	<!-- Start of .header-middle -->
+	<header class="header-middle header-middle_white-transparent">
+		<div class="container">
+
+			<!-- hidden navbar for mobiles -->
+			<div class="navbar-icon">
+				<span></span>
+			</div>
+			<!-- End of hidden navbar for mobiles -->
+
+			<!-- navbar__menu-link clicked jquery -> event.preventDefoult() -->
+			<div class="navbar">
+
+				<ul class="navbar__menu">
+					<li class="navbar__menu-item">
+						<a class="navbar__menu-link active" href="/">Home</a>
+						<ul class="navbar__submenu">
+							<li class="navbar__submenu-item">
+								<a href="index.html" class="navbar__submenu-link">Home-1</a>
+							</li>
+
+							<li class="navbar__submenu-item">
+								<a href="index2.html" class="navbar__submenu-link">Home-2</a>
+							</li>
+
+							<li class="navbar__submenu-item">
+								<a href="#" class="navbar__submenu-link">Home-3</a>
+							</li>
+						</ul>
+					</li>
+
+					<li class="navbar__menu-item">
+						<a class="navbar__menu-link" href="#">Pages</a>
+						<ul class="navbar__submenu">
+							<li class="navbar__submenu-item">
+								<a href="cases-3_columns.html" class="navbar__submenu-link">Cases 3 columns</a>
+							</li>
+
+							<li class="navbar__submenu-item">
+								<a href="cases-3_columns-2.html" class="navbar__submenu-link">Cases 3 columns 2</a>
+							</li>
+
+							<li class="navbar__submenu-item">
+								<a href="cases-3_detail.html" class="navbar__submenu-link">Case details</a>
+							</li>
+
+							<li class="navbar__submenu-item">
+								<a href="doctors-3_columns.html" class="navbar__submenu-link">Doctors 3 columns</a>
+							</li>
+
+							<li class="navbar__submenu-item">
+								<a href="doctors-single_right.html" class="navbar__submenu-link">Doctor Single page
+									right</a>
+							</li>
+
+							<li class="navbar__submenu-item">
+								<a href="doctors-single_left.html" class="navbar__submenu-link">Doctor Single page
+									left</a>
+							</li>
+						</ul>
+					</li>
+
+					<li class="navbar__menu-item">
+						<a class="navbar__menu-link" href="#">Services</a>
+						<ul class="navbar__submenu">
+							<li class="navbar__submenu-item">
+								<a href="departments-3_column.html" class="navbar__submenu-link">Departments 3
+									columns</a>
+							</li>
+
+							<li class="navbar__submenu-item">
+								<a href="departments-3_column_icon.html" class="navbar__submenu-link">Departments 3
+									columns icon</a>
+							</li>
+
+							<li class="navbar__submenu-item">
+								<a href="departments-1_column.html" class="navbar__submenu-link">Departments 1
+									column</a>
+							</li>
+
+							<li class="navbar__submenu-item">
+								<a href="departments-details_right.html" class="navbar__submenu-link">Department
+									Details right</a>
+							</li>
+
+							<li class="navbar__submenu-item">
+								<a href="departments-details_left.html" class="navbar__submenu-link">Department
+									Details left</a>
+							</li>
+
+							<li class="navbar__submenu-item">
+								<a href="departments-details.html" class="navbar__submenu-link">Department
+									Details</a>
+							</li>
+
+						</ul>
+					</li>
+
+					<li class="navbar__menu-item">
+						<a class="navbar__menu-link" href="#">Shop</a>
+						<ul class="navbar__submenu">
+							<li class="navbar__submenu-item">
+								<a href="shop.html" class="navbar__submenu-link">Shop</a>
+							</li>
+
+							<li class="navbar__submenu-item">
+								<a href="shop-product_detail.html" class="navbar__submenu-link">Shop Product
+									Detail</a>
+							</li>
+
+							<li class="navbar__submenu-item">
+								<a href="shop-cart.html" class="navbar__submenu-link">Shop Cart</a>
+							</li>
+
+							<li class="navbar__submenu-item">
+								<a href="shop-checkout.html" class="navbar__submenu-link">Shop Checkout</a>
+							</li>
+						</ul>
+					</li>
+
+					<li class="navbar__menu-item">
+						<a class="navbar__menu-link" href="{{ path('showreservation') }}">Réservations</a>
+						<ul class="navbar__submenu">
+							<li class="navbar__submenu-item">
+								<a href="{{ path('showreservation') }}" class="navbar__submenu-link">Mes Réservations</a>
+							</li>
+
+							<li class="navbar__submenu-item">
+								<a href="{{ path('addreservation') }}" class="navbar__submenu-link">Ajouter Réservation</a>
+							</li>
+						</ul>
+					</li>
+
+					<li class="navbar__menu-item">
+						<a class="navbar__menu-link" href="#">Blog</a>
+						<ul class="navbar__submenu">
+							<li class="navbar__submenu-item">
+								<a href="blog-grid.html" class="navbar__submenu-link">Blog-Grid</a>
+							</li>
+
+							<li class="navbar__submenu-item">
+								<a href="blog-grid_left.html" class="navbar__submenu-link">Grid left sidebar</a>
+							</li>
+
+							<li class="navbar__submenu-item">
+								<a href="blog-grid_right.html" class="navbar__submenu-link">Grid right sidebar</a>
+							</li>
+
+							<li class="navbar__submenu-item">
+								<a href="blog-grid_1_column_right.html" class="navbar__submenu-link">Grid 1 column
+									right sidebar</a>
+							</li>
+
+							<li class="navbar__submenu-item">
+								<a href="blog-grid_1_column_left.html" class="navbar__submenu-link">Grid 1 column
+									left sidebar</a>
+							</li>
+
+							<li class="navbar__submenu-item">
+								<a href="blog-details_left.html" class="navbar__submenu-link">Details left
+									sidebar</a>
+							</li>
+
+							<li class="navbar__submenu-item">
+								<a href="blog-details_right.html" class="navbar__submenu-link">Details right
+									sidebar</a>
+							</li>
+						</ul>
+					</li>
+
+					<li class="navbar__menu-item">
+						<a class="navbar__menu-link" href="#">Contacts</a>
+						<ul class="navbar__submenu">
+							<li class="navbar__submenu-item">
+								<a href="contact.html" class="navbar__submenu-link">Contact</a>
+							</li>
+
+							<li class="navbar__submenu-item">
+								<a href="contact-2.html" class="navbar__submenu-link">Contact-2</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+
+				<div class="navbar__right">
+					<a href="#" class="btn btn_pink" id="popup-form-open">MAKE AN APPOINTMENT</a>
+				</div>
+			</div>
+
+		</div>
+	</header>
+	<!-- End of .header-middle -->
+	{% block body %}
+	{% endblock %}
+	<!-- Start of .footer -->
+	<footer class="footer">
+		<!-- Start of .footer__top -->
+		<div class="footer__top">
+			<div class="footer__logo">
+				<img src="./images/footer-logo.png" alt="footer-logo">
+			</div>
+		</div>
+		<!-- End of .footer__top -->
+
+		<!-- Start of .footer__bottom -->
+		<div class="footer__bottom">
+			<p>Copyright &copy; 2019 MediHelp Medical Center | Privacy Policy</p>
+		</div>
+		<!-- End of .footer__bottom -->
+
+	</footer>
+	<!-- End of .footer -->
+
+</div>
+
+<!------------------------------------------------------------------------>
+
+<!-- scroll top - to top page -->
+<div class="to-top" id="scrollUp"><i class="fa fa-angle-up"></i></div>
+
+<!-- search box -->
+<div class="searchBox">
+	<span class="searchBox-close">&times;</span>
+	<form>
+		<input type="search" placeholder="Write Search Keyword & Press Enter">
+		<button type="submit">
+			<svg width="24.71" height="25.687" viewBox="0 0 24.71 24.687">
+				<path id="search.svg" class="cls-2"
+					  d="M1144.4,440.468l8.19,8.178-3.47,3.467-8.19-8.178,1.18-1.177-1.38-1.385a7.878,7.878,0,1,1,1.11-1.11l1.38,1.383Zm-2.36-5.172a6.29,6.29,0,1,0-6.29,6.282A6.293,6.293,0,0,0,1142.04,435.3Zm8.33,13.35-3.61-3.6-1.24,1.245,3.6,3.6Zm-5.97-3.465,1.25-1.246-1.25-1.245-1.24,1.245Zm-11.79-9.885h-1.57a4.715,4.715,0,0,1,4.71-4.712v1.57A3.146,3.146,0,0,0,1132.61,435.3Z"
+					  transform="translate(-1127.88 -427.438)" /></svg>
+			search
+		</button>
+	</form>
+</div>
+
+<!-- Popup Form -->
+<div class="popup-form">
+	<div class="inner-block">
+		<span class="popup-form-close" id="popup-form-close">&times;</span>
+		<div class="img">
+			<img src="./images/jpg/popup-form.jpg">
+		</div>
+		<form>
+			<h1 class="section-title">make an appointment</h1>
+			<div class="input-box">
+				<label for="popup-name">Name *</label>
+				<input type="text" id="popup-name" required>
+			</div>
+
+			<div class="input-box">
+				<label for="popup-email">Email *</label>
+				<input type="text" id="popup-email" required>
+			</div>
+
+			<div class="input-box">
+				<label for="popup-phone">Phone *</label>
+				<input type="tel" id="popup-phone" required>
+			</div>
+
+			<div class="select-box">
+				<i class="fa fa-angle-down"></i>
+				<select>
+					<option selected>Department</option>
+					<option selected>Department2</option>
+					<option selected>Department3</option>
+					<option selected>Department4</option>
+				</select>
+			</div>
+			<button type="submit" class="btn btn-2_pink">send</button>
+		</form>
+	</div>
+</div>
+
+<!-- Scripts + Jquery plagins -->
+
+{% block js %}
+	<!-- Scripts + Jquery plagins -->
+
+	<!-- .preloader  -->
+	<script src={{ asset('./front/js/my-preloader.js')}}></script>
+
+	<!-- jQuery -->
+	<script src={{ asset('./front/js/jQuery-3.4.1.js')}}></script>
+
+	<!-- wow js animation -->
+	<script src={{ asset('./front/js/wow.min.js')}}></script>
+
+	<!-- owl-carousel js -->
+	<script src={{ asset('./front/js/owl.carousel.min.js')}}></script>
+	<script src={{ asset('./front/js/carousel.js')}}></script>
+
+	<!-- fancybox 3 js -->
+	<script src={{ asset('./front/js/jquery.fancybox.js')}}></script>
+
+	<!-- Counter up -->
+	<script src={{ asset('./front/js/jquery.waypoints.min.js')}}></script>
+	<script src={{ asset('./front/js/jquery.countup.min.js')}}></script>
+
+	<!-- bootstrap js -->
+	<script src={{ asset('./front/js/bootstrap.min.js')}}></script>
+
+	<!-- customer js -->
+	<script src={{ asset('./front/js/index.js')}}></script>
+	<!-- Scripts + Jquery plagins -->
+
+	<!-- isotope filter card -->
+	<script src={{ asset('./front/js/isotope.pkgd.min.js') }}></script>
+
+{% endblock %}
+
+</body>
+
+</html>

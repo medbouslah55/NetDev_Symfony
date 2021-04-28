@@ -1,0 +1,13 @@
+vich_uploader:
+  db_driver: orm
+
+  mappings:
+    regime_image:
+      uri_prefix: /admin/img/regime
+      upload_destination: "%kernel.project_dir%/public/admin/img/regime"
+      namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+    menu_image:
+      uri_prefix: /admin/img/menu
+      upload_destination: "%kernel.project_dir%/public/admin/img/menu"
+      namer: Vich\UploaderBundle\Naming\SmartUniqueNamer

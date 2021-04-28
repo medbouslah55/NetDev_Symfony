@@ -1,0 +1,138 @@
+<nav id="sidebar" class="sidebar">
+    <div class="sidebar-content ">
+    <a class="sidebar-brand" href="{{path('backend')}}"> <img src="/admin/img/logo/Logo.png" style="min-width: 40px; height: 40px; margin: 0 auto" alt=""><i class="align-middle"></i> <span class="align-middle">MindSpace</span> </a>
+        <ul class="sidebar-nav">
+            <li class="sidebar-header"> Pages </li>
+
+            <li class="sidebar-item">
+                <a href="#admin" data-toggle="collapse" class="sidebar-link collapsed"> <i class="align-middle" data-feather="user"></i> <span class="align-middle">Admin</span> </a>
+                <ul id="admin" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{path('admin_new')}}">Ajouter un Admin</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{path('admin_index')}}">Afficher les Admins</a></li>
+                </ul>
+            </li>
+
+            <li class="sidebar-item">
+                <a href="#membre" data-toggle="collapse" class="sidebar-link collapsed"> <i class="align-middle" data-feather="users"></i> <span class="align-middle">Membres</span> </a>
+                <ul id="membre" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{path('membre_index')}}">Afficher les Membres</a></li>
+
+
+                </ul>
+            </li>
+            <li class="sidebar-item">
+                <a href="#coach" data-toggle="collapse" class="sidebar-link collapsed"> <i class="align-middle" data-feather="user"></i> <span class="align-middle">Coachs</span> </a>
+                <ul id="coach" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{path('coach_new')}}">Ajouter un Coach</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{path('coach_index')}}">Afficher les Coachs</a></li>
+
+
+                </ul>
+            </li>
+
+            <li class="sidebar-item">
+                <a href="#régime" data-toggle="collapse" class="sidebar-link collapsed"> <i class="align-middle" data-feather="heart"></i> <span class="align-middle">Régimes</span> </a>
+                <ul id="régime" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{path('regime_create')}}">Ajouter Régime</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{path('regimes_index')}}">Afficher Régimes</a></li>
+                </ul>
+                
+            </li>
+            <li class="sidebar-item">
+                <a href="#menus" data-toggle="collapse" class="sidebar-link collapsed"> <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Menus</span> </a>
+                <ul id="menus" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{path('menu_create')}}">Ajouter Menu</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{path('menus_index')}}">Afficher Menus</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{path('menu_stat')}}">Statistique des Menus</a></li>
+                </ul>
+                
+            </li>
+
+            <li class="sidebar-item">
+                <a href="#centree" data-toggle="collapse" class="sidebar-link collapsed"> <i class="align-middle" data-feather="home"></i> <span class="align-middle">Gestion des centres</span> </a>
+                <ul id="centree" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{path('centre_new')}}">Ajouter Centre</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{path('centre_index')}}">Afficher Centres</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{path('map')}}">Map(centres)</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{path('statCentre')}}">Statistiques en fct des act</a></li>
+                </ul>
+
+            </li>
+            <li class="sidebar-item">
+                <a href="#activite" data-toggle="collapse" class="sidebar-link collapsed"> <i class="align-middle" data-feather="slack"></i> <span class="align-middle">Gestion des activités</span> </a>
+                <ul id="activite" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{path('activite_new')}}">Ajouter Activité</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{path('activite_index')}}">Afficher Activités</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{path('stat')}}">Statistiques par catégorie</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{path('calend')}}">Calendrier</a></li>
+                </ul>
+            </li>
+
+            <li class="sidebar-item">
+                <a href="#reclamation" data-toggle="collapse" class="sidebar-link collapsed"> <i class="align-middle" data-feather="clipboard"></i> <span class="align-middle">Réclamation</span> </a>
+                <ul id="reclamation" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{path('reclamation_index')}}">Afficher liste des réclamations</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{path('statsReclamation')}}">Statistiques</a></li>
+                    {# <li class="sidebar-item"><a class="sidebar-link" href="layouts-boxed.html">Afficher liste des réclamations</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="layouts-boxed.html">Statistiques</a></li> #}
+                </ul>
+            </li>
+
+            <li class="sidebar-item">
+                <a href="#abonnement" data-toggle="collapse" class="sidebar-link collapsed"> <i class="align-middle" data-feather="plus-square"></i> <span class="align-middle">Abonnement</span> </a>
+                <ul id="abonnement" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{path('abonnement_new')}}">Ajouter nouveau abonnement</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{path('abonnement_index')}}">Liste des abonnements</a></li>
+                    {# <li class="sidebar-item"><a class="sidebar-link" href="layouts-boxed.html">Ajouter nouveau abonnement</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="layouts-boxed.html">Liste des abonnements</a></li> #}
+                </ul>
+            </li>
+            <li class="sidebar-item">
+                <a href="{{ asset('calendrier') }}" class="sidebar-link collapsed"> <i class="align-middle" data-feather="calendar"></i> <span class="align-middle">Calendrier</span> </a>
+            </li>
+
+            <li class="sidebar-item">
+                <a href="#layouts" data-toggle="collapse" class="sidebar-link collapsed"> <i class="align-middle" data-feather="book"></i> <span class="align-middle">Réservation</span> </a>
+                <ul id="layouts" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{path('reservation_index')}}">Liste des réservation</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{path('reservation_new')}}">Ajouter Réservation</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{path('statsreservation')}}">Statistiques</a></li>
+                    {# <li class="sidebar-item"><a class="sidebar-link" href="layouts-boxed.html">Ajouter Menu</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="layouts-boxed.html">Afficher Menu</a></li> #}
+                </ul>
+
+            </li>
+            <li class="sidebar-item">
+                <a href="#event" data-toggle="collapse" class="sidebar-link collapsed"> <i class="align-middle" data-feather="heart"></i> <span class="align-middle">Gestion evenement</span> </a>
+
+                <ul id="event" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{path('evenement_new')}}">Ajouter Evenement</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{path('evenement_index')}}">Afficher Evenement</a></li>
+                    {# <li class="sidebar-item"><a class="sidebar-link" href="layouts-boxed.html">Ajouter Menu</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="layouts-boxed.html">Afficher Menu</a></li> #}
+                </ul>
+                
+            </li>
+            <li class="sidebar-item">
+                <a href="#status" data-toggle="collapse" class="sidebar-link collapsed"> <i class="align-middle" data-feather="heart"></i> <span class="align-middle">Gestion status</span> </a>
+
+                <ul id="status" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{path('status_new')}}">Ajouter Status</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{path('status_index')}}">Afficher Status</a></li>
+                    {# <li class="sidebar-item"><a class="sidebar-link" href="layouts-boxed.html">Ajouter Menu</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="layouts-boxed.html">Afficher Menu</a></li> #}
+                </ul>
+
+            </li>
+
+        </ul>
+        <div class="sidebar-bottom d-none d-lg-block">
+            <div class="media"> <img class="rounded-circle mr-3" src="/admin/img/avatars/avatar.jpg" alt="Chris Wood" width="40" height="40">
+                <div class="media-body">
+                    <h5 class="mb-1">Chris Wood</h5>
+                    <div> <i class="fas fa-circle text-success"></i> Online </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,80 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Activite index{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet"  href="{{ asset('bundles/mercuryseriesflashy/css/flashy.css') }}">
+{% endblock %}
+{% block body %}
+    <h1>Liste des activités</h1>
+    <div class="mt-3 mb-3">    <a class="btn btn-success" href="{{path('excel') }}"> XLS </a></div>
+    <th>Tri selon le prix : </th>
+    <a href="{{path('TrierParAct') }}">Tri croissant</a>
+    <a href="{{path('TrierParActAsc') }}">Tri décroissant</a>
+
+    <div class="d-flex align-items-center"><input class="form-control" type="search" id="search" placeholder="Recherche par nom">
+        <a  href="{{ path('searchAct') }}"><i class="fa fa-sort"></i></a>
+    </div>
+
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id Activité</th>
+                <th>Catégorie</th>
+                <th>Nom activité</th>
+                <th>Prix réservation</th>
+                <th>Date activité</th>
+                <th>Capacite</th>
+                <th>Description</th>
+
+                <th>Lié au centre</th>
+                <th>Lié au coach</th>
+                <th><div class="centrer">actions</div></th>
+            </tr>
+        </thead>
+        <tbody id="all">
+        {% include 'admin/activite/listeAct.html.twig' %}
+        </tbody>
+        <tbody align="left" border="2" id="search">
+        </tbody>
+    </table>
+
+    <a href="{{ path('activite_new') }}">Ajouter <i class="align-middle" data-feather="plus"></i></a>
+    <br><br> <br><br> <br><br> <br><br> <br><br>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $( document ).ready(function() {
+            var currentRequest = null;
+            $("#search").keyup(function(e){
+                var value = $(this).val();
+                if(currentRequest != null) {
+                    currentRequest.abort();
+                }
+                currentRequest = $.ajax({
+                    url : "{{ path('searchAct') }}",
+                    type : 'GET',
+                    data: {
+                        'searchValue' : value
+                    },
+                    success : function(retour)
+                    {
+
+                        $('#all').html(retour);
+                    },
+                });
+                return false;
+            });
+        });
+    </script>
+    <!-- Flashy depends on jQuery -->
+    <script src="//code.jquery.com/jquery.js"></script>
+    <!-- Load Flashy default JavaScript -->
+    <script src="{{ asset ('bundles/mercuryseriesflashy/js/flashy.js') }}"></script>
+    <!-- Include Flashy default partial -->
+    {{ include ('@MercurySeriesFlashy/flashy.html.twig') }}
+
+{% endblock %}

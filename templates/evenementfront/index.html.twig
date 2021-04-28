@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Evenements {% endblock %}
+
+{% block body %}
+    <!-- Start of .preloader -->
+    <div class="preloader">
+        <div class="loader"></div>
+        <h6 class="preloader-text">Chargement...<br>Evenements</h6>
+    </div>
+    <!-- End of .preloader -->
+
+    <!------------------------------------------------------------------------>
+
+    <div class="page">
+
+        <!-- Start of .header-bottom-4 -->
+        <header class="header-bottom-4">
+            <img src="{{ asset('./images/banner/banner10.jpg') }}">
+            <div class="header-bottom-4__bg">
+                <div class="icon">
+                    <img src="{{ asset('./images/banner/banner-shape.png') }}">
+                </div>
+            </div>
+            <div class="container">
+                <h1 class="section-title">Nos <span>Evenements</span></h1>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ path('home') }}">Home</a></li>
+                    <li class="breadcrumb-item active">Evenement</li>
+                </ol>
+            </div>
+        </header>
+        <!-- End of .header-bottom-4 -->
+
+        <!-- Start of .latest-news-4 -->
+        <section class="latest-news-4 main-blog">
+            <div class="main-blog__bg">
+                <div class="icon">
+                    <img src="{{ asset('./images/png-shapes/form-shape.png') }}">
+                </div>
+                <div class="icon">
+                    <img src="{{ asset('./images/png-shapes/specialists__left-bottom-shape.png') }}">
+                </div>
+            </div>
+            <!-------------------------------------------------------------->
+            <div class="container">
+                {% for evenement in evenements %}
+                    <a href="#" class="item">
+                        <div class="img">
+                        
+                            <img src="/admin/img/evenement/{{evenement.image}}">
+                            <span class="date">{{ evenement.datepub | format_date() }}</span>
+
+                        </div>
+                        <h4 class="title">{{ evenement.sujet }}</h4>
+                        <p class="text">
+                            {{ evenement.dateeven | format_date() }}
+                        </p>
+                    </a>
+                {% endfor %}
+            </div>
+            <div class="d-flex justify-content-center">
+
+            </div>
+        </section>
+
+        <!-- End of .latest-news-4 -->
+    </div>
+{% endblock %}

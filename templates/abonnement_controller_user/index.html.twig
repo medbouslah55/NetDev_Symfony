@@ -1,0 +1,307 @@
+{% extends 'base.html.twig' %}
+{#
+{% block body %}
+    <h1>Liste Des Abonnements</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Type</th>
+                <th>Prix</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for abonnement in abonnements %}
+            <tr>
+                <td>{{ abonnement.titre }}</td>
+                <td>{{ abonnement.type }}</td>
+                <td>{{ abonnement.prix }}</td>
+                <td>{{ abonnement.descrAb }}</td>
+                <td>
+                    <a href="{{ path('abonnement_controller_user_show', {'id': abonnement.id}) }}">Afficher</a>
+                    <a href="{{ path('abonnement_controller_user_edit', {'id': abonnement.id}) }}">Achéter</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+#}
+{% block body %}
+    <!DOCTYPE html>
+    <html lang="en" xmlns="http://www.w3.org/1999/html">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Ibn Sino Html-5 Template | Blog - Grid width right sidebar</title>
+        <link rel="icon" href="./images/icon.png">
+
+        <!-- wow animation style -->
+        <!-- <link rel="stylesheet" href="./css/animate.css"> -->
+
+        <!-- owl-carousel -->
+        <link rel="stylesheet" href="./css/owl.carousel.min.css">
+        <link rel="stylesheet" href="./css/owl.theme.default.min.css">
+
+        <!-- fancybox 3 css -->
+        <link rel="stylesheet" href="./css/jquery.fancybox.min.css">
+
+        <!-- bootstrap style -->
+        <link rel="stylesheet" href="./css/bootstrap.min.css">
+
+        <!-- template style -->
+        <link rel="stylesheet" href="./css/main.css">
+
+        <!-- Responsive -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    </head>
+
+    <body>
+
+
+
+    <!------------------------------------------------------------------------>
+
+    <div>
+
+        <!-- Start of .header-bottom-4 -->
+        <header class="header-bottom-4">
+            <!--<img src="{{ asset('./images/ab1.png') }}">-->
+            <div class="header-bottom-4__bg">
+                <div class="icon">
+                    <img src="{{ asset('./images/banner/banner-shape.png') }}">
+                </div>
+            </div>
+            <div class="container">
+                <h1 class="section-title">Liste Des <span>Abonnements</span></h1>
+            </div>
+        </header>
+        <!-- End of .header-bottom-4 -->
+
+        <!-- Start of .latest-news-4 -->
+
+            <div class="col-md-3">
+                {# {% include 'abonnement_controller_user/_filter.html.twig' with {form: form} only %} #}
+            </div>
+
+        <div class="col-md-9">
+            <section class="latest-news-4 mian-blog">
+                <div class="main-blog__bg">
+                    <div class="icon">
+                        <img src="{{ asset('./images/png-shapes/form-shape.png') }}">
+                    </div>
+                    <div class="icon">
+                        <img src="{{ asset('./images/png-shapes/specialists__left-bottom-shape.png') }}">
+                    </div>
+                </div>
+                <div class="container container_right-sidebar">
+                    <div class="sidebar">
+                        <div class="blog-sidebar">
+                            <div class="categories">
+                                    <div class="container">
+
+                                        <div class="form-block">
+                                            <form id="formulaire" {{ form_start(form, {attr: {class: 'filter'}}) }}
+                                            <span class="d-block">
+                    {{ form_errors(form.q) }}
+                                                {{ form_widget(form.q, {'attr' : { 'class' : 'form__block-input reservation-padding' , 'placeholder' :'Chercher'}}) }}
+                </span>
+                                            <span>
+                    {{ form_errors(form.min) }}
+                                                {{ form_widget(form.min, {'attr' : { 'class' : 'form__block-input reservation-padding' , 'placeholder' :'Min'}}) }}
+                                                {{ form_errors(form.max) }}
+                                                {{ form_widget(form.max, {'attr' : { 'class' : 'form__block-input reservation-padding' , 'placeholder' :'Max'}}) }}
+                </span>
+                                            <div>
+                                                <button type="submit" class="btn btn-primary" >Filtrer</button>
+                                            </div>
+                                            <br>
+                                            <br>
+                                            <div>
+                                                <button type="reset" class="btn btn-primary">Vider Les champs</button>
+                                            </div>
+                                            </form>
+                                            {{ form_end(form) }}
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="categories">
+                                <h1 class="blog-sidebar-title">categories</h1>
+                                <ul class="lists">
+                                    {% for abonnement in abonnements %}
+                                    <li class="item">
+                                        <a href="#">
+                                            <span class="name">{{ abonnement.titre }}</span>
+                                        </a>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="instagram">
+                                <h1 class="blog-sidebar-title">instagram</h1>
+                                <div class="items">
+                                    <a href="#" class="item">
+                                        <img src="{{ asset('./images/m1.jpg') }}">
+                                    </a>
+                                    <a href="#" class="item">
+                                        <img src="{{ asset('./images/y1.jpg') }}">
+                                    </a>
+                                    <a href="#" class="item">
+                                        <img src="{{ asset('./images/m2.jpeg') }}">
+                                    </a>
+                                    <a href="#" class="item">
+                                        <img src="{{ asset('./images/y2.jpg') }}">
+                                    </a>
+                                    <a href="#" class="item">
+                                        <img src="{{ asset('./images/m3.jpg') }}">
+                                    </a>
+                                    <a href="#" class="item">
+                                        <img src="{{ asset('./images/y3.jpg') }}">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="follow">
+                                <h1 class="blog-sidebar-title">Follow Us</h1>
+                                <div class="socials">
+                                    <a href="#">
+                                        <i class="fa fa-facebook"></i>
+                                    </a>
+                                    <a href="#">
+                                        <i class="fa fa-twitter"></i>
+                                    </a>
+                                    <a href="#">
+                                        <i class="fa fa-instagram"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="article">
+                        {% for abonnement in abonnements %}
+                            <a href="{{ path('abonnement_controller_user_show', {'id': abonnement.id}) }}" class="item">
+                                <div class="img">
+                                    {% if abonnement.type == "Gold" %}
+                                        <img src="{{ asset('./images/gold.jpg') }}" alt="Girl in a jacket" width="30" height="30">
+                                    {% elseif abonnement.type == "Silver" %}
+                                        <img src="{{ asset('./images/silver.jpg') }}">
+                                    {% else %}
+                                        <img src="{{ asset('./images/bronze.jpg') }}">
+                                    {% endif %}
+                                    <span class="date">{{ abonnement.prix }} Dt</span>
+                                </div>
+                                <h4 class="title">{{ abonnement.titre }}</h4>
+                                <h2 class="title">{{ abonnement.type }}</h2>
+                                <p class="text">
+                                    {{ abonnement.descrAb }}
+                                </p>
+                                <span class="read-more-2" href="#">Achéter</span>
+                                <span class="read-more-2" href="{{ path('abonnement_controller_user_show', {'id': abonnement.id}) }}">Afficher</span>
+                            </a>
+                        {% endfor %}
+                    </div>
+
+                </div>
+            </section>
+        </div>
+
+        <!-- End of .latest-news-4 -->
+    </div>
+
+    <!------------------------------------------------------------------------>
+
+    <!-- scroll top - to top page -->
+    <div class="to-top" id="scrollUp"><i class="fa fa-angle-up"></i></div>
+
+    <!-- search box -->
+    <div class="searchBox">
+        <span class="searchBox-close">&times;</span>
+        <form>
+            <input type="search" placeholder="Write Search Keyword & Press Enter">
+            <button type="submit">
+                <svg width="24.71" height="25.687" viewBox="0 0 24.71 24.687">
+                    <path id="search.svg" class="cls-2"
+                          d="M1144.4,440.468l8.19,8.178-3.47,3.467-8.19-8.178,1.18-1.177-1.38-1.385a7.878,7.878,0,1,1,1.11-1.11l1.38,1.383Zm-2.36-5.172a6.29,6.29,0,1,0-6.29,6.282A6.293,6.293,0,0,0,1142.04,435.3Zm8.33,13.35-3.61-3.6-1.24,1.245,3.6,3.6Zm-5.97-3.465,1.25-1.246-1.25-1.245-1.24,1.245Zm-11.79-9.885h-1.57a4.715,4.715,0,0,1,4.71-4.712v1.57A3.146,3.146,0,0,0,1132.61,435.3Z"
+                          transform="translate(-1127.88 -427.438)" /></svg>
+                search
+            </button>
+        </form>
+    </div>
+
+    <!-- Popup Form -->
+    <div class="popup-form">
+        <div class="inner-block">
+            <span class="popup-form-close" id="popup-form-close">&times;</span>
+            <div class="img">
+                <img src="./images/jpg/popup-form.jpg">
+            </div>
+            <form>
+                <h1 class="section-title">make an appointment</h1>
+                <div class="input-box">
+                    <label for="popup-name">Name *</label>
+                    <input type="text" id="popup-name" required>
+                </div>
+
+                <div class="input-box">
+                    <label for="popup-email">Email *</label>
+                    <input type="text" id="popup-email" required>
+                </div>
+
+                <div class="input-box">
+                    <label for="popup-phone">Phone *</label>
+                    <input type="tel" id="popup-phone" required>
+                </div>
+
+                <div class="select-box">
+                    <i class="fa fa-angle-down"></i>
+                    <select>
+                        <option selected>Department</option>
+                        <option selected>Department2</option>
+                        <option selected>Department3</option>
+                        <option selected>Department4</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-2_pink">send</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts + Jquery plagins -->
+    <!-- .preloader  -->
+    <script src="./js/my-preloader.js"></script>
+
+    <!-- jQuery -->
+    <script src="./js/jQuery-3.4.1.js"></script>
+
+    <!-- bootstrap js -->
+    <script src="./js/bootstrap.min.js"></script>
+
+    <!-- wow js animation -->
+    <!-- <script src="./js/wow.min.js"></script> -->
+
+    <!-- owl-carousel js -->
+    <script src="./js/owl.carousel.min.js"></script>
+    <script src="./js/carousel.js"></script>
+
+    <!-- fancybox 3 js -->
+    <script src="./js/jquery.fancybox.js"></script>
+
+    <!-- Counter up -->
+    <script src="./js/jquery.waypoints.min.js"></script>
+    <script src="./js/jquery.countup.min.js"></script>
+
+    <!-- customer js -->
+    <script src="./js/index.js"></script>
+
+    </body>
+
+    </html>
+{% endblock %}

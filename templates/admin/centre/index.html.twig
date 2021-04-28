@@ -1,0 +1,93 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Centre index{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet"  href="{{ asset('bundles/mercuryseriesflashy/css/flashy.css') }}">
+{% endblock %}
+{% block body %}
+    <h1>Liste des centres</h1>
+    <div class="mt-3 mb-3">    <a class="btn btn-success" href="{{path('PDF') }}">  PDF </a></div>
+
+    <th>Trier par nom: </th>
+    <a href="{{path('TrierParCentreAsc') }}"> Tri décroissant</a>
+    <a href="{{path('TrierParCentre') }}">  Tri croissant</a>
+
+    <form method="post"><label>Chercher</label>
+        <input type="text" name="AfficherClasse" onkeyup="myFunction()" placeholder="Nom (EX: CyssiCentre)" id="myInput">
+    </form>
+
+    <table class="table" id="mytable">
+        <thead>
+            <tr>
+                <th>Id du centre</th>
+                <th>Nom du centre</th>
+                <th>Numéro téléphone Centre</th>
+                <th>Mail du centre</th>
+                <th>Adresse du centre</th>
+                <th>Type du centre</th>
+                <th><div class="centre">Actions</div></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for centre in centres %}
+            <tr>
+                <td>{{ centre.idCentre }}</td>
+                <td>{{ centre.nomCentre }}</td>
+                <td>{{ centre.telCentre }}</td>
+                <td>{{ centre.mailCentre }}</td>
+                <td>{{ centre.adrCentre }}</td>
+                <td>{{ centre.typeCentre }}</td>
+                <td>
+                    <div class="centrer">
+                    <a href="{{ path('centre_show', {'idCentre': centre.idCentre}) }}"><i class="align-middle" data-feather="eye"></i></a>
+                    <a href="{{ path('centre_edit', {'idCentre': centre.idCentre}) }}"><i class="align-middle" data-feather="edit"></i></a>
+                        {{ include('admin/centre/_delete_form.html.twig') }}
+
+                    </div>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Pas de résultat</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('centre_new') }}">Ajouter<i class="align-middle" data-feather="plus"></i></a>
+
+
+
+    <script>
+        function myFunction() {
+            var input, filter, table, tr, td, i,j, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("mytable");
+            tr = table.getElementsByTagName("tr");
+//   alert(td.length);
+            for (i = 0; i < tr.length; i++) {
+                td= tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+
+    </script>
+
+    <!-- Flashy depends on jQuery -->
+    <script src="//code.jquery.com/jquery.js"></script>
+    <!-- Load Flashy default JavaScript -->
+    <script src="{{ asset ('bundles/mercuryseriesflashy/js/flashy.js') }}"></script>
+    <!-- Include Flashy default partial -->
+    {{ include ('@MercurySeriesFlashy/flashy.html.twig') }}
+
+
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Centre index{% endblock %}
+
+{% block body %}
+    <h1>Liste des centres</h1>
+    <form method="post"><label>Chercher</label>
+        <input type="text" name="AfficherClasse" onkeyup="myFunction()" placeholder="Nom (EX: CyssiCentre)" id="myInput">
+    </form>
+    <table class="table" id="mytable">
+        <thead>
+        <tr>
+
+            <th>Nom du centre</th>
+            <th>Numéro téléphone Centre</th>
+            <th>Mail du centre</th>
+            <th>Adresse du centre</th>
+            <th>Type du centre</th>
+            <th><div class="centrer">Actions</div></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for centre in centres %}
+            <tr>
+
+                <td>{{ centre.nomCentre }}</td>
+                <td>{{ centre.telCentre }}</td>
+                <td>{{ centre.mailCentre }}</td>
+                <td>{{ centre.adrCentre }}</td>
+                <td>{{ centre.typeCentre }}</td>
+                <td><a href="{{ path('actListe', {'idCentre': centre.idCentre}) }}"> Activités</a></td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Pas de résultat</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <script>
+        function myFunction() {
+            var input, filter, table, tr, td, i,j, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("mytable");
+            tr = table.getElementsByTagName("tr");
+//   alert(td.length);
+            for (i = 0; i < tr.length; i++) {
+                td= tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+
+    </script>
+    {{ include ('home/chatframe.html.twig') }}
+{% endblock %}

@@ -1,0 +1,112 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos Menus{% endblock %}
+
+{% block body %}
+<!-- Start of .shop -->
+
+<!-- Start of .header-bottom-4 -->
+<header class="header-bottom-4">
+    <img src="{{ asset('./front/images/banner/banner11.jpg') }}">
+    <div class="header-bottom-4__bg">
+        <div class="icon">
+            <img src="{{asset('./front/images/banner/banner-shape.png')}}">
+        </div>
+    </div>
+    <div class="container">
+        <h1 class="section-title">Nos <span>Menus</span></h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('home') }}">Home</a></li>
+            <li class="breadcrumb-item active">Menus</li>
+        </ol>
+    </div>
+</header>
+<!-- End of .header-bottom-4 -->
+<section class="shop main-blog">
+    <div class="main-blog__bg">
+        <div class="icon">
+            <img src="{{ asset('./front/images/png-shapes/form-shape.png') }}">
+        </div>
+        <div class="icon">
+            <img src="{{ asset('./front/images/png-shapes/specialists__left-bottom-shape.png') }}">
+        </div>
+    </div>
+    <div class="container">
+        <div class="product">
+            <div class="single-product">
+                <div class="carousels">
+                    <ul class="image-carousel owl-carousel owl-theme">
+                        <li class="image-carousel__item"><a href="{{ asset('./admin/img/menu/' ~ menu.matinImg)}}" data-fancybox
+                                title="Image Caption Here"><img src="{{ asset('./admin/img/menu/' ~ menu.matinImg)}}"></a></li>
+                        <li class="image-carousel__item"><a href="{{ asset('./admin/img/menu/' ~ menu.dejeunerImg)}}" data-fancybox
+                                title="Image Caption Here"><img src="{{ asset('./admin/img/menu/' ~ menu.dejeunerImg)}}"></a></li>
+                        <li class="image-carousel__item"><a href="{{ asset('./admin/img/menu/' ~ menu.dinnerImg)}}" data-fancybox
+                                title="Image Caption Here"><img src="{{ asset('./admin/img/menu/' ~ menu.dinnerImg)}}"></a></li>
+                    </ul>
+                    </script>
+                    <ul class="thumbs-carousel owl-carousel owl-theme">
+                        <li class="thumbs-carousel__item"><img src="{{ asset('./admin/img/menu/' ~ menu.matinImg)}}"></li>
+                        <li class="thumbs-carousel__item"><img src="{{ asset('./admin/img/menu/' ~ menu.dejeunerImg)}}"></li>
+                        <li class="thumbs-carousel__item"><img src="{{ asset('./admin/img/menu/' ~ menu.dinnerImg)}}"></li>
+                    </ul>
+                </div>
+                <div class="content">
+                    <h1 class="title">Menu Jour N°{{menu.numJour}}</h1>
+                    <br>
+                    <p class="instock">Nom du menu : {{ menu.description}}</p>
+                    <table class="about">
+                        <tr>
+                            <th>Matin :</th>
+                            <td>{{ menu.matin }}</td>
+                        </tr>
+                        <tr>
+                            <th>Dejeuner :</th>
+                            <td>{{ menu.dejeuner }}</td>
+                        </tr>
+                        <tr>
+                            <th>Dinner :</th>
+                            <td>{{ menu.dinner }}</td>
+                        </tr>
+                        <tr>
+                            <th>Calories :</th>
+                            <td>{{ menu.totalCalories }} kcal</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="relatives">
+            <div class="head">
+                <h1 class="title">Menu des jours suivants: </h1>
+                <a href="{{ path('menus_front_show', {'id': app.request.get('id')}) }}" class="allCard">View All</a>
+            </div>
+            <br>
+            <br>
+            <div class="container">
+            {% for menus in pagination %}
+                <a href="{{ path('menu_single', {'id': app.request.get('id'), 'id_menu': menus.idMenu}) }}" class="specialists__item p-5">
+                    <div class="inner-block">
+                        <div class="img">
+                            <img src="{{ asset('./admin/img/menu/' ~ menus.matinImg) }}">
+                        </div>
+                        <h1 class="name">Menu Jour N°{{menus.numJour}}</h1>
+                        <h4 class="proffesia">Menu : {{ menus.description}}</h4>
+                        <ul class="work-date">
+                            <li><span>Matin - {{ menus.matin }}</span></li>
+                            <li><span>Déjeuner - {{ menus.dejeuner }}</span></li>
+                            <li><span>Dinner - {{ menus.dinner }}</span></li>
+                        </ul>
+                        <span class="btn-2 btn-2_blue">Consulter<i
+                                class="fa fa-angle-right"></i></span>
+                    </div>
+                </a>
+            {% endfor %}
+            </div>
+            <div class="d-flex justify-content-center mt-5">
+                {{ knp_pagination_render(pagination) }}
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End of .shop -->
+{% endblock %}

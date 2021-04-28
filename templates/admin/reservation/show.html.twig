@@ -1,0 +1,55 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block body %}
+<h1>Reservation</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>IdReservation</th>
+                <td>{{ reservation.idReservation }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ reservation.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ reservation.prenom }}</td>
+            </tr>
+            <tr>
+                <th>DateAct</th>
+                <td>{{ reservation.dateAct ? reservation.dateAct|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>NbPlace</th>
+                <td>{{ reservation.nbPlace }}</td>
+            </tr>
+            <tr>
+                <th>cinMembre</th>
+                <td>{{ reservation.cinMembre }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div style="padding: 0.5rem">
+    <a href="{{ path('reservation_index') }}">Retourner à la page d'acceuil</a>
+    </div>
+    <div style="padding: 0.5rem">
+    <a href="{{ path('reservation_edit', {'idReservation': reservation.idReservation}) }}">
+        <button class="btn-outline-success">
+        Modifier
+        </button>
+    </a>
+    </div>
+
+    {{ include('admin/reservation/_delete_form.html.twig') }}
+
+
+
+
+
+{% endblock %}
+
+
+

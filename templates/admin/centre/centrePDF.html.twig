@@ -1,0 +1,45 @@
+<h2>Liste des Centres</h2>
+
+<br>
+
+<table class="table"  border=" 1px solid" align="center" border-collapse="collapse"
+       border-spacing="0"
+       width="100%"
+>
+
+    <thead>
+    <tr>
+        <th>Id du centre</th>
+        <th>Nom du centre</th>
+        <th>Numéro téléphone Centre</th>
+        <th>Mail du centre</th>
+        <th>Adresse du centre</th>
+        <th>Type du centre</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for c in centres %}
+    <tr><td>
+            {{ c.idCentre}}
+        </td>   <td>
+            {{ c.nomCentre}}
+        </td> <td>
+            {{ c.telCentre}}
+        </td> <td>
+            {{ c.mailCentre}}
+        </td>   <td>
+            {{ c.adrCentre}}
+        </td> <td>
+
+            {{ c.typeCentre}}
+
+    </tr>
+    </tbody>
+    {% endfor %}
+</table>
+
+
+</div>
+</div>
+</div>
+</section>

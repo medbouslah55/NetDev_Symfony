@@ -1,0 +1,67 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Activite{% endblock %}
+
+{% block body %}
+    <h1>Activite</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id Activité</th>
+                <td>{{ activite.idAct }}</td>
+            </tr>
+            <tr>
+                <th>Catégorie</th>
+                <td>{{ activite.categorieAct }}</td>
+            </tr>
+            <tr>
+                <th>Nom activité</th>
+                <td>{{ activite.nomAct }}</td>
+            </tr>
+            <tr>
+                <th>Prix réservation</th>
+                <td>{{ activite.prixReservation }}</td>
+            </tr>
+            <tr>
+                <th>Date activité</th>
+                <td>{{ activite.dateAct }}</td>
+            </tr>
+            <tr>
+                <th>Capacite</th>
+                <td>{{ activite.capacite }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ activite.description }}</td>
+            </tr>
+            <tr>
+                <th>Lié au centre</th>
+                <td>{{ activite.idCentre.nomCentre}}</td>
+            </tr>
+            <tr>
+                <th>Lié au coach</th>
+                <td>{{ activite.cinCoach.nom }}  {{ activite.cinCoach.prenom }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+<table class="table">
+    <thead>
+    <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <td><a href="{{ path('activite_index') }}">Retour à la liste</a></td>
+    <td>   <a href="{{ path('activite_edit', {'idAct': activite.idAct}) }}"><i class="align-middle" data-feather="edit"></i></a></td>
+    <td>  {{ include('admin/activite/_delete_form.html.twig') }}</td>
+    </tbody>
+</table>
+
+
+{% endblock %}

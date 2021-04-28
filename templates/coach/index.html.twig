@@ -1,0 +1,191 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Coach index{% endblock %}
+
+{% block body %}
+
+<main class="content">
+    <div class="container-fluid p-0">
+
+        <h1 class="h3 mb-3">Coachs</h1>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-actions float-right">
+                            <div class="dropdown show">
+                                <a href="#" data-toggle="dropdown" data-display="static">
+                                    <i class="align-middle" data-feather="more-horizontal"></i>
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+                            </div>
+                        </div>
+                        <h5 class="card-title mb-0">Coachs</h5>
+                    </div>
+                    <form method="post">
+                        <br>
+                        <label>Chercher</label>
+                        <input class="col-10" type="text" name="AfficherClasse" onkeyup="myFunction()" placeholder="Nom (EX:med)" id="myInput">
+                        <a href="{{path('TrierParNomDESC') }}"><i class="align-middle" data-feather="arrow-down"></i></a>
+                        <a href="{{path('TrierParNomASC') }}"><i class="align-middle" data-feather="arrow-up"></i></a>
+                        <a class="btn btn-success" href="{{path('PDF') }}">  PDF </a>
+                    </form>
+                    <div class="card-body" id="mytable">
+                        <table id="datatables-clients" class="table table-striped" style="width:100%">
+                            <thead>
+                            <tr>
+                                <th>Cin</th>
+                                <th>Nom</th>
+                                <th>Prenom</th>
+                                <th>Sexe</th>
+                                <th>Datee</th>
+                                <th>Detaille</th>
+                                <th>Supprimer</th>
+                                <th>Modifier</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for coach in coaches %}
+                                <tr>
+                                    <td>{{ coach.cin }}</td>
+                                    <td>{{ coach.nom }}</td>
+                                    <td>{{ coach.prenom }}</td>
+                                    <td>{{ coach.sexe }}</td>
+                                    <td>{{ coach.datee ? coach.datee|date('Y-m-d') : '' }}</td>
+                                    <td>
+                                        <a href="{{ path('coach_show', {'cin': coach.cin}) }}"><i class="align-middle" data-feather="align-center"></i></a>
+
+                                    </td>
+                                    <td>
+                                        {{ include('coach/_delete_form.html.twig') }}
+                                    </td>
+                                    <td><a href="{{ path('coach_edit', {'cin': coach.cin}) }}"><i class="align-middle" data-feather="edit"></i></a></td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="6">no records found</td>
+                                </tr>
+                            {% endfor %}
+
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <th>Cin</th>
+                                <th>Nom</th>
+                                <th>Prenom</th>
+                                <th>Date de naissance</th>
+                                <th>Sexe</th>
+                                <th>Detaille</th>
+                                <th>Supprimer</th>
+                                <th>Modifier</th>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+    <main class="content">
+        <div class="container-fluid p-0">
+
+            <h1 class="h3 mb-3">Coach</h1>
+
+            <div class="row">
+                <div class="col-xl-4">
+                    {% for coach in coaches %}
+                    <div class="card">
+
+                        <div class="card-body">
+                            <div class="row no-gutters">
+                                <div class="col-sm-3 col-xl-12 col-xxl-3 text-center">
+                                    <img src="img/avatars/avatar-3.jpg" width="64" height="64" class="rounded-circle mt-2" alt="Angelica Ramos">
+                                </div>
+                                <div class="col-sm-9 col-xl-12 col-xxl-9">
+                                    <strong>About me</strong>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                </div>
+                            </div>
+                            <table class="table table-sm my-2" >
+                                <tbody>
+
+                                <tr>
+                                    <th>Cin</th>
+                                    <td>{{ coach.cin }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Nom</th>
+                                    <td>{{ coach.nom }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Prenom</th>
+                                    <td>{{ coach.prenom }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Sexe</th>
+                                    <td>{{ coach.sexe }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Datee</th>
+                                    <td>{{ coach.datee ? coach.datee|date('Y-m-d') : '' }}</td>
+                                </tr>
+                                <tr>
+                                    <th>afficher</th>
+                                    <td><a href="{{ path('coach_show', {'cin': coach.cin}) }}"><i class="align-middle" data-feather="align-center"></i></a></td>
+
+                                </tr>
+                                <tr>
+                                    <th>Supprimer</th>
+                                    <td>{{ include('coach/_delete_form.html.twig') }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Modifier</th>
+                                    <td><a href="{{ path('coach_edit', {'cin': coach.cin}) }}"><i class="align-middle" data-feather="edit"></i></a></td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+
+                            <hr />
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+    <script>
+        function myFunction() {
+            var input, filter, table, tr, td, i,j, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("mytable");
+            tr = table.getElementsByTagName("tr");
+//   alert(td.length);
+            for (i = 0; i < tr.length; i++) {
+                td= tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+
+    </script>
+
+{% endblock %}

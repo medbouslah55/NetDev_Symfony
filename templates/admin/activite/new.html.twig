@@ -1,0 +1,11 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}New Activite{% endblock %}
+
+{% block body %}
+    <h1>L'ajout d'une nouvelle activité</h1>
+
+    {{ include('admin/activite/_form.html.twig') }}
+
+    <a href="{{ path('activite_index') }}">Retour à la liste</a>
+{% endblock %}

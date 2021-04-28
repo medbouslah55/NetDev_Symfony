@@ -1,0 +1,88 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Evenement index{% endblock %}
+
+
+{% block body %}
+<div class="container mt-4">
+    <h1>Evenement index</h1>
+
+    <label>Chercher</label>
+    <input class="col-10" type="text" name="AfficherClasse" onkeyup="myFunction()" placeholder="Rechercher" id="myInput">
+
+    <a href="{{path('TrierParDateDESC') }}"><i class="align-middle" data-feather="arrow-down"></i></a>
+    <a href="{{path('TrierParDateASC') }}"><i class="align-middle" data-feather="arrow-up"></i></a>
+
+    <table class="table" id="mytable">
+        <thead>
+            <tr>
+
+                <th>DatePub</th>
+                <th>DateEven</th>
+                <th>Image</th>
+                <th>Sujet</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for evenement in evenements %}
+            <tr>
+
+                <td>{{ evenement.datePub }}</td>
+                <td>{{ evenement.dateEven }}</td>
+                <td>{{ evenement.image }}</td>
+                <td>{{ evenement.sujet }}</td>
+                <td>
+                    <a href="{{ path('evenement_show', {'idPub': evenement.idPub}) }}">show</a>
+                    <a href="{{ path('evenement_edit', {'idPub': evenement.idPub}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    
+    <div class="d-flex justify-content-center">
+        {{ knp_pagination_render(evenements) }}
+    </div>
+    <a class="btn btn-primary mb-3" href="{{ path('evenement_new') }}">Create new</a>
+</div>
+    <script>
+        id="mytable"
+        function myFunction() {
+            var input, filter, table, tr, td, i,j, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("mytable");
+            tr = table.getElementsByTagName("tr");
+            //   alert(td.length);
+            for (i = 0; i < tr.length; i++) {
+                td= tr[i].getElementsByTagName("td")[3];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+
+    </script>
+    <script>
+        var botmanWidget = {
+            frameEndpoint: '{{ path("chatframe") }}',
+            chatServer: '{{ path("message") }}',
+            title: 'Chatbot',
+            mainColor: '#FF5733',
+            bubbleBackground: '#FF5733',
+            aboutText: ''
+        };
+    </script>
+    <script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
+{% endblock %}

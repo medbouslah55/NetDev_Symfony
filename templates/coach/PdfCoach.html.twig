@@ -1,0 +1,40 @@
+<h2><center>Liste des Coach</center></h2>
+
+<br>
+
+<table class="table"  border=" 1px solid" align="center" border-collapse="collapse"
+       border-spacing="0"
+       width="100%"
+>
+
+
+        <thead>
+        <tr>
+            <th>Cin</th>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Sexe</th>
+            <th>Datee</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for coach in coaches %}
+            <tr>
+                <td>{{ coach.cin }}</td>
+                <td>{{ coach.nom }}</td>
+                <td>{{ coach.prenom }}</td>
+                <td>{{ coach.sexe }}</td>
+                <td>{{ coach.datee ? coach.datee|date('Y-m-d') : '' }}</td>
+
+            </tr>
+
+        {% endfor %}
+
+
+</table>
+
+
+</div>
+</div>
+</div>
+</section>

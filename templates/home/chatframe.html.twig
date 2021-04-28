@@ -1,0 +1,29 @@
+
+
+{% block title %}home page!{% endblock %}
+{% block head %}
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Hello World!</title>
+{% endblock %}
+{% block body %}
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+
+    <script>
+        var botmanWidget = {
+            frameEndpoint: '{{ path("homepage") }}',
+            chatServer: '{{ path("message") }}',
+            introMessage: 'Salut je suis un chatbot',
+            title: 'Cyssi Bot',
+            mainColor: '#fde3a7',
+            bubbleBackground: '#fcb941',
+            aboutText: ''
+        };
+    </script>
+    <script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
+
+
+
+{% endblock %}

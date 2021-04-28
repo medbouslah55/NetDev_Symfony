@@ -1,0 +1,36 @@
+
+
+<center>
+<h1>Liste des Menus</h1>
+
+
+ {% if menus %}
+          <table id="ProduitService" border="1">
+                  <thead>
+                  <tr>
+                      <th>Nom Menu</th>
+                      <th>Menu Jour N°</th>
+                      <th>Matin</th>
+                      <th>Déjeuner</th>
+                      <th>Dinner</th>
+                      <th>Total Calorique</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {% for c in menus %}
+                      <tr>
+                          <td>{{ c.description }}</td>
+                          <td>{{ c.numJour }}</td>
+                          <td>{{ c.matin }}</td>
+                          <td>{{ c.dejeuner }}</td>
+                          <td>{{ c.dinner }}</td>
+                          <td>{{ c.totalCalories }}</td>
+                        </tr>
+                  {% endfor %}
+                  </tbody>
+              </table>
+
+ {% else %}
+              <p>Aucun produits</p>
+          {% endif %}
+</center>

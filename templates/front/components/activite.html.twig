@@ -1,0 +1,32 @@
+<!-- Start of .specialists-3 -->
+
+<section class="specialists-3">
+    <h1 class="bg-text_dark">ACTIVITES</h1>
+    <div class="container">
+        <h1 class="section-title section-title_60">Nos<span> Activités</span></h1>
+
+        <div class="specialists-3__carousel owl-carousel owl-theme">
+
+            {% for activite in activites %}
+            <div class="specialists-3__item">
+                <div class="inner-block">
+                    <h1 class="name">{{ activite.nomAct }}</h1>
+                    <h4 class="proffesia">{{ activite.categorieAct }}</h4>
+                    <ul class="work-date">
+                        <li><span>Prix :</span><span>{{ activite.prixReservation }}</span></li>
+                        <li><span>Date :</span><span>{{ activite.dateAct }}</span></li>
+                        <li><span>Capacité :</span><span>{{ activite.capacite }}</span></li>
+                    </ul>
+                    {% if activite.capacite > 0 %}
+                    <a href="{{ path('newreservation', { 'id' :  activite.idAct }) }}" class="btn-2 btn-2_blue">Réserver <i class="fa fa-angle-right"></i></a>
+                    {% else %}
+                        <a href="#specialists-3" class="btn-2 btn-2_blue"  style="background-color: #f22283" disabled>Non disponible<i class="fa fa-angle-right"></i></a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- End of .specialists-3 -->

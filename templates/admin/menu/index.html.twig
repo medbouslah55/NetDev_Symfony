@@ -1,0 +1,48 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Nos Menus{% endblock %}
+{% block body %}
+{% include 'backend/partials/_flash.html.twig' %}
+<div class="container mt-4">
+    <h1>Liste de Nos Menus:</h1>
+    <div class="mt-3 mb-3">
+        <a href="{{ path('pdf') }}" class="btn btn-danger"><i class="align-middle mr-2 far fa-fw fa-file-pdf"></i><span class="align-middle">Convertir PDF</span></a>
+    </div>
+
+    <div class="container d-flex align-items-center mt-3 mb-3">
+        <input class="form-control" type="search" id="search" placeholder="Search by Nom">
+        <a href="{{ path('searchAdmin') }}"><i class="fa fa-sort"></i></a>
+    </div>
+    <div class="row" id="all">
+        {% include 'admin/menu/_search.html.twig' %}
+    </div>
+    <div class="d-flex justify-content-center">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $( document ).ready(function() {
+        var currentRequest = null;
+        $("#search").keyup(function(e){
+            var value = $(this).val();
+            if(currentRequest != null) {
+                currentRequest.abort();
+            }
+            currentRequest = $.ajax({
+                url : "{{ path('searchAdmin') }}",
+                type : 'GET',
+                data: {
+                    'searchValue' : value
+                },
+                success : function(retour)
+                {
+                    $('#all').html(retour);
+                },
+            });
+            return false;
+        });
+    });
+</script>
+{% endblock %}

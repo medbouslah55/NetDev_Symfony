@@ -1,0 +1,79 @@
+{% extends 'front/baseFront.html.twig' %}
+
+{% block body %}
+        <!-- Start of .from -->
+        <section class="form">
+                <div class="container">
+                        <div class="form__block">
+                                <h1 class="section-title">vous souhaitez faire<br><span>une réservation</span></h1>
+                                <p class="subtitle">Si vous voulez avoir une réservation dans notre centre , procéder de remplir le formulaire ci-dessous</p>
+                                {{ form_start(form) }}
+                                {% if form.vars.valid %}
+                                        {{ form_widget(form.nom, {'attr' : { 'class' : 'form__block-input reservation-padding' , 'placeholder' :'Votre Nom'}}) }}
+                                        {{ form_widget(form.prenom, {'attr' : { 'class' : 'form__block-input reservation-padding' , 'placeholder' :'Votre Prénom'}}) }}
+                                        {{ form_widget(form.dateAct, {'attr' : { 'class' : 'form__block-input reservation-padding' }}) }}
+                                        {{ form_widget(form.nbPlace, {'attr' : { 'class' : 'form__block-input reservation-padding' , 'placeholder' :'Nombre de Places'}}) }}
+                                        {{ form_widget(form.idAct, {'attr' : { 'class' : 'form__block-input reservation-dropdown' }}) }}
+                                        {{ form_widget(form.cinMembre, {'attr' : { 'class' : 'form__block-input reservation-dropdown' }}) }}
+                                {% else %}
+                                        <span class="d-block">
+                        {{ form_errors(form.nom) }}
+                                                {{ form_widget(form.nom, {'attr' : { 'class' : 'form__block-input reservation-padding' , 'placeholder' :'Votre Nom'}}) }}
+                    </span>
+                                        <span class="d-block">
+                         {{ form_errors(form.prenom) }}
+                                                {{ form_widget(form.prenom, {'attr' : { 'class' : 'form__block-input reservation-padding' , 'placeholder' :'Votre Prénom'}}) }}
+                    </span>
+                                        <sapn class="d-block">
+                                                {{ form_errors(form.dateAct) }}
+                                                {{ form_widget(form.dateAct, {'attr' : { 'class' : 'form__block-input reservation-padding' }}) }}
+                                        </sapn>
+                                        <span class="d-block">
+                        {{ form_errors(form.nbPlace) }}
+                                                {{ form_widget(form.nbPlace, {'attr' : { 'class' : 'form__block-input reservation-padding' , 'placeholder' :'Nombre de Places'}}) }}
+                     </span>
+                                        {{ form_errors(form.idAct) }}
+                                        {{ form_widget(form.idAct, {'attr' : { 'class' : 'form__block-input reservation-dropdown' }}) }}
+                                        <span class="d-block">
+                        {{ form_errors(form.cinMembre) }}
+                                                {{ form_widget(form.cinMembre, {'attr' : { 'class' : 'form__block-input reservation-dropdown' }}) }}
+                     </span>
+                                {% endif %}
+                                <button type="submit" class="btn btn_blue">METTRE A JOUR !</button>
+
+                                {{ form_end(form) }}
+                        </div>
+                </div>
+                {#{% if not form.vars.valid %}
+            <ul>
+                #}{# Loop through every form item #}{#
+                {% for child in form.children %}
+                #}{# Display the errors of the form item #}{#
+                {%for error in child.vars.errors%}
+                    <li>{{error.message}}</li>
+                {%endfor%}
+            {%endfor%}
+        </ul>
+    {%endif%}#}
+                <div class="form__bg">
+                        <div class="circle-blue"></div>
+                        <div class="circle-pink"></div>
+
+                        <div class="icon">
+                                <img src="./images/png-shapes/form-shape.png">
+                        </div>
+                </div>
+        </section>
+        <!-- End of .from -->
+        <style>
+                @media (max-width: 1900px) {
+                        .d-block {
+                                max-width: 250px;
+                        }
+                }
+
+                @media (max-width: 600px) {
+
+                }
+        </style>
+{% endblock %}

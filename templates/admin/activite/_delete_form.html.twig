@@ -1,0 +1,4 @@
+<form method="post" action="{{ path('activite_delete', {'idAct': activite.idAct}) }}" onsubmit="return confirm('voulez-vous vraiment supprimer cet enregistrement?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ activite.idAct) }}">
+    <button class="btn"><i style="color:red;" class="align-middle" data-feather="trash-2"></i></button>
+</form>

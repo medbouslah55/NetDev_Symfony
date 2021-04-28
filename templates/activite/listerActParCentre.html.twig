@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Activite index{% endblock %}
+
+{% block body %}
+    <h1>Liste des activités</h1>
+    <th>Tri selon le prix : </th>
+    {% if activites is not empty %}
+    <a  href="{{ path('TrierParActFront', {'idCentre': activites[0].idCentre.idCentre}) }}">Tri croissant</a>
+    <a  href="{{ path('TrierParActAscFront', {'idCentre': activites[0].idCentre.idCentre}) }}">Tri décroissant</a>
+    {% endif %}
+    <table class="table">
+        <thead>
+        <tr>
+
+            <th>Catégorie</th>
+            <th>Nom activité</th>
+            <th>Prix réservation</th>
+            <th>Date activité</th>
+            <th>Capacite</th>
+            <th>Description</th>
+
+            <th>Lié au centre</th>
+            <th>Lié au coach</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for activite in activites %}
+            <tr>
+
+                <td>{{ activite.categorieAct }}</td>
+                <td>{{ activite.nomAct }}</td>
+                <td>{{ activite.prixReservation }}</td>
+                <td>{{ activite.dateAct }}</td>
+                <td>{{ activite.capacite }}</td>
+                <td>{{ activite.description }}</td>
+                <td>{{ activite.idCentre.nomCentre}}</td>
+                <td>{{ activite.cinCoach.nom }}  {{ activite.cinCoach.prenom }}</td>
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">Pas de résultat</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {{ include ('home/chatframe.html.twig') }}
+
+    <br><br> <br><br> <br><br> <br><br> <br><br>
+{% endblock %}
