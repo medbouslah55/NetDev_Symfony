@@ -113,12 +113,13 @@
                 color:#999898;
                 margin-bottom:3px;
             }
-        </style></head>
+        </style>
+    </head>
 
     <body>
-    <div id="wrapper">
-        <form method="post"{{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
-        <legend>Modifier Reclamation</legend>
+    <div id="wrapper" >
+        <form  method="post"{{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+        <legend style="text-align: center">Modifier Reclamation</legend>
         <br>
         <div>
             {{ form_errors(form.nom) }}
@@ -132,7 +133,7 @@
         <br>
         <div>
             {{ form_errors(form.mail) }}
-            {{ form_widget(form.mail, {'attr' : { 'class' : 'form__block-input reservation-padding' , 'placeholder' :'Prix'}}) }}
+            {{ form_widget(form.mail)}}
         </div>
         <br>
         <div hidden>
@@ -155,7 +156,7 @@
             {{ form_widget(form.etat, {'attr' : { 'class' : 'form__block-input reservation-padding' , 'placeholder' :'Description'}}) }}
         </div>
         <br>
-        <input type="submit" name="submit" value="Modifier">
+        <input type="submit" name="submit" value="Sauvgarder">
         {{ form_end(form) }}
         </form>
 

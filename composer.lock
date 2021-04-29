@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "52d2682bca842fb7468367bab5aea79b",
+    "content-hash": "4817d3a6ae97088fc14482400b199a42",
     "packages": [
         {
             "name": "botman/botman",
@@ -1994,6 +1994,128 @@
             },
             "abandoned": true,
             "time": "2020-12-11T09:56:16+00:00"
+        },
+        {
+            "name": "gregwar/captcha",
+            "version": "v1.1.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Gregwar/Captcha.git",
+                "reference": "4bb668e6b40e3205a020ca5ee4ca8cff8b8780c5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Gregwar/Captcha/zipball/4bb668e6b40e3205a020ca5ee4ca8cff8b8780c5",
+                "reference": "4bb668e6b40e3205a020ca5ee4ca8cff8b8780c5",
+                "shasum": ""
+            },
+            "require": {
+                "ext-gd": "*",
+                "ext-mbstring": "*",
+                "php": ">=5.3.0",
+                "symfony/finder": "*"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.4"
+            },
+            "type": "captcha",
+            "autoload": {
+                "psr-4": {
+                    "Gregwar\\": "src/Gregwar"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Grégoire Passault",
+                    "email": "g.passault@gmail.com",
+                    "homepage": "http://www.gregwar.com/"
+                },
+                {
+                    "name": "Jeremy Livingston",
+                    "email": "jeremy.j.livingston@gmail.com"
+                }
+            ],
+            "description": "Captcha generator",
+            "homepage": "https://github.com/Gregwar/Captcha",
+            "keywords": [
+                "bot",
+                "captcha",
+                "spam"
+            ],
+            "support": {
+                "issues": "https://github.com/Gregwar/Captcha/issues",
+                "source": "https://github.com/Gregwar/Captcha/tree/master"
+            },
+            "time": "2020-03-24T14:39:05+00:00"
+        },
+        {
+            "name": "gregwar/captcha-bundle",
+            "version": "v2.1.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Gregwar/CaptchaBundle.git",
+                "reference": "2f96c759abae9c914856b9b9fc909268ba98a625"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Gregwar/CaptchaBundle/zipball/2f96c759abae9c914856b9b9fc909268ba98a625",
+                "reference": "2f96c759abae9c914856b9b9fc909268ba98a625",
+                "shasum": ""
+            },
+            "require": {
+                "ext-gd": "*",
+                "gregwar/captcha": "^1.1.9",
+                "php": ">=7.1.3",
+                "symfony/form": "~4.0|~5.0",
+                "symfony/framework-bundle": "~4.0|~5.0",
+                "symfony/translation": "~4.0|^5.0",
+                "twig/twig": "^2.10|^3.0"
+            },
+            "require-dev": {
+                "symplify/easy-coding-standard": "^6.1"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Gregwar\\CaptchaBundle\\": "/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Grégoire Passault",
+                    "email": "g.passault@gmail.com",
+                    "homepage": "http://www.gregwar.com/"
+                },
+                {
+                    "name": "Jeremy Livingston",
+                    "email": "jeremy.j.livingston@gmail.com"
+                }
+            ],
+            "description": "Captcha bundle",
+            "homepage": "https://github.com/Gregwar/CaptchaBundle",
+            "keywords": [
+                "Symfony2",
+                "bot",
+                "captcha",
+                "code",
+                "security",
+                "spam",
+                "symfony",
+                "visual"
+            ],
+            "support": {
+                "issues": "https://github.com/Gregwar/CaptchaBundle/issues",
+                "source": "https://github.com/Gregwar/CaptchaBundle/tree/v2.1.5"
+            },
+            "time": "2021-04-20T07:20:37+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -6525,6 +6647,71 @@
                 }
             ],
             "time": "2021-03-18T09:22:03+00:00"
+        },
+        {
+            "name": "symfony/google-mailer",
+            "version": "v4.4.20",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/google-mailer.git",
+                "reference": "441f147a329db99f7d7c351654c7c8e2f5585b1a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/google-mailer/zipball/441f147a329db99f7d7c351654c7c8e2f5585b1a",
+                "reference": "441f147a329db99f7d7c351654c7c8e2f5585b1a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.3",
+                "symfony/mailer": "^4.4|^5.0"
+            },
+            "require-dev": {
+                "symfony/http-client": "^4.3|^5.0"
+            },
+            "type": "symfony-bridge",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Mailer\\Bridge\\Google\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Google Mailer Bridge",
+            "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/google-mailer/tree/v4.4.20"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-01-01T09:24:35+00:00"
         },
         {
             "name": "symfony/http-client",

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Abonnement;
 use App\Form\AbonnementType;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,11 +18,20 @@ class AbonnementController extends AbstractController
     /**
      * @Route("/", name="abonnement_index", methods={"GET"})
      */
-    public function index(): Response
+    public function index(PaginatorInterface $paginator, Request $request): Response
     {
         $abonnements = $this->getDoctrine()
             ->getRepository(Abonnement::class)
             ->findAll();
+
+        $abonnements = $paginator->paginate(
+        // Doctrine Query, not results
+            $abonnements,
+            // Define the page parameter
+            $request->query->getInt('page', 1),
+            // Items per page
+            5
+        );
 
         return $this->render('abonnement/index.html.twig', [
             'abonnements' => $abonnements,
@@ -41,6 +51,11 @@ class AbonnementController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($abonnement);
             $entityManager->flush();
+
+            $this->addFlash(
+                'info',
+                'Votre Abonnement a été ajouter avec succès !'
+            );
 
             return $this->redirectToRoute('abonnement_index');
         }
@@ -71,6 +86,10 @@ class AbonnementController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            $this->addFlash(
+                'info',
+                'Votre Abonnement a été modifier avec succès !'
+            );
 
             return $this->redirectToRoute('abonnement_index');
         }
@@ -90,6 +109,10 @@ class AbonnementController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($abonnement);
             $entityManager->flush();
+            $this->addFlash(
+                'info',
+                'Votre Abonnement a été supprimer avec succès !'
+            );
         }
 
         return $this->redirectToRoute('abonnement_index');

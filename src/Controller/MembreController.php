@@ -18,7 +18,6 @@ use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Knp\Component\Pager\PaginatorInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/membre")
@@ -28,22 +27,21 @@ class MembreController extends AbstractController
 
     /**
      *
-     * @Route ("/loginadmin",name="loginadmin")
+     * @Route ("/loginadmin", name="loginadmin")
      */
     public function Loginadmin(Request $request)
     {
-     $email=$request->get('_username');
-     $pass=$request->get('_password');
-     if(($email=="admin@admin.com")&&($pass=="admin"))
-     {
-         return $this->redirectToRoute('admin_index');
-     }
-     else
-     {
-         return $this->redirectToRoute('coach_index');
-     }
+        $email= $request->get('_username');
+        $pass= $request->get('_password');
 
-
+        if(($email=="admin@admin.com") && ($pass=="admin"))
+        {
+            return $this->redirectToRoute('admin_index');
+        }
+        else
+        {
+            return $this->redirectToRoute('connexion');
+        }
     }
 
     /**
@@ -78,7 +76,6 @@ class MembreController extends AbstractController
      */
     public function Login()
     {
-
         return $this->render('LoginMembre.html.twig');
     }
     /**
@@ -172,7 +169,7 @@ class MembreController extends AbstractController
     /**
      * @param Request $request
      * @return Response
-     * @Route("/search", name="search")
+     * @Route("/search", name="search1")
      *
      */
     public function search(Request $request)

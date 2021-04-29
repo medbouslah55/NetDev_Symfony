@@ -37,7 +37,7 @@
                         </form>
                         <div class="container d-flex align-items-center mt-5">
                             <input class="form-control" type="search" id="search" placeholder="Search by Nom">
-                            <a href="{{ path('search') }}"><i class="fa fa-sort"></i></a>
+                            <a href="{{ path('search1') }}"><i class="fa fa-sort"></i></a>
                         </div>
 
                         <div class="card-body">
@@ -65,7 +65,7 @@
 
                                 </div>
                                 </tbody>
-                                <tfoot>
+                                {# <tfoot>
                                 <tr>
                                     <th>Cin</th>
                                     <th>Nom</th>
@@ -78,7 +78,7 @@
                                     <th>Telephone</th>
                                     <th>Supprimer</th>
                                 </tr>
-                                </tfoot>
+                                </tfoot> #}
                             </table>
                         </div>
                     </div>
@@ -98,7 +98,7 @@
                     currentRequest.abort();
                 }
                 currentRequest = $.ajax({
-                    url : "{{ path('search', {'id': app.request.get('id')}) }}",
+                    url : "{{ path('search1', {'id': app.request.get('id')}) }}",
                     type : 'GET',
                     data: {
                         'searchValue' : value

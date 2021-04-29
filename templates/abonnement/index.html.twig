@@ -2,8 +2,15 @@
 
 {% block title %}Listes Des Abonnements{% endblock %}
 {% block body %}
-    <h1>Listes Des Abonnements</h1>
-
+    <br>
+    <div class="p-4 bg-light" style="align-items: center">
+        <h1>Listes Des Abonnements</h1>
+    </div>
+{% for message in app.flashes('info') %}
+<div class="alert alert-success" style="width: 300px;" >
+    {{ message }}
+</div>
+{% endfor %}
     <table class="table">
         <thead>
             <tr>
@@ -43,4 +50,18 @@
         {% endfor %}
         </tbody>
     </table>
+    <ul class="my-pagination">
+        {{ knp_pagination_render(
+            abonnements,
+            '@KnpPaginator/Pagination/twitter_bootstrap_v4_pagination.html.twig',
+            {
+                'queryParam1': 'param1 value',
+                'queryParam2': 'param2 value'
+            },
+            {
+                'viewParam1': 'param1 value',
+                'viewParam2': 'param2 value'
+            },
+        ) }}
+    </ul>
 {% endblock %}

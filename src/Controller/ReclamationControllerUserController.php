@@ -69,6 +69,7 @@ class ReclamationControllerUserController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $date->setDate(2020,05,13);
             $reclamation->getCinMembre(0);
+
             $message = (new \Swift_Message('Confirmation Réclamation'))
                 ->setFrom('fg7@students.kiron.ngo')
                 ->setTo('firasgacha8@gmail.com')
@@ -80,10 +81,14 @@ class ReclamationControllerUserController extends AbstractController
 
                     'text/html'
                 );
-
             $mailer->send($message);
+
             $entityManager->persist($reclamation);
             $entityManager->flush();
+            $this->addFlash(
+                'info',
+                'Votre Réclamation a été envoyee avec succès !'
+            );
 
             return $this->redirectToRoute('afficherReclamation');
         }

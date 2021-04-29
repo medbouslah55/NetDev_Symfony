@@ -1,40 +1,84 @@
-<h2><center>Liste des Coach</center></h2>
+<!doctype html>
+<html lang="en">
+<head>
+    <style type="text/css">
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600);
 
-<br>
+        *, *:before, *:after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<table class="table"  border=" 1px solid" align="center" border-collapse="collapse"
-       border-spacing="0"
-       width="100%"
->
+        body {
+            background: #105469;
+            font-family: 'Open Sans', sans-serif;
+        }
+        table {
+            background: #012B39;
+            border-radius: 0.25em;
+            border-collapse: collapse;
+            margin: 1em;
+        }
+        th {
+            border-bottom: 1px solid #364043;
+            color: #E2B842;
+            font-size: 0.85em;
+            font-weight: 600;
+            padding: 0.5em 1em;
+            text-align: left;
+        }
+        td {
+            color: #fff;
+            font-weight: 400;
+            padding: 0.65em 1em;
+        }
+        .disabled td {
+            color: #4F5F64;
+        }
+        tbody tr {
+            transition: background 0.25s ease;
+        }
+        tbody tr:hover {
+            background: #014055;
+        }
 
 
-        <thead>
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1 >Liste des Coachs</h1>
+<table>
+
+    <thead>
+    <tr>
+        <th>Cin</th>
+        <th>Nom</th>
+        <th>Prenom</th>
+        <th>Sexe</th>
+        <th>Datee</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    {% for coach in coaches %}
         <tr>
-            <th>Cin</th>
-            <th>Nom</th>
-            <th>Prenom</th>
-            <th>Sexe</th>
-            <th>Datee</th>
+            <td>{{ coach.cin }}</td>
+            <td>{{ coach.nom }}</td>
+            <td>{{ coach.prenom }}</td>
+            <td>{{ coach.sexe }}</td>
+            <td>{{ coach.datee ? coach.datee|date('Y-m-d') : '' }}</td>
+
         </tr>
-        </thead>
-        <tbody>
-        {% for coach in coaches %}
-            <tr>
-                <td>{{ coach.cin }}</td>
-                <td>{{ coach.nom }}</td>
-                <td>{{ coach.prenom }}</td>
-                <td>{{ coach.sexe }}</td>
-                <td>{{ coach.datee ? coach.datee|date('Y-m-d') : '' }}</td>
 
-            </tr>
+    {% endfor %}
 
-        {% endfor %}
-
-
+    </tbody>
 </table>
-
-
-</div>
-</div>
-</div>
-</section>
+</body>
+</html>

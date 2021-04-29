@@ -2,38 +2,79 @@
 
 
 {% block body %}
-    <h1>Abonnement</h1>
+    <html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>Ibn Sino Html-5 Template | Shop Product Detail</title>
+        <link rel="icon" href="{{ asset('./images/icon.png') }}">
 
-    <table class="table">
-        <tbody>
-        <tr>
-            <th>Titre</th>
-            <td>{{ abonnement.titre }}</td>
-        </tr>
-        <tr>
-            <th>Type</th>
-            <td>{{ abonnement.type }}</td>
-        </tr>
-        <tr>
-            <th>Prix</th>
-            <td>{{ abonnement.prix }}</td>
-        </tr>
-        <tr>
-            <th>Description</th>
-            <td>{{ abonnement.descrAb }}</td>
-        </tr>
-        </tbody>
-    </table>
-    <div>
-        <form method="post" action="{{ path('abonnement_delete', {'id': abonnement.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
-            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ abonnement.id) }}">
-            <button class="validate">Supprimer</button>
-        </form>
+        <!-- wow animation style -->
+        <!-- <link rel="stylesheet" href="./css/animate.css"> -->
 
-        <form method="post" action="{{ path('abonnement_edit', {'id': abonnement.id}) }}">
-            <input type="hidden" name="_token" value="{{ csrf_token('edit' ~ abonnement.id) }}">
-            <button class="validate">Modifier</button>
-        </form>
+        <!-- owl-carousel -->
+        <link rel="stylesheet" href="{{ asset('./css/owl.carousel.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('./css/owl.theme.default.min.css') }}">
+
+        <!-- fancybox 3 css -->
+        <link rel="stylesheet" href="{{ asset('./css/jquery.fancybox.min.css') }}">
+
+        <!-- bootstrap style -->
+        <link rel="stylesheet" href="{{ asset('./css/bootstrap.min.css') }}">
+
+        <!-- template style -->
+        <link rel="stylesheet" href="{{ asset('./css/main.css') }}">
+
+        <!-- Responsive -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    </head>
+<body>
+<section class="shop main-blog">
+    <div class="container">
+        <div class="product">
+            <div class="single-product">
+                <div class="carousels">
+                    <ul class="image-carousel owl-carousel owl-theme owl-loaded owl-drag">
+                        <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-3712px, 0px, 0px); transition: all 1s ease 0s; width: 14848px;">
+                                <div class="owl-item cloned" style="width: 928px;">
+                                    <li class="image-carousel__item">
+                                        <a data-fancybox="" title="Image Caption Here">
+                                            {% if abonnement.type == "Gold" %}
+                                            <img src="{{ asset('./images/gold.jpg') }}">
+                                            {% elseif abonnement.type == "Silver" %}
+                                                <img src="{{ asset('./images/silver.jpg') }}">
+                                            {% else %}
+                                                <img src="{{ asset('./images/bronze.jpg') }}">
+                                            {% endif %}
+                                        </a>
+                                    </li></div>
+                    </ul>
+                    <ul class="thumbs-carousel owl-carousel owl-theme owl-loaded owl-drag" hidden>
+                    </ul>
+                </div>
+                <div class="content">
+                    <div class="rating">
+                        <div class="stars">
+                        </div>
+                        <span class="text"><span></span></span>
+                    </div>
+                    <h1 class="title">{{ abonnement.titre }}</h1>
+                    <p class="price">{{ abonnement.prix }} DT</p>
+                    <p class="instock"><i class="fa fa-check"></i>{{ abonnement.type }}</p>
+                    <br>
+                    <br>
+                    <p class="text">
+                        {{ abonnement.descrAb }}
+                    </p>
+                    <form class="count-add">
+                        <button class="validate" href="{{ asset('check') }}">Achéter</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
+</section>
+</body>
+    </html>
 {% endblock %}
 

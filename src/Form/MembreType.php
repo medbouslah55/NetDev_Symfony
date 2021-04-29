@@ -4,11 +4,12 @@ namespace App\Form;
 
 use App\Entity\Membre;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Gregwar\CaptchaBundle\Type\CaptchaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 class MembreType extends AbstractType
 {
@@ -18,15 +19,16 @@ class MembreType extends AbstractType
             ->add('cin')
             ->add('nom')
             ->add('prenom')
-            ->add('sexe',ChoiceType::class,[
+            ->add('sexe', ChoiceType::class,[
                 'choices'=>['Homme'=>'Homme','Femme'=>'Femme']
             ])
             ->add('datee')
             ->add('taille')
             ->add('poids')
-            ->add('email',EmailType::class)
-            ->add('password',PasswordType::class)
+            ->add('email', EmailType::class)
+            ->add('password', PasswordType::class)
             ->add('telephone')
+            ->add('captcha', CaptchaType::class)
 
         ;
     }

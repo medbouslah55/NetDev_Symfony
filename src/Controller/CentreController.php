@@ -174,7 +174,7 @@ private static $nb;
 
 
     /**
-     * @Route("/pdf", name="PDF", methods={"GET"})
+     * @Route("/pdfCentre", name="PDFCentre", methods={"GET"})
      */
     public function pdf(CentreRepository  $centreRepository): Response
     {
