@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Membre
@@ -25,7 +26,7 @@ class Membre implements UserInterface
     }
     /**
      * @var int
-     *
+     * @Groups("post:read")
      * @ORM\Column(name="cin", type="integer", nullable=false)
      * @ORM\Id
      * @Assert\Length(
@@ -40,7 +41,7 @@ class Membre implements UserInterface
 
     /**
      * @var string
-     *
+     * @Groups("post:read")
      * @ORM\Column(name="nom", type="string", length=50, nullable=false)
      * @Assert\Length(
      *      min = 4,
@@ -54,6 +55,7 @@ class Membre implements UserInterface
 
     /**
      * @var string
+     * @Groups("post:read")
      *@Assert\Length(
      *      min = 4,
      *      max = 16,
@@ -67,35 +69,35 @@ class Membre implements UserInterface
 
     /**
      * @var string
-     *
+     * @Groups("post:read")
      * @ORM\Column(name="sexe", type="string", length=50, nullable=false)
      */
     private $sexe;
 
     /**
      * @var \DateTime
-     *
+     * @Groups("post:read")
      * @ORM\Column(name="datee", type="date", nullable=false)
      */
     private $datee;
 
     /**
      * @var float
-     *
+     * @Groups("post:read")
      * @ORM\Column(name="taille", type="float", precision=10, scale=0, nullable=false)
      */
     private $taille;
 
     /**
      * @var float
-     *
+     * @Groups("post:read")
      * @ORM\Column(name="poids", type="float", precision=10, scale=0, nullable=false)
      */
     private $poids;
 
     /**
      * @var string
-     *
+     * @Groups("post:read")
      * @ORM\Column(name="email", type="string", length=50, nullable=false)
      * @Assert\Email()
      */
@@ -103,14 +105,14 @@ class Membre implements UserInterface
 
     /**
      * @var string
-     *
+     * @Groups("post:read")
      * @ORM\Column(name="password", type="string", length=50, nullable=false)
      */
     private $password;
 
     /**
      * @var int
-     *
+     * @Groups("post:read")
      * @ORM\Column(name="telephone", type="integer", nullable=false)
      */
     private $telephone;

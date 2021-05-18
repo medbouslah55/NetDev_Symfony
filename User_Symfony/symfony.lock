@@ -1,4 +1,7 @@
 {
+    "beberlei/assert": {
+        "version": "v3.3.1"
+    },
     "captcha-com/captcha": {
         "version": "4.2.5"
     },
@@ -100,6 +103,12 @@
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.3"
     },
+    "gregwar/captcha": {
+        "version": "v1.1.9"
+    },
+    "gregwar/captcha-bundle": {
+        "version": "v2.1.5"
+    },
     "guzzlehttp/guzzle": {
         "version": "7.3.0"
     },
@@ -148,6 +157,9 @@
     "nikic/php-parser": {
         "version": "v4.10.4"
     },
+    "paragonie/constant_time_encoding": {
+        "version": "v2.4.0"
+    },
     "phenx/php-font-lib": {
         "version": "0.5.2"
     },
@@ -187,6 +199,22 @@
     "sabberworm/php-css-parser": {
         "version": "8.3.1"
     },
+    "scheb/2fa-bundle": {
+        "version": "5.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "5.0",
+            "ref": "95d9da4bffdc29417c209141cae8292e40d6af19"
+        },
+        "files": [
+            "config/packages/scheb_2fa.yaml",
+            "config/routes/scheb_2fa.yaml"
+        ]
+    },
+    "scheb/2fa-google-authenticator": {
+        "version": "v5.8.0"
+    },
     "sensio/framework-extra-bundle": {
         "version": "5.2",
         "recipe": {
@@ -198,6 +226,9 @@
         "files": [
             "config/packages/sensio_framework_extra.yaml"
         ]
+    },
+    "spomky-labs/otphp": {
+        "version": "v10.0.1"
     },
     "symfony/asset": {
         "version": "v4.4.20"
@@ -579,6 +610,9 @@
     },
     "symfony/yaml": {
         "version": "v4.4.21"
+    },
+    "thecodingmachine/safe": {
+        "version": "v1.3.3"
     },
     "twig/extra-bundle": {
         "version": "v3.3.0"
